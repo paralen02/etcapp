@@ -1,0 +1,26 @@
+:root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+.footer {
+  position:fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  padding: 2rem;
+  background: #fafafa;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}

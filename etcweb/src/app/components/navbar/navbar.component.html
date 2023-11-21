@@ -1,0 +1,49 @@
+<nav>
+  <mat-toolbar color="primary" *ngIf="!verificar()">
+    <span class="toolbar-items">
+      <button mat-button routerLink="">
+        <span>
+          <img src="../../../assets/logo.svg" alt="Logo" class="col-2 m-4 w-75 h-75">
+        </span>
+      </button>
+    </span>
+
+    <span class="example-spacer"></span>
+
+    <span class="toolbar-items">
+      <button mat-button routerLink="/login"><mat-icon>account_circle</mat-icon></button>
+      <button mat-flat-button routerLink="/signup">
+        <div class="d-flex">
+        <mat-icon>menu</mat-icon>
+      </div>
+    </button>
+    </span>
+  </mat-toolbar>
+</nav>
+
+<mat-toolbar color="primary" *ngIf="verificar()">
+  <button mat-button routerLink="">
+    <span>
+      <img src="../../../assets/logo.svg" alt="Logo" class="col-2 m-2 w-75 h-75">
+    </span>
+  </button>
+  <button mat-flat-button routerLink="components/curso/1" *ngIf="this.role=='VENDEDOR'">MIS PUBLICACIONES</button>
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menuSalir" *ngIf="validarRol()" class="p-0 m-0">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item>
+    Hola,
+    <span>{{ username }}</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/components/perfil', username]">
+    Mi perfil
+  </button>
+  <button mat-menu-item routerLink="" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+</mat-menu>

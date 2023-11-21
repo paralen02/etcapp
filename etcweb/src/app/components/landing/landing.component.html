@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <mat-divider></mat-divider>
+    <nav>
+      <mat-toolbar color="primary" class="toolbar-items">
+        <span >
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>tips_and_updates</mat-icon>
+              <span class="icon-text p-2">Descubre</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>desk</mat-icon>
+              <span class="icon-text p-2">Escritorios</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>shelves</mat-icon>
+              <span class="icon-text p-2">Estantes</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>chair</mat-icon>
+              <span class="icon-text p-2">Sillones</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>table_bar</mat-icon>
+              <span class="icon-text p-2">Mesas</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>bed</mat-icon>
+              <span class="icon-text p-2">Camas</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>table_restaurant</mat-icon>
+              <span class="icon-text p-2">Plegables</span>
+            </div>
+          </button>
+          <button mat-button routerLink="">
+            <div class="icon-container">
+              <mat-icon>chair_alt</mat-icon>
+              <span class="icon-text p-2">Sillas</span>
+            </div>
+          </button>
+        </span>
+      </mat-toolbar>
+    </nav>
+<!-- Content-->
+<div class="col-12 d-flex flex-row flex-wrap p-4">
+  <div *ngFor="let publicacion of publicaciones" class="col-3 p-3">
+    <div class="card h-100">
+      <img class="card-img-top" src="https://picsum.photos/700" alt="..." />
+      <div class="card-body p-4">
+        <div class="text-center">
+          <h3 class="fw-bolder">{{ publicacion.titulo }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Content-->
+  </body>
+</html>
