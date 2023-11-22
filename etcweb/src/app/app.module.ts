@@ -29,6 +29,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingComponent } from './components/landing/landing.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule,
+    MatSliderModule,
+    NgbRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

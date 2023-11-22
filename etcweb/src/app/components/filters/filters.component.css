@@ -1,0 +1,14 @@
+.filter-container {
+  padding: 20px;
+}
+
+.filter-item {
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 25px;
+  color: #ff914d;
+  text-align: center;
+}
+

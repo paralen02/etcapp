@@ -1,0 +1,38 @@
+<div class="filter-container card">
+  <div class="card-header">
+    <h2>Filtros</h2>
+  </div>
+  <div class="card-body">
+    <div class="filter-item form-group">
+
+
+      <mat-slider min="0" max="4999" step="10" showTickMarks discrete [displayWith]="formatLabel">
+        <input matSliderThumb>
+      </mat-slider>
+      <br>
+      <label class="fw-bold">Rango de precios</label>
+    </div>
+
+    <div class="filter-item form-group">
+      <mat-select class="form-control">
+        <mat-option value="categoria1">Categoría 1</mat-option>
+        <mat-option value="categoria2">Categoría 2</mat-option>
+        <!-- Agrega más categorías aquí -->
+      </mat-select>
+      <br>
+      <br>
+      <label class="fw-bold">Categoría</label>
+    </div>
+
+    <div class="filter-item form-group">
+      <div class="star">
+      <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+    </div>
+    <br>
+    <label class="fw-bold">Calificación del vendedor</label>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button mat-button (click)="close()" class="btn btn-primary">Cerrar</button>
+  </div>
+</div>

@@ -1,14 +1,14 @@
 <nav>
   <mat-toolbar color="primary" *ngIf="!verificar()" class="toolbar">
-    <span class="toolbar-items">
-      <button mat-button routerLink="">
+    <li class="nav-item text-left flex-grow-1 d-flex align-items-center">
+      <a class="nav-link ml-0" href="">
         <span>
-          <img src="../../../assets/logo.svg" alt="Logo" class="col-2 m-4 w-75 h-75">
+          <img src="../../../assets/logo.svg" alt="Logo" class="col-2 w-75">
         </span>
-      </button>
-    </span>
+      </a>
+    </li>
 
-    <div class="search-container">
+    <div class="search-container d-flex align-items-center">
       <mat-form-field appearance="fill" class="rounded-input">
         <input matInput placeholder="Busca tu mueble ideal 3B" (keyup)="onSearch($event)">
         <button mat-icon-button matSuffix>
@@ -18,12 +18,10 @@
     </div>
 
     <span class="toolbar-items">
-      <button mat-button [matMenuTriggerFor]="loginMenu">
+      <!-- <button mat-button>
         <mat-icon class="buttons">account_circle</mat-icon>
-      </button>
-      <mat-menu #loginMenu="matMenu">
-        <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
-      </mat-menu>
+      </button> -->
+
       <button mat-flat-button [matMenuTriggerFor]="menu">
         <div class="d-flex">
           <mat-icon class="buttons">menu</mat-icon>
@@ -31,7 +29,7 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
-        <button mat-menu-item routerLink="/signup">Registrarme</button>
+        <button mat-menu-item routerLink="/signup-comprador">Registrarme</button>
         <button mat-menu-item routerLink="/nosotros">Nosotros</button>
         <button mat-menu-item routerLink="/faq">Preguntas frecuentes</button>
         <button mat-menu-item routerLink="/config">Configuraciones</button>
@@ -43,18 +41,44 @@
 </nav>
 
 
-<mat-toolbar color="primary" *ngIf="verificar()">
-  <button mat-button routerLink="">
-    <span>
-      <img src="../../../assets/logo.svg" alt="Logo" class="col-2 m-2 w-75 h-75">
-    </span>
-  </button>
-  <button mat-flat-button routerLink="components/curso/1" *ngIf="this.role=='VENDEDOR'">MIS PUBLICACIONES</button>
-  <span class="example-spacer"></span>
+<mat-toolbar color="primary" *ngIf="verificar()" class="toolbar">
+  <li class="nav-item text-left flex-grow-1 d-flex align-items-center">
+    <a class="nav-link ml-0" href="">
+      <span>
+        <img src="../../../assets/logo.svg" alt="Logo" class="col-2 w-75 h-75">
+      </span>
+    </a>
+  </li>
+
+  <div class="search-container d-flex align-items-center">
+    <mat-form-field appearance="fill" class="rounded-input">
+      <input matInput placeholder="Busca tu mueble ideal 3B" (keyup)="onSearch($event)">
+      <button mat-icon-button matSuffix>
+        <mat-icon style="color:#ff914d;">search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
   <button mat-button [matMenuTriggerFor]="menuSalir" *ngIf="validarRol()" class="p-0 m-0">
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon class="buttons">account_circle</mat-icon>
   </button>
+  <span class="toolbar-items">
+
+    <button mat-flat-button [matMenuTriggerFor]="menu">
+      <div class="d-flex">
+        <mat-icon class="buttons">menu</mat-icon>
+      </div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/nosotros">Nosotros</button>
+      <button mat-menu-item routerLink="/faq">Preguntas frecuentes</button>
+      <button mat-menu-item routerLink="/config">Configuraciones</button>
+      <button mat-menu-item routerLink="/ayuda">Ayuda</button>
+      <button mat-menu-item routerLink="/atencion">Atención al cliente</button>
+    </mat-menu>
+  </span>
 </mat-toolbar>
+
 
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item>
@@ -69,3 +93,4 @@
     <span>Cerrar sesión</span>
   </button>
 </mat-menu>
+

@@ -35,3 +35,19 @@ mat-form-field {
 .buttons{
   transform: scale(2);
 }
+
+.nav-link img {
+  min-width: 150px; /* Ajusta este valor según tus necesidades */
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-link:hover img {
+  filter: grayscale(100%);
+}
+
+@media (max-width: 576px) { /* Ajusta este valor según tus necesidades */
+  mat-form-field.rounded-input {
+    display: none;
+  }
+}

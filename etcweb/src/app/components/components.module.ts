@@ -22,6 +22,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatListModule } from '@angular/material/list';
 import { ComponentsRoutingModule } from './components-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
 import { AsesoriasComponent } from './asesorias/asesorias.component';
 import { CaracteristicasComponent } from './caracteristicas/caracteristicas.component';
 import { CategoriasComponent } from './categorias/categorias.component';
@@ -72,6 +74,8 @@ import { CreaeditaVendedoresComponent } from './vendedores/creaedita-vendedores/
 import { ListarVendedoresComponent } from './vendedores/listar-vendedores/listar-vendedores.component';
 import { SignupCompradorComponent } from './signup/signup-comprador/signup-comprador.component';
 import { SignupVendedorComponent } from './signup/signup-vendedor/signup-vendedor.component';
+import { FiltersComponent } from './filters/filters.component';
+import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -125,6 +129,7 @@ import { SignupVendedorComponent } from './signup/signup-vendedor/signup-vendedo
     ListarVendedoresComponent,
     SignupCompradorComponent,
     SignupVendedorComponent,
+    FiltersComponent
 
   ],
   imports:[
@@ -151,7 +156,10 @@ import { SignupVendedorComponent } from './signup/signup-vendedor/signup-vendedo
     MatGridListModule,
     MatDividerModule,
     MatCheckboxModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule,
+    MatSliderModule,
+    NgbRatingModule
   ]
 })
 export class ComponentsModule { }
