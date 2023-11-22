@@ -1,5 +1,5 @@
 <nav>
-  <mat-toolbar color="primary" *ngIf="!verificar()">
+  <mat-toolbar color="primary" *ngIf="!verificar()" class="toolbar">
     <span class="toolbar-items">
       <button mat-button routerLink="">
         <span>
@@ -8,18 +8,40 @@
       </button>
     </span>
 
-    <span class="example-spacer"></span>
+    <div class="search-container">
+      <mat-form-field appearance="fill" class="rounded-input">
+        <input matInput placeholder="Busca tu mueble ideal 3B" (keyup)="onSearch($event)">
+        <button mat-icon-button matSuffix>
+          <mat-icon style="color:#ff914d;">search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
 
     <span class="toolbar-items">
-      <button mat-button routerLink="/login"><mat-icon>account_circle</mat-icon></button>
-      <button mat-flat-button routerLink="/signup">
+      <button mat-button [matMenuTriggerFor]="loginMenu">
+        <mat-icon class="buttons">account_circle</mat-icon>
+      </button>
+      <mat-menu #loginMenu="matMenu">
+        <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
+      </mat-menu>
+      <button mat-flat-button [matMenuTriggerFor]="menu">
         <div class="d-flex">
-        <mat-icon>menu</mat-icon>
-      </div>
-    </button>
+          <mat-icon class="buttons">menu</mat-icon>
+        </div>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
+        <button mat-menu-item routerLink="/signup">Registrarme</button>
+        <button mat-menu-item routerLink="/nosotros">Nosotros</button>
+        <button mat-menu-item routerLink="/faq">Preguntas frecuentes</button>
+        <button mat-menu-item routerLink="/config">Configuraciones</button>
+        <button mat-menu-item routerLink="/ayuda">Ayuda</button>
+        <button mat-menu-item routerLink="/atencion">Atención al cliente</button>
+      </mat-menu>
     </span>
   </mat-toolbar>
 </nav>
+
 
 <mat-toolbar color="primary" *ngIf="verificar()">
   <button mat-button routerLink="">

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +12,7 @@ export class NavbarComponent {
   role:string="";
   username:string="";
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, public router: Router, private searchService: SearchService) {
   }
 
   cerrar() {
@@ -30,5 +32,9 @@ export class NavbarComponent {
       return false;
     }
   }
-}
 
+  onSearch(event: KeyboardEvent) {
+    const searchValue = (event.target as HTMLInputElement).value;
+    this.searchService.emitSearch(searchValue);
+  }
+}

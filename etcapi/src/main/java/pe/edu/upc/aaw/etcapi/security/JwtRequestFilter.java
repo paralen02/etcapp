@@ -38,9 +38,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			} catch (ExpiredJwtException e) {
 				System.out.println("Token JWT ha expirado");
 			}
-		} else {
-			logger.warn("JWT Token no inicia con la palabra Bearer");
 		}
+//		else {
+//			logger.warn("JWT Token no inicia con la palabra Bearer");
+//		}
 
 		// Once we get the token validate it.
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
