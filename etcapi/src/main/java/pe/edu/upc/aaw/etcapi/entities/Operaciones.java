@@ -21,9 +21,10 @@ private Pagos pago;
 
     public Operaciones() { }
 
-    public Operaciones(int idOperaciones, LocalDateTime fecha) {
+    public Operaciones(int idOperaciones, LocalDateTime fecha, Pagos pago) {
         this.idOperaciones = idOperaciones;
         this.fecha = fecha;
+this.pago = pago;
     }
 
     public int getIdOperaciones() {
@@ -36,5 +37,13 @@ private Pagos pago;
 
 public void setFecha(LocalDateTime fecha) {
     this.fecha = fecha;
+}
+
+public Pagos getPago() {
+    return pago;
+}
+
+public void setPago(Pagos pago) {
+    this.pago = pago;
 }
 }

@@ -1,0 +1,19 @@
+/* CSS */
+img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+button[color="primary"] {
+  background-color: #ff914d;
+  color: white;
+  border-radius: 5px;
+}
+
+button[color="secondary"] {
+  background-color: #d3d3d3;
+  color: #808080;
+  border-radius: 5px;
+}

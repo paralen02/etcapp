@@ -23,10 +23,11 @@ private Chats chat;
 
     public Mensajes() { }
 
-    public Mensajes(int idMensajes, LocalDateTime fecha, String mensaje) {
+    public Mensajes(int idMensajes, LocalDateTime fecha, String mensaje, Chats chat) {
         this.idMensajes = idMensajes;
         this.fecha = fecha;
 this.mensaje = mensaje;
+this.chat = chat;
     }
 
     public int getIdMensajes() {
@@ -47,5 +48,13 @@ public String getMensaje() {
 
 public void setMensaje(String mensaje) {
     this.mensaje = mensaje;
+}
+
+public Chats getChat() {
+    return chat;
+}
+
+public void setChat(Chats chat) {
+    this.chat = chat;
 }
 }

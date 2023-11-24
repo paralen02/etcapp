@@ -23,10 +23,11 @@ private Users user;
 
     public Vendedores() { }
 
-    public Vendedores(int idVendedores, String direccion, String distrito) {
+    public Vendedores(int idVendedores, String direccion, String distrito, Users user) {
         this.idVendedores = idVendedores;
         this.direccion = direccion;
 this.distrito = distrito;
+this.user = user;
     }
 
     public int getIdVendedores() {
@@ -47,5 +48,13 @@ public String getDistrito() {
 
 public void setDistrito(String distrito) {
     this.distrito = distrito;
+}
+
+public Users getUser() {
+    return user;
+}
+
+public void setUser(Users user) {
+    this.user = user;
 }
 }

@@ -25,11 +25,12 @@ private Compras compra;
 
     public Asesorias() { }
 
-    public Asesorias(int idAsesorias, String link, LocalDateTime fecha, String motivo) {
+    public Asesorias(int idAsesorias, String link, LocalDateTime fecha, String motivo, Compras compra) {
         this.idAsesorias = idAsesorias;
         this.link = link;
 this.fecha = fecha;
 this.motivo = motivo;
+this.compra = compra;
     }
 
     public int getIdAsesorias() {
@@ -58,5 +59,13 @@ public String getMotivo() {
 
 public void setMotivo(String motivo) {
     this.motivo = motivo;
+}
+
+public Compras getCompra() {
+    return compra;
+}
+
+public void setCompra(Compras compra) {
+    this.compra = compra;
 }
 }

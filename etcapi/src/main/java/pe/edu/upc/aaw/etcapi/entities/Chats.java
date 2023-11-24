@@ -21,9 +21,10 @@ private Compras compra;
 
     public Chats() { }
 
-    public Chats(int idChats, boolean estado) {
+    public Chats(int idChats, boolean estado, Compras compra) {
         this.idChats = idChats;
         this.estado = estado;
+this.compra = compra;
     }
 
     public int getIdChats() {
@@ -36,5 +37,13 @@ private Compras compra;
 
 public void setEstado(boolean estado) {
     this.estado = estado;
+}
+
+public Compras getCompra() {
+    return compra;
+}
+
+public void setCompra(Compras compra) {
+    this.compra = compra;
 }
 }

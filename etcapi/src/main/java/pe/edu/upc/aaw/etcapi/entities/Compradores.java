@@ -29,13 +29,14 @@ private Users user;
 
     public Compradores() { }
 
-    public Compradores(int idCompradores, String nombres, String apellidos, String celular, String correo, String dni) {
+    public Compradores(int idCompradores, String nombres, String apellidos, String celular, String correo, String dni, Users user) {
         this.idCompradores = idCompradores;
         this.nombres = nombres;
 this.apellidos = apellidos;
 this.celular = celular;
 this.correo = correo;
 this.dni = dni;
+this.user = user;
     }
 
     public int getIdCompradores() {
@@ -80,5 +81,13 @@ public String getDni() {
 
 public void setDni(String dni) {
     this.dni = dni;
+}
+
+public Users getUser() {
+    return user;
+}
+
+public void setUser(Users user) {
+    this.user = user;
 }
 }

@@ -1,11 +1,36 @@
-<h1>{{ publicacion.titulo }}</h1>
-<p>{{ publicacion.descripcion }}</p>
-<p>Precio del producto: {{ producto.precio }}</p>
-<p>Detalles de las características:
-  {{ caracteristica.color }}
-  {{ caracteristica.descripcion }}
-  {{ caracteristica.dimensiones }}
-  {{ caracteristica.material }}
-  {{ caracteristica.meses_uso }}
-</p>
-<!-- y así sucesivamente para los demás campos de la publicación, producto y características -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <img [src]="producto.imagen" alt="{{ publicacion.titulo }}" />
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex flex-column justify-content-center">
+            <h1>{{ publicacion.titulo }}</h1>
+            <span>{{ vendedor.distrito }}</span>
+            <p>a solo S/ {{ producto.precio }}</p>
+            <p>Envío gratis</p>
+            <b style="color: #595959;">Medidas:</b>
+            <a>Alto: {{ alto }} cm</a>
+            <a>Largo: {{ largo }} cm</a>
+            <p>Ancho: {{ ancho }} cm</p>
+
+            <b style="color: #595959;">Color: <span class="fw-normal">{{ caracteristica.color }}</span></b>
+            <b style="color: #595959;">Material: <span class="fw-normal">{{ caracteristica.material }}</span></b>
+            <b style="color: #595959;">Tiempo de uso: <span class="fw-normal">{{ caracteristica.meses_uso }} años</span></b>
+            <br>
+          </div>
+          <div class="d-flex justify-content-start">
+            <button mat-button color="primary">
+              <i class="fa fa-shopping-cart"></i><span ></span>Agregar
+            </button>
+            <button mat-button color="secondary" style="margin-left: 20px">
+              <i class="fa fa-comments"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

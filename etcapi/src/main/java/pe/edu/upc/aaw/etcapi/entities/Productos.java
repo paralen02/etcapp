@@ -33,11 +33,14 @@ private Caracteristicas caracteristica;
 
     public Productos() { }
 
-    public Productos(int idProductos, Long precio, String imagen, int stock) {
+    public Productos(int idProductos, Long precio, String imagen, int stock, Categorias categoria, Vendedores vendedor, Caracteristicas caracteristica) {
         this.idProductos = idProductos;
         this.precio = precio;
 this.imagen = imagen;
 this.stock = stock;
+this.categoria = categoria;
+this.vendedor = vendedor;
+this.caracteristica = caracteristica;
     }
 
     public int getIdProductos() {
@@ -66,5 +69,29 @@ public int getStock() {
 
 public void setStock(int stock) {
     this.stock = stock;
+}
+
+public Categorias getCategoria() {
+    return categoria;
+}
+
+public void setCategoria(Categorias categoria) {
+    this.categoria = categoria;
+}
+
+public Vendedores getVendedor() {
+    return vendedor;
+}
+
+public void setVendedor(Vendedores vendedor) {
+    this.vendedor = vendedor;
+}
+
+public Caracteristicas getCaracteristica() {
+    return caracteristica;
+}
+
+public void setCaracteristica(Caracteristicas caracteristica) {
+    this.caracteristica = caracteristica;
 }
 }

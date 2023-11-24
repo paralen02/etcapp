@@ -23,10 +23,11 @@ private Repartidores repartidor;
 
     public Envios() { }
 
-    public Envios(int idEnvios, boolean entregado, LocalDate fecha) {
+    public Envios(int idEnvios, boolean entregado, LocalDate fecha, Repartidores repartidor) {
         this.idEnvios = idEnvios;
         this.entregado = entregado;
 this.fecha = fecha;
+this.repartidor = repartidor;
     }
 
     public int getIdEnvios() {
@@ -47,5 +48,13 @@ public LocalDate getFecha() {
 
 public void setFecha(LocalDate fecha) {
     this.fecha = fecha;
+}
+
+public Repartidores getRepartidor() {
+    return repartidor;
+}
+
+public void setRepartidor(Repartidores repartidor) {
+    this.repartidor = repartidor;
 }
 }

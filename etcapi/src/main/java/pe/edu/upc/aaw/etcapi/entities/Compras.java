@@ -33,9 +33,13 @@ private Envios envio;
 
     public Compras() { }
 
-    public Compras(int idCompras, LocalDateTime fecha) {
+    public Compras(int idCompras, LocalDateTime fecha, Operaciones operacion, Publicaciones publicacion, Compradores comprador, Envios envio) {
         this.idCompras = idCompras;
         this.fecha = fecha;
+this.operacion = operacion;
+this.publicacion = publicacion;
+this.comprador = comprador;
+this.envio = envio;
     }
 
     public int getIdCompras() {
@@ -48,5 +52,37 @@ private Envios envio;
 
 public void setFecha(LocalDateTime fecha) {
     this.fecha = fecha;
+}
+
+public Operaciones getOperacion() {
+    return operacion;
+}
+
+public void setOperacion(Operaciones operacion) {
+    this.operacion = operacion;
+}
+
+public Publicaciones getPublicacion() {
+    return publicacion;
+}
+
+public void setPublicacion(Publicaciones publicacion) {
+    this.publicacion = publicacion;
+}
+
+public Compradores getComprador() {
+    return comprador;
+}
+
+public void setComprador(Compradores comprador) {
+    this.comprador = comprador;
+}
+
+public Envios getEnvio() {
+    return envio;
+}
+
+public void setEnvio(Envios envio) {
+    this.envio = envio;
 }
 }

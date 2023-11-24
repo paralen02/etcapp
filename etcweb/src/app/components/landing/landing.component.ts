@@ -20,6 +20,7 @@ export class LandingComponent implements OnInit {
   vendedores: any[] = [];
   items: any[] = [];
   categorias: any[] = [];
+  imagen: any[]=[];
   iconos: string[] = [
     'tips_and_updates',
     'desk',
@@ -51,6 +52,7 @@ export class LandingComponent implements OnInit {
     this.categoriasService.list().subscribe((categorias) => {
       this.categorias = categorias;
     });
+
     this.publicacionesService.list().subscribe((publicaciones) => {
       this.publicaciones = publicaciones;
 
@@ -61,31 +63,30 @@ export class LandingComponent implements OnInit {
           this.vendedores = vendedores;
 
           this.items = this.publicaciones.map((publicacion, index) => {
+            const producto = this.productos.find(p => p.idProductos === publicacion.producto.idProductos);
+            const vendedor = this.vendedores.find(v => v.idVendedores === publicacion.producto.vendedor.idVendedores);
+
             return {
               id: publicacion.idPublicaciones,
               titulo: publicacion.titulo,
-              precio: this.productos[index]
-                ? this.productos[index].precio
-                : undefined,
-              distrito: this.vendedores[index]
-                ? this.vendedores[index].distrito
-                : undefined,
+              precio: producto ? producto.precio : undefined,
+              distrito: vendedor ? vendedor.distrito : undefined,
+              imagen: producto ? producto.imagen : undefined,
             };
           });
 
           this.filteredItems = this.items;
 
-          this.searchSubscription =
-            this.searchService.searchObservable.subscribe((searchValue) => {
-              this.filteredItems = this.items.filter((item) =>
-                item.titulo.toLowerCase().includes(searchValue.toLowerCase())
-              );
-            });
+          this.searchSubscription = this.searchService.searchObservable.subscribe((searchValue) => {
+            this.filteredItems = this.items.filter((item) =>
+              item.titulo.toLowerCase().includes(searchValue.toLowerCase())
+            );
+          });
         });
       });
     });
-
   }
+
 
   ngOnDestroy() {
     if (this.searchSubscription) {

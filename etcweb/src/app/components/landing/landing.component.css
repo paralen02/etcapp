@@ -1,7 +1,3 @@
-/* *{
-  font-size: large;
-} */
-
 .grid-container {
   margin: 20px;
 }
@@ -89,7 +85,7 @@
 }
 
 .distrito {
-  color: gray;
+  color: #a0a0a0;
 }
 
 .precio {

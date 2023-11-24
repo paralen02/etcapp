@@ -12,7 +12,7 @@ public class Publicaciones {
 
     @Column(name = "titulo")
 private String titulo;
-@Column(name = "descripcion")
+@Column(name = "descripcion", columnDefinition = "TEXT")
 private String descripcion;
 @Column(name = "fecha")
 private LocalDateTime fecha;
@@ -25,11 +25,12 @@ private Productos producto;
 
     public Publicaciones() { }
 
-    public Publicaciones(int idPublicaciones, String titulo, String descripcion, LocalDateTime fecha) {
+    public Publicaciones(int idPublicaciones, String titulo, String descripcion, LocalDateTime fecha, Productos producto) {
         this.idPublicaciones = idPublicaciones;
         this.titulo = titulo;
 this.descripcion = descripcion;
 this.fecha = fecha;
+this.producto = producto;
     }
 
     public int getIdPublicaciones() {
@@ -58,5 +59,13 @@ public LocalDateTime getFecha() {
 
 public void setFecha(LocalDateTime fecha) {
     this.fecha = fecha;
+}
+
+public Productos getProducto() {
+    return producto;
+}
+
+public void setProducto(Productos producto) {
+    this.producto = producto;
 }
 }
