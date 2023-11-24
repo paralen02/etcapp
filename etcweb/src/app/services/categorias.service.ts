@@ -16,10 +16,7 @@ export class CategoriasService {
   constructor(private http: HttpClient) {}
 
   list(): Observable<Categorias[]> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Categorias[]>(this.url, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Categorias[]>(this.url)
   }
 
   insert(categoria: Categorias): Observable<any> {
@@ -38,10 +35,7 @@ export class CategoriasService {
   }
 
   listId(id: number): Observable<Categorias> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Categorias>(`${this.url}/${id}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Categorias>(`${this.url}/${id}`)
   }
 
   update(categoria: Categorias): Observable<any> {

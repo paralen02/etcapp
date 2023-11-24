@@ -16,10 +16,7 @@ export class CaracteristicasService {
   constructor(private http: HttpClient) {}
 
   list(): Observable<Caracteristicas[]> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Caracteristicas[]>(this.url, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Caracteristicas[]>(this.url)
   }
 
   insert(caracteristicas: Caracteristicas): Observable<any> {
@@ -38,10 +35,7 @@ export class CaracteristicasService {
   }
 
   listId(id: number): Observable<Caracteristicas> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Caracteristicas>(`${this.url}/${id}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Caracteristicas>(`${this.url}/${id}`)
   }
 
   update(caracteristicas: Caracteristicas): Observable<any> {

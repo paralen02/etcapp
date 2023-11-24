@@ -35,10 +35,7 @@ export class PublicacionesService {
   }
 
   listId(id: number): Observable<Publicaciones> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Publicaciones>(`${this.url}/${id}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Publicaciones>(`${this.url}/${id}`)
   }
 
   update(publicaciones: Publicaciones): Observable<any> {

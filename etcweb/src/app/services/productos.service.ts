@@ -15,7 +15,7 @@ export class ProductosService {
 
   constructor(private http: HttpClient) {}
 
-  list() {
+  list(): Observable<Productos[]>{
     return this.http.get<Productos[]>(this.url)
   }
 
@@ -35,10 +35,7 @@ export class ProductosService {
   }
 
   listId(id: number) {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Productos>(`${this.url}/${id}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Productos>(`${this.url}/${id}`)
   }
 
   update(productos: Productos) {

@@ -35,10 +35,7 @@ export class VendedoresService {
   }
 
   listId(id: number): Observable<Vendedores> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Vendedores>(`${this.url}/${id}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Vendedores>(`${this.url}/${id}`)
   }
 
   update(vendedores: Vendedores): Observable<any> {
