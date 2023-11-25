@@ -62,6 +62,11 @@
   <button mat-button [matMenuTriggerFor]="menuSalir" *ngIf="validarRol()" class="p-0 m-0">
     <mat-icon class="buttons">account_circle</mat-icon>
   </button>
+
+<button mat-button class="p-0 m-0" routerLink="components/carrito">
+  <mat-icon class="buttons">shopping_cart</mat-icon>
+  <span class="cart-badge">{{ obtenerNumeroDeItemsEnCarrito() }}</span>
+</button>
   <span class="toolbar-items">
 
     <button mat-flat-button [matMenuTriggerFor]="menu">
@@ -78,7 +83,6 @@
     </mat-menu>
   </span>
 </mat-toolbar>
-
 
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item>

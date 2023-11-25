@@ -16,6 +16,10 @@ import { VendedoresService } from 'src/app/services/vendedores.service';
 })
 export class PublicacionesComponent implements OnInit {
   idPublicaciones: number = 0;
+  ids: number[] = [];
+  publicaciones: Publicaciones[] = [];
+  productos: Productos[] = [];
+  caracteristicas: Caracteristicas[] = [];
   publicacion: Publicaciones = new Publicaciones();
   producto: Productos = new Productos();
   caracteristica: Caracteristicas = new Caracteristicas();
@@ -62,5 +66,19 @@ export class PublicacionesComponent implements OnInit {
               });
           });
       });
+  }
+  agregarAlCarrito(): void {
+    let carrito = this.obtenerCarrito();
+    let productoConTitulo = {
+      ...this.producto,
+      tituloPublicacion: this.publicacion.titulo
+    };
+    carrito.push(productoConTitulo);
+    sessionStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+
+  obtenerCarrito(): Productos[] {
+    let carrito = sessionStorage.getItem('carrito');
+    return carrito ? JSON.parse(carrito) : [];
   }
 }

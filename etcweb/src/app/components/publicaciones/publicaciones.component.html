@@ -1,4 +1,5 @@
-<div class="container">
+<div class="d-flex justify-content-center" style="height: 100vh">
+<div class="container m-5">
   <div class="row justify-content-center">
     <div class="col-lg-10">
       <div class="row">
@@ -8,24 +9,28 @@
         <div class="col-md-6">
           <div class="d-flex flex-column justify-content-center">
             <h1>{{ publicacion.titulo }}</h1>
-            <span>{{ vendedor.distrito }}</span>
-            <p>a solo S/ {{ producto.precio }}</p>
-            <p>Envío gratis</p>
-            <b style="color: #595959;">Medidas:</b>
+            <h2 style="color:#a6a6a6; font-weight: bolder;">{{ vendedor.distrito }}</h2>
+            <div class="d-flex align-items-baseline">
+              <h2><span style="margin-right: 10px;">a solo</span></h2>
+              <h1>S/ {{ producto.precio}}</h1>
+            </div>
+            <h2>Envío gratis</h2>
+            <br>
+            <b style="color: #545454;">Medidas:</b>
             <a>Alto: {{ alto }} cm</a>
             <a>Largo: {{ largo }} cm</a>
             <p>Ancho: {{ ancho }} cm</p>
 
-            <b style="color: #595959;">Color: <span class="fw-normal">{{ caracteristica.color }}</span></b>
-            <b style="color: #595959;">Material: <span class="fw-normal">{{ caracteristica.material }}</span></b>
-            <b style="color: #595959;">Tiempo de uso: <span class="fw-normal">{{ caracteristica.meses_uso }} años</span></b>
+            <b style="color: #545454;">Color: <span class="fw-normal">{{ caracteristica.color }}</span></b>
+            <b style="color: #545454;">Material: <span class="fw-normal">{{ caracteristica.material }}</span></b>
+            <b style="color: #545454;">Tiempo de uso: <span class="fw-normal">{{ caracteristica.meses_uso }} meses</span></b>
             <br>
           </div>
           <div class="d-flex justify-content-start">
-            <button mat-button color="primary">
+            <button mat-button color="primary" (click)="agregarAlCarrito()">
               <i class="fa fa-shopping-cart"></i><span ></span>Agregar
             </button>
-            <button mat-button color="secondary" style="margin-left: 20px">
+            <button mat-button color="secondary" style="margin-left: 10px;">
               <i class="fa fa-comments"></i>
             </button>
           </div>
@@ -33,4 +38,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { SignupCompradorComponent } from './components/signup/signup-comprador/signup-comprador.component';
 import { PublicacionesComponent } from './components/publicaciones/publicaciones.component';
+import { PublicacionesMultiplesComponent } from './components/publicaciones/publicaciones-multiples/publicaciones-multiples.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'signup', redirectTo: '/signup-comprador'},
   { path: 'signup-comprador', component: SignupCompradorComponent },
   { path: 'publicaciones/:id', component: PublicacionesComponent },
+  { path: 'conjugaciones/:ids', component: PublicacionesMultiplesComponent },
   {
     path: 'components',
     loadChildren: () =>

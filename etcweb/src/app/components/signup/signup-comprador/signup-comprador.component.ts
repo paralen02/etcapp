@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/models/users';
 import { SignupService } from 'src/app/services/signup.service';
+import { Compradores } from 'src/app/models/compradores';
 
 @Component({
   selector: 'app-signup-comprador',
@@ -12,7 +13,6 @@ import { SignupService } from 'src/app/services/signup.service';
 })
 export class SignupCompradorComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  comprador: Users = new Users();
   mensaje: string = '';
 
   constructor(
@@ -27,27 +27,48 @@ export class SignupCompradorComponent implements OnInit {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+      nombres: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      celular: ['', Validators.required],
+      dni: ['', Validators.required],
     });
   }
 
   signup() {
-    console.log(this.form.value);
     if (this.form.valid) {
-      // Asignar los valores del formulario al usuario
-      this.comprador.username = this.form.value.username;
-      this.comprador.password = this.form.value.password;
-      this.comprador.enabled = true;
+      // Crear un objeto Users con los datos del formulario
+      const user: Users = {
+        id: 0,
+        username: this.form.value.username,
+        password: this.form.value.password,
+        enabled: true,
+      };
 
-      // Enviar los datos del usuario al backend, iniciar sesión y redirigir a la página de creación de estudiante
-      this.signupService
-        .signupAndLogin(this.comprador, 'signup-vendedor')
-        .subscribe(() => {
-          this.mensaje = 'Usuario registrado con éxito';
+      // Crear un objeto Compradores con los datos del formulario
+      const comprador: Compradores = {
+        idCompradores: 0,
+        nombres: this.form.value.nombres,
+        apellidos: this.form.value.apellidos,
+        celular: this.form.value.celular,
+        dni: this.form.value.dni,
+        user: user,
+      };
+
+      this.signupService.signupAndLogin(user, comprador, '').subscribe(
+        () => {
+          this.mensaje = 'Usuario y comprador registrados con éxito';
           this.snackBar.open(this.mensaje, 'Aviso', { duration: 4000 });
-          this.router.navigate(['../signup-vendedor'], {
+          this.router.navigate([''], {
             relativeTo: this.route,
           });
-        });
+        },
+        (error) => {
+          this.mensaje = 'Hubo un error al registrar al usuario y comprador';
+          this.snackBar.open(this.mensaje, 'Aviso', { duration: 4000 });
+        }
+      );
+    } else {
+      this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
   }
 }

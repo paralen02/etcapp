@@ -16,8 +16,6 @@ private String nombres;
 private String apellidos;
 @Column(name = "celular")
 private String celular;
-@Column(name = "correo")
-private String correo;
 @Column(name = "dni")
 private String dni;
 
@@ -29,12 +27,11 @@ private Users user;
 
     public Compradores() { }
 
-    public Compradores(int idCompradores, String nombres, String apellidos, String celular, String correo, String dni, Users user) {
+    public Compradores(int idCompradores, String nombres, String apellidos, String celular, String dni, Users user) {
         this.idCompradores = idCompradores;
         this.nombres = nombres;
 this.apellidos = apellidos;
 this.celular = celular;
-this.correo = correo;
 this.dni = dni;
 this.user = user;
     }
@@ -65,14 +62,6 @@ public String getCelular() {
 
 public void setCelular(String celular) {
     this.celular = celular;
-}
-
-public String getCorreo() {
-    return correo;
-}
-
-public void setCorreo(String correo) {
-    this.correo = correo;
 }
 
 public String getDni() {

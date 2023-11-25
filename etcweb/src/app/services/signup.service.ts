@@ -35,12 +35,17 @@ export class SignupService {
     return this.http.post<Compradores>(this.urlCompradores, compradores, { headers: headers });
   }
 
-  signupAndLogin(user: Users, redirectUrl: string): Observable<any> {
+  signupAndLogin(user: Users, comprador: Compradores, redirectUrl: string): Observable<any> {
     return this.signupUser(user).pipe(
-      concatMap(() => this.loginService.login({username: user.username, password: user.password})),
+      concatMap(() => this.loginService.login({ username: user.username, password: user.password })),
       tap((data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
         this.router.navigate([redirectUrl]);
+      }),
+      concatMap(() => this.findByUsername(user.username)),
+      concatMap((userResponse: Users) => {
+        comprador.user = userResponse;
+        return this.signupCompradores(comprador);
       })
     );
   }

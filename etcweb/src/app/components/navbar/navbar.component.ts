@@ -37,4 +37,9 @@ export class NavbarComponent {
     const searchValue = (event.target as HTMLInputElement).value;
     this.searchService.emitSearch(searchValue);
   }
+
+  obtenerNumeroDeItemsEnCarrito(): number {
+    let carrito = sessionStorage.getItem('carrito');
+    return carrito ? JSON.parse(carrito).length : 0;
+  }
 }

@@ -34,4 +34,10 @@ public class PublicacionesServiceImplement implements IPublicacionesService {
     public List<Publicaciones> list() {
         return myRepository.findAll();
     }
+
+    @Override
+    public List<Publicaciones> listIds(List<Integer> ids){
+        return myRepository.findAllById(ids);
+    }
+
 }

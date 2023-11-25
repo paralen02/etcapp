@@ -91,3 +91,17 @@
 .precio {
   color: #ff914d;
 }
+
+
+.nav-link.active {
+  color: #ff914d; /* Cambia el color del texto */
+}
+
+.nav-link.active::after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 100%;
+  background: #ff914d; /* Añade una línea debajo del texto */
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, forkJoin } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Publicaciones } from './../models/publicaciones';
@@ -36,6 +36,13 @@ export class PublicacionesService {
 
   listId(id: number): Observable<Publicaciones> {
     return this.http.get<Publicaciones>(`${this.url}/${id}`)
+  }
+
+  getMultiple(ids: number[]): Observable<Publicaciones[]> {
+    // Hacer una solicitud para cada ID
+    const requests = ids.map(id => this.http.get<Publicaciones>(`${this.url}/${id}`));
+    // Combinar las respuestas en un solo Observable
+    return forkJoin(requests);
   }
 
   update(publicaciones: Publicaciones): Observable<any> {

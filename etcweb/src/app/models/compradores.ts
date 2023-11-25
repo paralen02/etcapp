@@ -5,7 +5,6 @@ export class Compradores {
     nombres: string = "";
     apellidos: string = "";
     celular: string = "";
-    correo: string = "";
     dni: string = "";
     user: Users = new Users();
 }

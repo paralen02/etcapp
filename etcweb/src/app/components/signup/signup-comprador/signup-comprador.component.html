@@ -7,11 +7,7 @@
   </head>
   <body>
     <div class="container" style="text-align: center">
-      <div>
-        <img src="../../../../assets/logo.svg" alt="Logo de la empresa" />
-      </div>
-
-      <h2>Regístrese</h2>
+      <h2>Regístrese como Comprador</h2>
 
       <form [formGroup]="form" class="comment-form" id="editProfileForm">
         <mat-form-field class="example-full-width">
@@ -28,6 +24,30 @@
             placeholder="Password"
             formControlName="password"
           />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombres</mat-label>
+          <input matInput placeholder="Nombres" formControlName="nombres" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellidos</mat-label>
+          <input matInput placeholder="Apellidos" formControlName="apellidos" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Celular</mat-label>
+          <input matInput placeholder="Celular" formControlName="celular" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>DNI</mat-label>
+          <input matInput placeholder="DNI" formControlName="dni" />
         </mat-form-field>
         <br />
 

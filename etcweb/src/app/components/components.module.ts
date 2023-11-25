@@ -76,6 +76,10 @@ import { SignupCompradorComponent } from './signup/signup-comprador/signup-compr
 import { SignupVendedorComponent } from './signup/signup-vendedor/signup-vendedor.component';
 import { FiltersComponent } from './filters/filters.component';
 import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
+import { PublicacionesMultiplesComponent } from './publicaciones/publicaciones-multiples/publicaciones-multiples.component';
+import { CarritoComponent } from './compras/carrito/carrito.component';
+import { CheckoutComponent } from './compras/checkout/checkout.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +133,11 @@ import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
     ListarVendedoresComponent,
     SignupCompradorComponent,
     SignupVendedorComponent,
-    FiltersComponent
+    FiltersComponent,
+    PublicacionesMultiplesComponent,
+    CarritoComponent,
+    CheckoutComponent,
+    PerfilComponent
 
   ],
   imports:[

@@ -34,6 +34,7 @@ export class LandingComponent implements OnInit {
   filteredItems: any[] = [];
   searchSubscription: Subscription = new Subscription();
   categoriaSeleccionada: any = null;
+  categoriaActiva: any = null;
 
   constructor(
     private publicacionesService: PublicacionesService,
@@ -72,6 +73,7 @@ export class LandingComponent implements OnInit {
               precio: producto ? producto.precio : undefined,
               distrito: vendedor ? vendedor.distrito : undefined,
               imagen: producto ? producto.imagen : undefined,
+              categoria: producto ? producto.categoria.idCategorias : undefined,
             };
           });
 
@@ -107,10 +109,75 @@ export class LandingComponent implements OnInit {
   scrollRight() {
     this.iconBar.nativeElement.scrollLeft += 100;
   }
-  // Implementa la función filtrarPorCategoria
+
   filtrarPorCategoria(categoria: any) {
-    this.categoriaSeleccionada = categoria.idCategorias;
-    console.log('CategoriaId: ',categoria)
-    this.filteredItems = this.items.filter(item => item.producto && item.producto.categoriaId === categoria.idCategorias);
+    this.categoriaActiva = categoria;
+    if (categoria && categoria.idCategorias) {
+      this.categoriaSeleccionada = categoria.idCategorias;
+      console.log('CategoriaId:', this.categoriaSeleccionada);
+
+      if (this.categoriaSeleccionada) {
+        if (this.categoriaSeleccionada === 1) {
+          // Para la categoría especial (id 1), asignar otras publicaciones aleatorias
+          this.filteredItems = this.generarPublicacionesAleatorias();
+        } else {
+          // Para otras categorías, filtrar normalmente
+          this.filteredItems = this.items.filter(
+            (item) => item.categoria === this.categoriaSeleccionada
+          );
+        }
+      } else {
+        // Si no hay categoría seleccionada, mostrar todos los elementos
+        this.filteredItems = this.items;
+      }
+    }
+  }
+
+  esCategoriaActiva(categoria: any): boolean {
+    return this.categoriaActiva && this.categoriaActiva.idCategorias === categoria.idCategorias;
+  }
+
+  generarPublicacionesAleatorias(): any[] {
+    // Generar 4 publicaciones
+    const publicacionesAleatorias = Array.from({ length: 4 }, () => {
+      // Obtener índices aleatorios de publicaciones (excluyendo la primera)
+      const indicesAleatorios = this.items
+        .map((_, index) => index)
+        .filter((index) => index !== 0) // Excluir la primera publicación
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3); // Obtener los primeros 3 índices aleatorios
+
+      // Calcular el precio total de los productos seleccionados
+      const precioTotal = indicesAleatorios.reduce((total, indice) => total + this.items[indice - 1].precio, 0);
+
+      // Obtener las publicaciones aleatorias utilizando los índices seleccionados
+      const currentItem = this.items[indicesAleatorios[0] - 1];
+
+      // Generar el link para la publicación actual
+      const link = `/conjugaciones/${indicesAleatorios.map(indice => this.items[indice - 1].id).join('&')}`;
+
+      return {
+        id: currentItem.id,
+        titulo: 'Conjugación Especial',
+        precio: precioTotal,
+        distrito: currentItem.distrito,
+        imagen: currentItem.imagen,
+        categoria: 1,
+        link: link, // Agregar el link a la publicación
+      };
+    });
+
+    // Devolver las publicaciones aleatorias
+    return publicacionesAleatorias;
+  }
+
+  getPublicacionTitulo(item: any, index: number): string {
+    if (this.categoriaSeleccionada === 1) {
+      // Para la categoría especial (id 1), mostrar "Conjugación x"
+      return `Conjugación ${index + 1}`;
+    } else {
+      // Para otras categorías, mostrar el título normal
+      return item.titulo;
+    }
   }
 }

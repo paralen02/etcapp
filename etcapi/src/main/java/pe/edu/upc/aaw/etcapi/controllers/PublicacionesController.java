@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.aaw.etcapi.dtos.PublicacionesDTO;
 import pe.edu.upc.aaw.etcapi.entities.Publicaciones;
 import pe.edu.upc.aaw.etcapi.serviceinterfaces.IPublicacionesService;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,5 +53,15 @@ public class PublicacionesController {
         ModelMapper m = new ModelMapper();
         Publicaciones d = m.map(dto, Publicaciones.class);
         myService.insert(d);
+    }
+
+    @GetMapping("/multiple")
+    public List<PublicacionesDTO> listarIds(@RequestParam("ids") String ids){
+        String[] idsArray = ids.split("&");
+        List<Integer> idsList = Arrays.stream(idsArray).map(Integer::parseInt).collect(Collectors.toList());
+        return myService.listIds(idsList).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, PublicacionesDTO.class);
+        }).collect(Collectors.toList());
     }
 }

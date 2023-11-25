@@ -22,7 +22,7 @@ public class UsersController {
         Users myItem = m.map(dto, Users.class);
         // Encriptar la contraseña del usuario antes de guardarla
         myItem.setPassword(WebSecurityConfig.passwordEncoder().encode(myItem.getPassword()));
-        myService.insertAndAssignRole(myItem, "ESTUDIANTE");
+        myService.insertAndAssignRole(myItem, "COMPRADOR");
     }
 
     // Delete an item by ID on table

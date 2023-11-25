@@ -9,7 +9,6 @@ public class CompradoresDTO {
     private String nombres;
 private String apellidos;
 private String celular;
-private String correo;
 private String dni;
 private Users user;
 
@@ -43,14 +42,6 @@ public String getCelular() {
 
 public void setCelular(String celular) {
     this.celular = celular;
-}
-
-public String getCorreo() {
-    return correo;
-}
-
-public void setCorreo(String correo) {
-    this.correo = correo;
 }
 
 public String getDni() {

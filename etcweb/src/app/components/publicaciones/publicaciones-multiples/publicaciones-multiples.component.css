@@ -1,8 +1,8 @@
-/* CSS */
-img {
+
+.carousel-item img {
   width: 100%;
-  max-width: 400px;
-  height: auto;
+  height: 400px; /* Ajusta este valor según tus necesidades */
+  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -27,7 +27,6 @@ h2{
   color: #ff914d;
 }
 
-h1, h2 {
+h1,h2{
   margin: 0;
 }
-

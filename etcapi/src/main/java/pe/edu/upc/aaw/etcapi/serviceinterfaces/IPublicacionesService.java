@@ -7,4 +7,5 @@ public interface IPublicacionesService {
     void delete(int id);
     Publicaciones listId(int id);
     List<Publicaciones> list();
+    List<Publicaciones> listIds(List<Integer> ids);
 }
