@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MesesUsoProductosDTO } from '../models/mesesusoproductosDTO';
 
 const base_url = environment.base;
 
@@ -40,7 +41,7 @@ export class ProductosService {
 
   update(productos: Productos) {
     let token = sessionStorage.getItem('token');
-    return this.http.put(this.url, productos, {
+    return this.http.put(`${this.url}/${productos.idProductos}`, productos, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
@@ -49,6 +50,14 @@ export class ProductosService {
     let token = sessionStorage.getItem('token');
     return this.http.delete(`${this.url}/${id}`, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
+  getMesesUso(): Observable<MesesUsoProductosDTO[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<MesesUsoProductosDTO[]>(`${this.url}/meses_uso`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
     });
   }
 }

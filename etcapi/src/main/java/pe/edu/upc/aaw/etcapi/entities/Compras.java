@@ -46,43 +46,47 @@ this.envio = envio;
         return idCompras;
     }
 
+    public void setIdCompras(int idCompras) {
+        this.idCompras = idCompras;
+    }
+
     public LocalDateTime getFecha() {
-    return fecha;
-}
+        return fecha;
+    }
 
-public void setFecha(LocalDateTime fecha) {
-    this.fecha = fecha;
-}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-public Operaciones getOperacion() {
-    return operacion;
-}
+    public Operaciones getOperacion() {
+        return operacion;
+    }
 
-public void setOperacion(Operaciones operacion) {
-    this.operacion = operacion;
-}
+    public void setOperacion(Operaciones operacion) {
+        this.operacion = operacion;
+    }
 
-public Publicaciones getPublicacion() {
-    return publicacion;
-}
+    public Publicaciones getPublicacion() {
+        return publicacion;
+    }
 
-public void setPublicacion(Publicaciones publicacion) {
-    this.publicacion = publicacion;
-}
+    public void setPublicacion(Publicaciones publicacion) {
+        this.publicacion = publicacion;
+    }
 
-public Compradores getComprador() {
-    return comprador;
-}
+    public Compradores getComprador() {
+        return comprador;
+    }
 
-public void setComprador(Compradores comprador) {
-    this.comprador = comprador;
-}
+    public void setComprador(Compradores comprador) {
+        this.comprador = comprador;
+    }
 
-public Envios getEnvio() {
-    return envio;
-}
+    public Envios getEnvio() {
+        return envio;
+    }
 
-public void setEnvio(Envios envio) {
-    this.envio = envio;
-}
+    public void setEnvio(Envios envio) {
+        this.envio = envio;
+    }
 }

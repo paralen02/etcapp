@@ -31,19 +31,23 @@ this.compra = compra;
         return idChats;
     }
 
-    public boolean getEstado() {
-    return estado;
-}
+    public void setIdChats(int idChats) {
+        this.idChats = idChats;
+    }
 
-public void setEstado(boolean estado) {
-    this.estado = estado;
-}
+    public boolean isEstado() {
+        return estado;
+    }
 
-public Compras getCompra() {
-    return compra;
-}
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 
-public void setCompra(Compras compra) {
-    this.compra = compra;
-}
+    public Compras getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compras compra) {
+        this.compra = compra;
+    }
 }

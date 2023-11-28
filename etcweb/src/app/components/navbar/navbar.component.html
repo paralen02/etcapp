@@ -63,10 +63,10 @@
     <mat-icon class="buttons">account_circle</mat-icon>
   </button>
 
-<button mat-button class="p-0 m-0" routerLink="components/carrito">
-  <mat-icon class="buttons">shopping_cart</mat-icon>
-  <span class="cart-badge">{{ obtenerNumeroDeItemsEnCarrito() }}</span>
-</button>
+  <button mat-button class="p-0 m-0" routerLink="carrito">
+    <mat-icon class="buttons">shopping_cart</mat-icon>
+    <span class="cart-badge">{{ obtenerNumeroDeItemsEnCarrito() }}</span>
+  </button>
   <span class="toolbar-items">
 
     <button mat-flat-button [matMenuTriggerFor]="menu">
@@ -75,11 +75,11 @@
       </div>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/nosotros">Nosotros</button>
-      <button mat-menu-item routerLink="/faq">Preguntas frecuentes</button>
-      <button mat-menu-item routerLink="/config">Configuraciones</button>
-      <button mat-menu-item routerLink="/ayuda">Ayuda</button>
-      <button mat-menu-item routerLink="/atencion">Atención al cliente</button>
+      <button mat-menu-item routerLink="">Nosotros</button>
+      <button mat-menu-item routerLink="">Preguntas frecuentes</button>
+      <button mat-menu-item routerLink="">Configuraciones</button>
+      <button mat-menu-item routerLink="">Ayuda</button>
+      <button mat-menu-item routerLink="">Atención al cliente</button>
     </mat-menu>
   </span>
 </mat-toolbar>
@@ -87,14 +87,13 @@
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item>
     Hola,
-    <span>{{ username }}</span>
+    <span>{{ comprador }}</span>
   </button>
-  <button mat-menu-item [routerLink]="['/components/perfil', username]">
-    Mi perfil
+  <button mat-menu-item [routerLink]="['perfil']">
+    <mat-icon>build</mat-icon> Mi perfil
   </button>
   <button mat-menu-item routerLink="" (click)="cerrar()">
     <mat-icon>logout</mat-icon>
     <span>Cerrar sesión</span>
   </button>
 </mat-menu>
-

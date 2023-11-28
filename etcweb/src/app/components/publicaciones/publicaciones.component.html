@@ -1,42 +1,78 @@
 <div class="d-flex justify-content-center" style="height: 100vh">
-<div class="container m-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="row">
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
-          <img [src]="producto.imagen" alt="{{ publicacion.titulo }}" />
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex flex-column justify-content-center">
-            <h1>{{ publicacion.titulo }}</h1>
-            <h2 style="color:#a6a6a6; font-weight: bolder;">{{ vendedor.distrito }}</h2>
-            <div class="d-flex align-items-baseline">
-              <h2><span style="margin-right: 10px;">a solo</span></h2>
-              <h1>S/ {{ producto.precio}}</h1>
-            </div>
-            <h2>Envío gratis</h2>
-            <br>
-            <b style="color: #545454;">Medidas:</b>
-            <a>Alto: {{ alto }} cm</a>
-            <a>Largo: {{ largo }} cm</a>
-            <p>Ancho: {{ ancho }} cm</p>
-
-            <b style="color: #545454;">Color: <span class="fw-normal">{{ caracteristica.color }}</span></b>
-            <b style="color: #545454;">Material: <span class="fw-normal">{{ caracteristica.material }}</span></b>
-            <b style="color: #545454;">Tiempo de uso: <span class="fw-normal">{{ caracteristica.meses_uso }} meses</span></b>
-            <br>
+  <div class="container m-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img [src]="producto.imagen" alt="{{ publicacion.titulo }}" />
           </div>
-          <div class="d-flex justify-content-start">
-            <button mat-button color="primary" (click)="agregarAlCarrito()">
-              <i class="fa fa-shopping-cart"></i><span ></span>Agregar
-            </button>
-            <button mat-button color="secondary" style="margin-left: 10px;">
-              <i class="fa fa-comments"></i>
-            </button>
+          <div class="col-md-6">
+            <div class="d-flex flex-column justify-content-center">
+              <h1>{{ publicacion.titulo }}</h1>
+              <h2 style="color:#a6a6a6; font-weight: bolder;">{{ vendedor.distrito }}</h2>
+              <div class="d-flex align-items-baseline">
+                <h2><span style="margin-right: 10px;">a solo</span></h2>
+                <h1>S/ {{ producto.precio}}</h1>
+              </div>
+              <h2>Envío gratis</h2>
+              <br>
+              <b style="color: #545454;">Medidas:</b>
+              <a>Alto: {{ alto }} cm</a>
+              <a>Largo: {{ largo }} cm</a>
+              <p>Ancho: {{ ancho }} cm</p>
+
+              <b style="color: #545454;">Color: <span class="fw-normal">{{ caracteristica.color }}</span></b>
+              <b style="color: #545454;">Material: <span class="fw-normal">{{ caracteristica.material }}</span></b>
+              <b style="color: #545454;">Tiempo de uso: <span class="fw-normal">{{ caracteristica.meses_uso }}
+                  meses</span></b>
+              <br>
+            </div>
+            <div class="d-flex justify-content-start">
+              <button mat-button color="primary" (click)="agregarAlCarrito()">
+                <i class="fa fa-shopping-cart"></i><span></span>Agregar
+              </button>
+              <button mat-button color="secondary" style="margin-left: 10px;">
+                <i class="fa fa-comments"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Nuevo contenedor horizontal para las publicaciones -->
+    <br>
+    <h1 class="align-items-center" style="text-align: center;">Otros productos interesantes</h1><br>
+    <div class="d-flex justify-content-center mt-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" *ngFor="let publicacion of publicaciones">
+
+              <div class="product-card">
+                <a [routerLink]="['/publicaciones', publicacion.idPublicaciones]">
+                <img [src]="publicacion.producto.imagen" alt="Imagen del producto" class="product-image">
+                <div class="product-info">
+                  <div class="product-title-price">
+                    <p class="product-title">{{ publicacion.titulo }}</p>
+                    <p class="product-price">S/ {{ publicacion.producto.precio }}</p>
+                  </div>
+                  <p class="product-district">{{ publicacion.producto.vendedor.distrito }}</p>
+                  <div *ngIf="publicacion.producto.stock > 0; else noStock">
+                    <span class="status-circle available"></span><span class="gray m-1 fw-bold">Disponible</span>
+                  </div>
+                  <ng-template #noStock>
+                    <div>
+                      <span class="status-circle not-available"></span><span class="gray m-1 fw-bold">No
+                        disponible</span>
+                    </div>
+                  </ng-template>
+                </div>
+              </a>
+              </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+<app-footer></app-footer>

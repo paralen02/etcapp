@@ -1,58 +1,59 @@
 <div class="container mt-4 d-flex align-items-start">
   <div class="row flex-fill">
-    <div class="col-md-8">
-      <h2>Carrito de Compras</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Imagen</th>
-            <th>Nombre del Producto</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let producto of carrito">
-            <td class="col-2">{{ producto.idProductos }}</td>
-            <td class="col-3">
-              <div class="d-flex justify-content-left">
-                <img class="img-fluid" src="{{ producto.imagen }}" alt="img" style="max-width: 100%;">
-              </div>
-            </td>
-            <td class="col-4">{{ producto.tituloPublicacion }}</td>
-            <td class="col-3">S/ {{ producto.precio }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="mb-4">
+      <h2>Cesta({{ carrito.length }})</h2>
+      <mat-slide-toggle class="ms-3" [checked]="selectAll" (change)="toggleSelectAll()">Seleccionar todo</mat-slide-toggle>
+    </div>
+    <div class="col-md-8 flex-grow-1 text-dark-gray">
+      <div *ngFor="let producto of carrito" class="d-flex align-items-center mb-3 rounded-3" style="background-color: #f6f6f6;">
+        <div class="col-3">
+          <img class="img-fluid rounded-3" src="{{ producto.imagen }}" alt="img" style="max-width: 100%;">
+        </div>
+        <div class="col-4">
+          <p class="mb-0" style="line-height: 1;">{{ producto.tituloPublicacion }} <span *ngIf="!producto.disponible">(no disponible)</span></p>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-2 d-flex align-items-center justify-content-end">
+          <div>
+            <p class="mb-0">Total</p>
+            <p>S/ {{ producto.precio }}</p>
+          </div>
+          <mat-checkbox [(ngModel)]="producto.selected"></mat-checkbox>
+        </div>
+      </div>
       <div class="row">
         <div class="d-flex justify-content-between">
-          <button mat-button color="secondary" (click)="seguirComprando()">Seguir Comprando</button>
-          <button mat-button color="secondary" (click)="borrarCarrito()">Borrar Carrito</button>
+          <button mat-button color="secondary" (click)="seguirComprando()">Seguir comprando</button>
+          <button mat-button color="secondary" (click)="borrarCarrito()">Borrar carrito</button>
         </div>
       </div>
     </div>
-    <div class="col-md-4 d-flex flex-column justify-content-between" style="background-color: #f6f6f6;">
-      <h2>Resumen del Pedido</h2>
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-between mb-2">
-          <span>Subtotal:</span>
-          <span>S/ {{ obtenerSubtotal() }}</span>
+    <div class="col-md-3 d-flex flex-column">
+      <div class="d-flex flex-column text-gray rounded-3 mb-auto p-4" style="background-color: #f6f6f6;">
+        <h2>Resumen del pedido</h2>
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="lh-lg">Subtotal:</span>
+            <span class="lh-lg">S/ {{ obtenerSubtotal() }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="lh-lg">Cargo por envío:</span>
+            <span class="lh-lg">GRATIS</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="lh-lg">Asesoría de diseño:</span>
+            <span class="lh-lg">GRATIS</span>
+          </div>
+          <mat-divider></mat-divider>
+          <br>
+          <div class="d-flex justify-content-between">
+            <span>Total:</span>
+            <span>S/ {{ obtenerSubtotal() }}</span>
+          </div>
         </div>
-        <div class="d-flex justify-content-between mb-2">
-          <span>Cargo por envío:</span>
-          <span>GRATIS</span>
-        </div>
-        <div class="d-flex justify-content-between mb-2">
-          <span>Asesoría de diseño:</span>
-          <span>GRATIS</span>
-        </div>
-        <div class="d-flex justify-content-between">
-          <span>Total:</span>
-          <span>S/ {{ obtenerSubtotal() }}</span>
-        </div>
-        <br>
-        <button mat-button color="primary" (click)="pagar()">Pagar</button>
       </div>
+      <button *ngIf="todosDisponibles()" mat-button color="primary" [attr.color]="estadoBoton().color" [disabled]="estadoBoton().disabled" class="w-100" (click)="pagar()" routerLink="../checkout">Pagar</button>
+      <button *ngIf="!todosDisponibles()" mat-button color="secondary" class="w-100" [disabled]="true" (click)="pagar()">Pagar</button>
     </div>
   </div>
 </div>

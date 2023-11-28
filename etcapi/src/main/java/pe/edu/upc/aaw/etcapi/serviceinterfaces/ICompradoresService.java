@@ -7,4 +7,5 @@ public interface ICompradoresService {
     void delete(int id);
     Compradores listId(int id);
     List<Compradores> list();
+    Compradores findByUsername(String username);
 }

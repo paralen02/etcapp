@@ -10,7 +10,7 @@ public class PagosDTO {
 private int cvv;
 private String numero_tarjeta;
 private LocalDate vencimiento_tarjeta;
-private int titular;
+private String titular;
 
     public int getIdPagos() {
         return idPagos;
@@ -52,11 +52,11 @@ public void setVencimiento_tarjeta(LocalDate vencimiento_tarjeta) {
     this.vencimiento_tarjeta = vencimiento_tarjeta;
 }
 
-public int getTitular() {
+public String getTitular() {
     return titular;
 }
 
-public void setTitular(int titular) {
+public void setTitular(String titular) {
     this.titular = titular;
 }
 }

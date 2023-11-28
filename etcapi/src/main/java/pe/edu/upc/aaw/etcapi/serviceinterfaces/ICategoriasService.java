@@ -7,4 +7,5 @@ public interface ICategoriasService {
     void delete(int id);
     Categorias listId(int id);
     List<Categorias> list();
+    Categorias findByTipo(String tipo);
 }

@@ -1,0 +1,50 @@
+.rounded-circle{
+  height: 4vh;
+  width: 4vh;
+}
+.preview-image {
+  width: 65%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.example-full-width {
+  width: 90%;
+}
+
+/* Asegúrate de que estos estilos estén en tu hoja de estilos actual */
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  h1 {
+    color: #ff914d;
+    font-weight: bolder;
+  }
+
+  h2 {
+    color: #ff914d;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  .preview-details {
+    padding: 20px; /* Ajusta según sea necesario */
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  .preview-container {
+    display: flex;
+    flex-direction: column; /* Cambiado de row a column */
+    align-items: center;
+  }
+

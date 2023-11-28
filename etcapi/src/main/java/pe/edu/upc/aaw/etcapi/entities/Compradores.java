@@ -40,43 +40,47 @@ this.user = user;
         return idCompradores;
     }
 
+    public void setIdCompradores(int idCompradores) {
+        this.idCompradores = idCompradores;
+    }
+
     public String getNombres() {
-    return nombres;
-}
+        return nombres;
+    }
 
-public void setNombres(String nombres) {
-    this.nombres = nombres;
-}
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
 
-public String getApellidos() {
-    return apellidos;
-}
+    public String getApellidos() {
+        return apellidos;
+    }
 
-public void setApellidos(String apellidos) {
-    this.apellidos = apellidos;
-}
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
-public String getCelular() {
-    return celular;
-}
+    public String getCelular() {
+        return celular;
+    }
 
-public void setCelular(String celular) {
-    this.celular = celular;
-}
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
 
-public String getDni() {
-    return dni;
-}
+    public String getDni() {
+        return dni;
+    }
 
-public void setDni(String dni) {
-    this.dni = dni;
-}
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
-public Users getUser() {
-    return user;
-}
+    public Users getUser() {
+        return user;
+    }
 
-public void setUser(Users user) {
-    this.user = user;
-}
+    public void setUser(Users user) {
+        this.user = user;
+    }
 }

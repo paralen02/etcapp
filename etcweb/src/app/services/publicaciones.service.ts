@@ -58,4 +58,11 @@ export class PublicacionesService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+  
+  getPublicacionesForVendedor(idVendedor: number): Observable<Publicaciones[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Publicaciones[]>(`${this.url}/vendedor/${idVendedor}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

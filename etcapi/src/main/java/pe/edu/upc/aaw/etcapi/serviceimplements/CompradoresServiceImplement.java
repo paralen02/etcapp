@@ -34,4 +34,9 @@ public class CompradoresServiceImplement implements ICompradoresService {
     public List<Compradores> list() {
         return myRepository.findAll();
     }
+
+    @Override
+    public Compradores findByUsername(String username) {
+        return myRepository.findByUsername(username);
+    }
 }

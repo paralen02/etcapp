@@ -39,5 +39,8 @@ public class PublicacionesServiceImplement implements IPublicacionesService {
     public List<Publicaciones> listIds(List<Integer> ids){
         return myRepository.findAllById(ids);
     }
-
+    @Override
+    public List<Publicaciones> findPublicacionesByVendedorId(Integer idVendedor) {
+        return myRepository.findPublicacionesByVendedorId(idVendedor);
+    }
 }

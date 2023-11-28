@@ -17,19 +17,17 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <div class="d-flex align-items-center w-100">
-          <button (click)="scrollLeft()" class="btn">
-            <i class="fa fa-arrow-left"></i>
-          </button>
           <ul class="navbar-nav flex-column flex-lg-row w-100 justify-content-center" #iconBar>
             <li class="nav-item m-2 text-center flex-grow-1" *ngFor="let categoria of categorias; let i = index">
-              <a class="nav-link" [class.active]="esCategoriaActiva(categoria)" style="cursor: pointer;" (click)="filtrarPorCategoria(categoria)">
+              <a class="nav-link" [class.active]="esCategoriaActiva(categoria)" style="cursor: pointer;"
+                (click)="filtrarPorCategoria(categoria)">
                 <mat-icon>{{ iconos[i] }}</mat-icon>
                 <span>{{ categoria.tipo }}</span>
               </a>
             </li>
             <li class="nav-item m-2 text-center flex-grow-1">
               <a class="nav-link">
-                <button (click)="scrollRight()" class="btn">
+                <button (click)="scrollRight()" class="btn circle-btn">
                   <i class="fa fa-arrow-right"></i>
                 </button>
               </a>
@@ -44,26 +42,33 @@
       </div>
     </div>
   </nav>
-<!-- Content-->
-<div class="row p-4 content">
-  <div *ngFor="let item of filteredItems; let i = index"
-    class="col-xl-3 col-lg-4 col-md-6 col-6 p-3 d-flex flex-column justify-content-between">
-    <a [routerLink]="item.categoria === 1 ? item.link : ['/publicaciones', item.id]" class="card-link">
-      <div class="card mb-3">
-        <img class="card-img-top" [src]="item.imagen" />
+  <!-- Content-->
+  <div class="row p-4 content">
+    <div *ngFor="let item of filteredItems | paginate: { itemsPerPage: 8, currentPage: p }; let i = index"
+      class="col-xl-3 col-lg-4 col-md-6 col-6 p-3 d-flex flex-column justify-content-between">
+      <div class="card mb-3 position-relative">
+        <a [routerLink]="item.categoria === 1 ? item.link : ['/publicaciones', item.id]" class="card-link">
+          <img class="card-img-top" [src]="item.imagen"/>
+        </a>
+        <button *ngIf="item.categoria !== 1" class="btn btn-light position-absolute top-0 end-0 m-2" (click)="agregarAFavoritos(item)" [ngStyle]="{'color': item.esFavorito ? 'red' : 'black'}">
+          <i class="fa fa-heart"></i>
+        </button>
       </div>
       <div class="d-flex justify-content-between">
         <div>
           <h3 class="fw-bolder mb-0" style="color:#595959">{{ getPublicacionTitulo(item, i) }}</h3>
-          <p class="fw-bolder mt-1 distrito">{{ item.distrito }}</p>
+          <p class="fw-bolder distrito">{{ item.distrito }}</p>
         </div>
         <p class="fw-bolder mt-1 precio">S/ {{ item.precio }}</p>
       </div>
-    </a>
+    </div>
+    <div class="pagination-container">
+      <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
   </div>
-</div>
-<app-footer></app-footer>
-<!-- Content-->
+  <app-footer></app-footer>
+  <!-- Content-->
 </body>
 
 </html>

@@ -6,6 +6,7 @@ import java.time.*;
 public class OperacionesDTO {
     
     private int idOperaciones;
+    private Long monto;
     private LocalDateTime fecha;
 private Pagos pago;
 
@@ -17,19 +18,27 @@ private Pagos pago;
         this.idOperaciones = idOperaciones;
     }
 
+    public Long getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Long monto) {
+        this.monto = monto;
+    }
+
     public LocalDateTime getFecha() {
-    return fecha;
-}
+        return fecha;
+    }
 
-public void setFecha(LocalDateTime fecha) {
-    this.fecha = fecha;
-}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-public Pagos getPago() {
-    return pago;
-}
+    public Pagos getPago() {
+        return pago;
+    }
 
-public void setPago(Pagos pago) {
-    this.pago = pago;
-}
+    public void setPago(Pagos pago) {
+        this.pago = pago;
+    }
 }

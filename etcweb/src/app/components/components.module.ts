@@ -1,6 +1,6 @@
+//MODULES
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +24,12 @@ import { MatListModule } from '@angular/material/list';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgChartsModule } from 'ng2-charts';
+
+//COMPONENTS
 import { AsesoriasComponent } from './asesorias/asesorias.component';
 import { CaracteristicasComponent } from './caracteristicas/caracteristicas.component';
 import { CategoriasComponent } from './categorias/categorias.component';
@@ -75,11 +81,15 @@ import { ListarVendedoresComponent } from './vendedores/listar-vendedores/listar
 import { SignupCompradorComponent } from './signup/signup-comprador/signup-comprador.component';
 import { SignupVendedorComponent } from './signup/signup-vendedor/signup-vendedor.component';
 import { FiltersComponent } from './filters/filters.component';
-import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import { PublicacionesMultiplesComponent } from './publicaciones/publicaciones-multiples/publicaciones-multiples.component';
 import { CarritoComponent } from './compras/carrito/carrito.component';
 import { CheckoutComponent } from './compras/checkout/checkout.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ReseniasComponent } from './resenias/resenias.component';
+import { SeguimientoComponent } from './compras/seguimiento/seguimiento.component';
+import { NuevasPublicacionesComponent } from './publicaciones/nuevas-publicaciones/nuevas-publicaciones.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -137,7 +147,11 @@ import { PerfilComponent } from './perfil/perfil.component';
     PublicacionesMultiplesComponent,
     CarritoComponent,
     CheckoutComponent,
-    PerfilComponent
+    PerfilComponent,
+    ReseniasComponent,
+    SeguimientoComponent,
+    NuevasPublicacionesComponent,
+    FooterComponent
 
   ],
   imports:[
@@ -167,7 +181,10 @@ import { PerfilComponent } from './perfil/perfil.component';
     MatSidenavModule,
     MatDialogModule,
     MatSliderModule,
-    NgbRatingModule
+    NgbRatingModule,
+    MatSlideToggleModule,
+    NgxPaginationModule,
+    NgChartsModule
   ]
 })
 export class ComponentsModule { }

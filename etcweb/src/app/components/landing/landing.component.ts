@@ -7,6 +7,11 @@ import { Subscription } from 'rxjs';
 import { VendedoresService } from 'src/app/services/vendedores.service';
 import { FiltersComponent } from '../filters/filters.component';
 import { CategoriasService } from 'src/app/services/categorias.service';
+import { FavoritosService } from 'src/app/services/favoritos.service';
+import { LoginService } from 'src/app/services/login.service';
+import { Favoritos } from 'src/app/models/favoritos';
+import { CompradoresService } from 'src/app/services/compradores.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-landing',
@@ -35,6 +40,8 @@ export class LandingComponent implements OnInit {
   searchSubscription: Subscription = new Subscription();
   categoriaSeleccionada: any = null;
   categoriaActiva: any = null;
+  p:number=1;
+  mensaje: string = ""
 
   constructor(
     private publicacionesService: PublicacionesService,
@@ -42,7 +49,11 @@ export class LandingComponent implements OnInit {
     private vendedoresService: VendedoresService,
     private searchService: SearchService,
     private categoriasService: CategoriasService,
-    public dialog: MatDialog
+    private favoritosService: FavoritosService,
+    private loginService: LoginService,
+    private compradoresService: CompradoresService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -67,7 +78,12 @@ export class LandingComponent implements OnInit {
             const producto = this.productos.find(p => p.idProductos === publicacion.producto.idProductos);
             const vendedor = this.vendedores.find(v => v.idVendedores === publicacion.producto.vendedor.idVendedores);
 
-            return {
+            // Si el producto no tiene stock, devuelve null
+            if (producto && producto.stock <= 0) {
+              return null;
+            }
+
+            const item = {
               id: publicacion.idPublicaciones,
               titulo: publicacion.titulo,
               precio: producto ? producto.precio : undefined,
@@ -75,8 +91,15 @@ export class LandingComponent implements OnInit {
               imagen: producto ? producto.imagen : undefined,
               categoria: producto ? producto.categoria.idCategorias : undefined,
             };
+
+            // Verifica si el artículo está en favoritos
+            this.esFavorito(item);
+
+            return item;
           });
 
+          // Filtra los null de la lista de items
+          this.items = this.items.filter(item => item !== null);
           this.filteredItems = this.items;
 
           this.searchSubscription = this.searchService.searchObservable.subscribe((searchValue) => {
@@ -102,9 +125,6 @@ export class LandingComponent implements OnInit {
       height: 'auto',
     });
   }
-  scrollLeft() {
-    this.iconBar.nativeElement.scrollLeft -= 100;
-  }
 
   scrollRight() {
     this.iconBar.nativeElement.scrollLeft += 100;
@@ -114,8 +134,6 @@ export class LandingComponent implements OnInit {
     this.categoriaActiva = categoria;
     if (categoria && categoria.idCategorias) {
       this.categoriaSeleccionada = categoria.idCategorias;
-      console.log('CategoriaId:', this.categoriaSeleccionada);
-
       if (this.categoriaSeleccionada) {
         if (this.categoriaSeleccionada === 1) {
           // Para la categoría especial (id 1), asignar otras publicaciones aleatorias
@@ -178,6 +196,57 @@ export class LandingComponent implements OnInit {
     } else {
       // Para otras categorías, mostrar el título normal
       return item.titulo;
+    }
+  }
+  agregarAFavoritos(item: any): void {
+    const username = this.loginService.getUsername();
+    if (username && item && item.id) {
+      this.compradoresService.findByUsername(username).subscribe((comprador) => {
+        if (comprador) {
+          this.favoritosService.esFavorito(comprador.idCompradores, item.id).subscribe((esFavorito) => {
+            if (!esFavorito) {
+              this.publicacionesService.listId(item.id).subscribe((publicacion) => {
+                const favorito = new Favoritos();
+                favorito.comprador = comprador;
+                favorito.publicacion = publicacion;
+
+                this.favoritosService.insert(favorito).subscribe(() => {
+                  item.esFavorito = true;
+                  this.mensaje="Se agregó la publicación a favoritos";
+                  this.snackBar.open(this.mensaje, 'Cerrar', {
+                    duration: 5000,
+                    verticalPosition: 'bottom', // 'top' | 'bottom'
+                    horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
+                  });
+                });
+              });
+            } else {
+              this.favoritosService.delete(comprador.idCompradores, item.id).subscribe(() => {
+                item.esFavorito = false;
+                this.mensaje="Se eliminó la publicación de favoritos";
+                this.snackBar.open(this.mensaje, 'Cerrar', {
+                  duration: 5000,
+                  verticalPosition: 'bottom', // 'top' | 'bottom'
+                  horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
+                });
+              });
+            }
+          });
+        }
+      });
+    } else {
+    }
+  }
+  esFavorito(item: any): void {
+    const username = this.loginService.getUsername();
+    if (username) {
+      this.compradoresService.findByUsername(username).subscribe((comprador) => {
+        if (comprador) {
+          this.favoritosService.esFavorito(comprador.idCompradores, item.id).subscribe((esFavorito) => {
+            item.esFavorito = esFavorito;
+          });
+        }
+      });
     }
   }
 }

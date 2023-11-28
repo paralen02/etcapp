@@ -2,3 +2,86 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --mdc-filled-text-field-container-color: #fff;
+  --mdc-checkbox-selected-icon-color: #ff914d;
+  --mdc-checkbox-selected-checkmark-color: #fff;
+  --mdc-checkbox-selected-focus-icon-color: #ff914d;
+  --mdc-checkbox-selected-hover-icon-color: #ff914d;
+  --mdc-checkbox-selected-icon-color: #ff914d;
+  --mdc-checkbox-selected-pressed-icon-color: #ff914d;
+  --mdc-checkbox-selected-focus-state-layer-color: #ff914d;
+  --mdc-checkbox-selected-hover-state-layer-color: #ff914d;
+  --mdc-checkbox-selected-pressed-state-layer-color: #ff914d;
+  --mat-option-selected-state-label-text-color: #ff914d;
+}
+
+button[color="primary"] {
+  background-color: #ff914d !important;
+  color: white !important;
+  border-radius: 8px;
+}
+button[color="secondary"] {
+  background-color: #a6a6a6 !important;
+  color: white !important;
+  border-radius: 8px;
+}
+.mdc-text-field{
+  border-radius: 10px !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label, .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label--float-above{
+  color: #ff914d !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after{
+  border-bottom-color: #ff914d !important;
+}
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background{
+  background-color: #ff914d;
+  border-color: #ff914d;
+}
+.mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after{
+  background: #ff914d;
+}
+
+.text-gray{
+  color:#737373
+}
+
+.mat-mdc-slide-toggle.mat-accent {
+  --mdc-switch-selected-focus-state-layer-color: #ff914d;
+  --mdc-switch-selected-handle-color: #ff914d;
+  --mdc-switch-selected-hover-state-layer-color: #ff914d;
+  --mdc-switch-selected-pressed-state-layer-color: #ff914d;
+  --mdc-switch-selected-focus-handle-color: #ff7c2b;
+  --mdc-switch-selected-hover-handle-color: #ff7c2b;
+  --mdc-switch-selected-pressed-handle-color: #ff7c2b;
+  --mdc-switch-selected-focus-track-color: #ff914d;
+  --mdc-switch-selected-hover-track-color: #ff914d;
+  --mdc-switch-selected-pressed-track-color: #ff914d;
+  --mdc-switch-selected-track-color: #ff914d;
+  --mat-snackbar-button-color:#ff914d;
+}
+
+.mat-mdc-snack-bar-container{
+  background-color: #a6a6a6;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.ngx-pagination .current{
+  background: #ff914d !important;
+  border-radius: 8px !important;
+}
+
+.ngx-pagination a, .ngx-pagination button{
+  border-radius: 8px !important;
+}
+a{
+  text-decoration: none;
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: #737373;
+  --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
+  --mat-snack-bar-button-color: #ff914d;
+}

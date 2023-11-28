@@ -47,51 +47,55 @@ this.caracteristica = caracteristica;
         return idProductos;
     }
 
+    public void setIdProductos(int idProductos) {
+        this.idProductos = idProductos;
+    }
+
     public Long getPrecio() {
-    return precio;
-}
+        return precio;
+    }
 
-public void setPrecio(Long precio) {
-    this.precio = precio;
-}
+    public void setPrecio(Long precio) {
+        this.precio = precio;
+    }
 
-public String getImagen() {
-    return imagen;
-}
+    public String getImagen() {
+        return imagen;
+    }
 
-public void setImagen(String imagen) {
-    this.imagen = imagen;
-}
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
-public int getStock() {
-    return stock;
-}
+    public int getStock() {
+        return stock;
+    }
 
-public void setStock(int stock) {
-    this.stock = stock;
-}
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
-public Categorias getCategoria() {
-    return categoria;
-}
+    public Categorias getCategoria() {
+        return categoria;
+    }
 
-public void setCategoria(Categorias categoria) {
-    this.categoria = categoria;
-}
+    public void setCategoria(Categorias categoria) {
+        this.categoria = categoria;
+    }
 
-public Vendedores getVendedor() {
-    return vendedor;
-}
+    public Vendedores getVendedor() {
+        return vendedor;
+    }
 
-public void setVendedor(Vendedores vendedor) {
-    this.vendedor = vendedor;
-}
+    public void setVendedor(Vendedores vendedor) {
+        this.vendedor = vendedor;
+    }
 
-public Caracteristicas getCaracteristica() {
-    return caracteristica;
-}
+    public Caracteristicas getCaracteristica() {
+        return caracteristica;
+    }
 
-public void setCaracteristica(Caracteristicas caracteristica) {
-    this.caracteristica = caracteristica;
-}
+    public void setCaracteristica(Caracteristicas caracteristica) {
+        this.caracteristica = caracteristica;
+    }
 }

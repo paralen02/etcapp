@@ -34,4 +34,8 @@ public class CategoriasServiceImplement implements ICategoriasService {
     public List<Categorias> list() {
         return myRepository.findAll();
     }
+    @Override
+    public Categorias findByTipo(String tipo){
+        return myRepository.findByTipo(tipo);
+    }
 }

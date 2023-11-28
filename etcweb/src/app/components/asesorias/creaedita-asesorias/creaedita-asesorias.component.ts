@@ -34,7 +34,6 @@ export class CreaeditaAsesoriasComponent implements OnInit{
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private comprasService: ComprasService
   ) {}
 
   ngOnInit(): void {

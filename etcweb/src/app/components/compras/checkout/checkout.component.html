@@ -1,1 +1,232 @@
-<p>checkout works!</p>
+<div class="container mt-5" *ngIf="currentStep <4">
+  <div class="row">
+    <div class="col-4" style="text-align: right;"><h3>Identificación</h3></div>
+    <div class="col-4" style="text-align: right;"><h3>Envío</h3></div>
+    <div class="col-4" style="text-align: right;"><h3>Pago</h3></div>
+  </div>
+  <div class="progress-container">
+    <div class="progress">
+      <div id="progressBar" class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div id="progressCircle1" class="circle" style="left: 33%; background-color: #ff914d;"(click)="setStep(1)"></div>
+    <div id="progressCircle2" class="circle" style="left: 66%;"(click)="setStep(2)"></div>
+    <div id="progressCircle3" class="circle" style="left: 100%;"(click)="setStep(3)"></div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 bg-light rounded-5 p-4">
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <ng-container *ngIf="currentStep === 1" [formGroup]="formSection1">
+          <h1 class="text-center">Identificación</h1>
+          <h3>Solicitamos la información de la persona que recibirá el pedido</h3>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Correo</mat-label>
+              <input matInput placeholder="Correo" formControlName="correo" />
+              <mat-error *ngIf="formSection1.get('correo')?.errors?.['required']">
+                El correo es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Nombres</mat-label>
+              <input matInput placeholder="Nombres" formControlName="nombres" />
+              <mat-error *ngIf="formSection1.get('nombres')?.errors?.['required']">
+                Los nombres son obligatorios.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Apellidos</mat-label>
+              <input matInput placeholder="Apellidos" formControlName="apellidos" />
+              <mat-error *ngIf="formSection1.get('apellidos')?.errors?.['required']">
+                Los apellidos son obligatorios.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>DNI</mat-label>
+              <input matInput placeholder="DNI" formControlName="dni" />
+              <mat-error *ngIf="formSection1.get('dni')?.errors?.['required']">
+                El DNI es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Celular</mat-label>
+              <input matInput placeholder="Celular" formControlName="celular" />
+              <mat-error *ngIf="formSection1.get('celular')?.errors?.['required']">
+                El celular es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button *ngIf="isFormSection1Valid" mat-raised-button color="primary" class="w-100">Siguiente</button>
+          <button *ngIf="!isFormSection1Valid" mat-raised-button color="secondary" class="w-100">Siguiente</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="currentStep === 2" [formGroup]="formSection2">
+        <h1 class="text-center">Envío</h1>
+        <h3>Solicitamos la información del lugar a donde llegará el pedido</h3>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Departamento</mat-label>
+              <input matInput placeholder="Departamento" formControlName="departamento" />
+              <mat-error *ngIf="formSection2.get('departamento')?.errors?.['required']">
+                El departamento es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Provincia</mat-label>
+              <input matInput placeholder="Provincia" formControlName="provincia"/>
+              <mat-error *ngIf="formSection2.get('provincia')?.errors?.['required']">
+                La provincia es obligatoria.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100">
+              <mat-label>Distrito</mat-label>
+              <mat-select formControlName="distrito">
+                <mat-option *ngFor="let distrito of distritos" [value]="distrito">{{distrito}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="formSection2.get('distrito')?.errors?.['required']">
+                El distrito es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Dirección</mat-label>
+              <input matInput placeholder="Dirección" formControlName="direccion" />
+              <mat-error *ngIf="formSection2.get('direccion')?.errors?.['required']">
+                La dirección es obligatoria.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Referencia</mat-label>
+              <input matInput placeholder="Referencia" formControlName="referencia" />
+              <mat-error *ngIf="formSection2.get('referencia')?.errors?.['required']">
+                La referencia es obligatoria.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Fecha de entrega</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="fechaEntrega" [max]="maxFecha" [min]="minFecha" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+        <button *ngIf="isFormSection2Valid" mat-raised-button color="primary" class="w-100" (click)="aceptar()">Siguiente</button>
+        <button *ngIf="!isFormSection2Valid" mat-raised-button color="secondary" class="w-100">Siguiente</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="currentStep === 3" [formGroup]="formSection3">
+        <h1 class="text-center">Pago</h1>
+        <h3>Solicitamos la información de la tarjeta para el pago del producto</h3>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Número de tarjeta</mat-label>
+              <input matInput placeholder="Número de tarjeta" formControlName="numeroTarjeta" />
+              <mat-error *ngIf="formSection3.get('numeroTarjeta')?.errors?.['required']">
+                El número de tarjeta es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Fecha de caducidad</mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="Fecha de caducidad" formControlName="fechaCaducidad" [min]="minFecha"/>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="formSection3.get('fechaCaducidad')?.errors?.['required']">
+                La fecha de caducidad es obligatoria.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>CVV</mat-label>
+              <input matInput placeholder="CVV" formControlName="cvv" />
+              <mat-error *ngIf="formSection3.get('cvv')?.errors?.['required']">
+                El CVV es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Nombre del titular</mat-label>
+              <input matInput placeholder="Nombre del titular" formControlName="nombreTitular" />
+              <mat-error *ngIf="formSection3.get('nombreTitular')?.errors?.['required']">
+                El nombre del titular es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput placeholder="Correo electrónico" formControlName="correoElectronico" />
+              <mat-error *ngIf="formSection3.get('correoElectronico')?.errors?.['required']">
+                El correo electrónico es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-checkbox formControlName="aceptaTerminos">Acepto los términos y condiciones de la compra</mat-checkbox>
+            <mat-error *ngIf="formSection3.get('aceptaTerminos')?.errors?.['required']">
+              Debe aceptar los términos y condiciones para realizar una compra.
+            </mat-error>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button *ngIf="isFormSection3Valid" mat-raised-button color="primary" class="w-100" (click)="aceptar()" [disabled]="isBuying">Comprar</button>
+          <button *ngIf="!isFormSection3Valid" mat-raised-button color="secondary" class="w-100" [disabled]="isBuying">Comprar</button>
+          </div>
+      </ng-container>
+      <ng-container *ngIf="currentStep === 4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6 bg-light rounded-5 p-4">
+            <div class="d-flex flex-column align-items-center">
+              <i class="fas fa-check-circle fa-5x check"></i>
+              <h2 class="mt-3">¡Gracias por tu compra!</h2>
+              <div class="text-left">
+                <h5 class="text-gray mb-0">Nombre del titular</h5>
+                <h3 class="text-gray mb-2">{{compraGuardada?.operacion.pago.titular | uppercase}}</h3>
+                <h5 class="text-gray mb-0">Código de compra</h5>
+                <h3 class="text-gray">{{compraGuardada?.idCompras}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div >
+          <button mat-raised-button color="secondary" class="w-100 mb-2">Seguimiento</button>
+          <button mat-raised-button color="primary" class="w-100">Agenda tu asesoría gratuita</button>
+        </div>
+      </ng-container>
+      </form>
+    </div>
+  </div>
+</div>

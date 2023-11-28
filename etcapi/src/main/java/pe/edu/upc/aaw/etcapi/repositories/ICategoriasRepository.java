@@ -5,4 +5,6 @@ import pe.edu.upc.aaw.etcapi.entities.*;
 import java.util.List;
 
 @Repository
-public interface ICategoriasRepository extends JpaRepository<Categorias, Integer> { }
+public interface ICategoriasRepository extends JpaRepository<Categorias, Integer> {
+    Categorias findByTipo(String tipo);
+}

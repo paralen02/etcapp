@@ -35,6 +35,10 @@ public class Caracteristicas {
         return idCaracteristicas;
     }
 
+    public void setIdCaracteristicas(int idCaracteristicas) {
+        this.idCaracteristicas = idCaracteristicas;
+    }
+
     public String getColor() {
         return color;
     }

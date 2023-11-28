@@ -52,4 +52,10 @@ public class CompradoresController {
         Compradores d = m.map(dto, Compradores.class);
         myService.insert(d);
     }
+    @GetMapping("/buscar/{username}")
+    public CompradoresDTO findByUsername(@PathVariable("username") String username) {
+        ModelMapper m = new ModelMapper();
+        CompradoresDTO myItem = m.map(myService.findByUsername(username), CompradoresDTO.class);
+        return myItem;
+    }
 }

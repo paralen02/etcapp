@@ -2,6 +2,7 @@ package pe.edu.upc.aaw.etcapi.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.aaw.etcapi.dtos.MesesUsoProductosDTO;
 import pe.edu.upc.aaw.etcapi.dtos.ProductosDTO;
 import pe.edu.upc.aaw.etcapi.entities.Productos;
 import pe.edu.upc.aaw.etcapi.serviceinterfaces.IProductosService;
@@ -16,10 +17,11 @@ public class ProductosController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody ProductosDTO dto) {
+    public Productos registrar(@RequestBody ProductosDTO dto) {
         ModelMapper m = new ModelMapper();
         Productos myItem = m.map(dto, Productos.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table
@@ -46,10 +48,15 @@ public class ProductosController {
     }
 
     // (Exclusive to controller) Modify values on table
-    @PutMapping
-    public void modificar(@RequestBody ProductosDTO dto) {
+    @PutMapping("/{id}")
+    public void modificar(@PathVariable("id") Integer id, @RequestBody ProductosDTO dto) {
         ModelMapper m = new ModelMapper();
         Productos d = m.map(dto, Productos.class);
-        myService.insert(d);
+        d.setIdProductos(id); // Asegúrate de que el ID del producto se establece correctamente
+        myService.update(d);
+    }
+    @GetMapping("/meses_uso")
+    public List<MesesUsoProductosDTO> getMesesUso() {
+        return myService.getMesesUso();
     }
 }

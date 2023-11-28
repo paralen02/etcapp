@@ -64,4 +64,11 @@ public class PublicacionesController {
             return m.map(x, PublicacionesDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/vendedor/{idVendedor}")
+    public List<PublicacionesDTO> getPublicacionesForVendedor(@PathVariable("idVendedor") Integer idVendedor) {
+        return myService.findPublicacionesByVendedorId(idVendedor).stream().map(publicacion -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(publicacion, PublicacionesDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

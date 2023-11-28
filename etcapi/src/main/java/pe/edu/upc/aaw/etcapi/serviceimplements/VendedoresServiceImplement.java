@@ -1,6 +1,7 @@
 package pe.edu.upc.aaw.etcapi.serviceimplements;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import pe.edu.upc.aaw.etcapi.entities.Compradores;
 import pe.edu.upc.aaw.etcapi.entities.Vendedores;
 import pe.edu.upc.aaw.etcapi.repositories.IVendedoresRepository;
 import pe.edu.upc.aaw.etcapi.serviceinterfaces.IVendedoresService;
@@ -33,5 +34,10 @@ public class VendedoresServiceImplement implements IVendedoresService {
     @Override
     public List<Vendedores> list() {
         return myRepository.findAll();
+    }
+
+    @Override
+    public Vendedores findByUsername(String username) {
+        return myRepository.findByUsername(username);
     }
 }

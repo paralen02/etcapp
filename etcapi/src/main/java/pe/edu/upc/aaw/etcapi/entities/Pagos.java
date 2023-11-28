@@ -19,13 +19,13 @@ private String numero_tarjeta;
 @Column(name = "vencimiento_tarjeta")
 private LocalDate vencimiento_tarjeta;
 @Column(name = "titular")
-private int titular;
+private String titular;
 
     
 
     public Pagos() { }
 
-    public Pagos(int idPagos, String correo, int cvv, String numero_tarjeta, LocalDate vencimiento_tarjeta, int titular) {
+    public Pagos(int idPagos, String correo, int cvv, String numero_tarjeta, LocalDate vencimiento_tarjeta, String titular) {
         this.idPagos = idPagos;
         this.correo = correo;
 this.cvv = cvv;
@@ -38,43 +38,47 @@ this.titular = titular;
         return idPagos;
     }
 
+    public void setIdPagos(int idPagos) {
+        this.idPagos = idPagos;
+    }
+
     public String getCorreo() {
-    return correo;
-}
+        return correo;
+    }
 
-public void setCorreo(String correo) {
-    this.correo = correo;
-}
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
-public int getCvv() {
-    return cvv;
-}
+    public int getCvv() {
+        return cvv;
+    }
 
-public void setCvv(int cvv) {
-    this.cvv = cvv;
-}
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
 
-public String getNumero_tarjeta() {
-    return numero_tarjeta;
-}
+    public String getNumero_tarjeta() {
+        return numero_tarjeta;
+    }
 
-public void setNumero_tarjeta(String numero_tarjeta) {
-    this.numero_tarjeta = numero_tarjeta;
-}
+    public void setNumero_tarjeta(String numero_tarjeta) {
+        this.numero_tarjeta = numero_tarjeta;
+    }
 
-public LocalDate getVencimiento_tarjeta() {
-    return vencimiento_tarjeta;
-}
+    public LocalDate getVencimiento_tarjeta() {
+        return vencimiento_tarjeta;
+    }
 
-public void setVencimiento_tarjeta(LocalDate vencimiento_tarjeta) {
-    this.vencimiento_tarjeta = vencimiento_tarjeta;
-}
+    public void setVencimiento_tarjeta(LocalDate vencimiento_tarjeta) {
+        this.vencimiento_tarjeta = vencimiento_tarjeta;
+    }
 
-public int getTitular() {
-    return titular;
-}
+    public String getTitular() {
+        return titular;
+    }
 
-public void setTitular(int titular) {
-    this.titular = titular;
-}
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
 }

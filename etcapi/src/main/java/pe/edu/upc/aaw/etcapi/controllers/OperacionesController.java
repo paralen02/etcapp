@@ -16,10 +16,11 @@ public class OperacionesController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody OperacionesDTO dto) {
+    public Operaciones registrar(@RequestBody OperacionesDTO dto) {
         ModelMapper m = new ModelMapper();
         Operaciones myItem = m.map(dto, Operaciones.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table

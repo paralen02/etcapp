@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <!-- <div class="user-info">
+        <img src="../../../../assets/user.svg" class="rounded-circle" alt="User Icon">
+        <span class="h5">{{ nombre }}</span>
+      </div> -->
+      <br>
+
+      <form [formGroup]="form" (ngSubmit)="publicarProducto()">
+        <mat-form-field class="example-full-width">
+          <mat-label>URL de la imagen</mat-label>
+          <input matInput placeholder="URL de la imagen" formControlName="imagen" (input)="updatePreview()">
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Título de publicación</mat-label>
+          <input matInput placeholder="Título de publicación" formControlName="titulo">
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Precio</mat-label>
+          <input matInput placeholder="Precio" formControlName="precio">
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Categoría</mat-label>
+          <mat-select placeholder="Categoría" formControlName="categoria">
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria.tipo">
+              {{ categoria.tipo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Distrito</mat-label>
+          <mat-select formControlName="distrito">
+            <mat-option *ngFor="let distrito of distritos" [value]="distrito">
+              {{distrito}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Material</mat-label>
+          <input matInput placeholder="Material" formControlName="material">
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Color</mat-label>
+          <input matInput placeholder="Color" formControlName="color">
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Tiempo de uso</mat-label>
+          <input matInput placeholder="Tiempo de uso" formControlName="tiempoUso">
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Largo</mat-label>
+          <input matInput placeholder="Largo" formControlName="largo">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Ancho</mat-label>
+          <input matInput placeholder="Ancho" formControlName="ancho">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Alto</mat-label>
+          <input matInput placeholder="Alto" formControlName="alto">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput placeholder="Descripción" formControlName="descripcion"></textarea>
+        </mat-form-field>
+        <br />
+
+        <button mat-raised-button color="primary" type="submit">Publicar</button>
+      </form>
+    </div>
+
+    <div class="col-md-8">
+      <div *ngIf="previewUrl" class="d-flex justify-content-center align-items-center preview-container">
+        <img [src]="previewUrl" alt="Preview Image" class="preview-image">
+        <div class="preview-details">
+          <h1>{{ form.value.titulo }}</h1>
+          <h2 style="color:#a6a6a6; font-weight: bolder;">{{ form.value.distrito }}</h2>
+          <div class="d-flex align-items-baseline">
+            <h2><span style="margin-right: 10px;">a solo</span></h2>
+            <h1>S/ {{ form.value.precio }}</h1>
+          </div>
+          <h2>Envío gratis</h2>
+          <br>
+          <h3 style="color: #545454;" class="fw-bold">Detalles:</h3>
+          <p>Material: {{ form.value.material }}</p>
+          <p>Color: {{ form.value.color }}</p>
+          <p>Tiempo de uso: {{ form.value.tiempoUso }} meses</p>
+          <br>
+          <div class="d-flex flex-column">
+            <h3 style="color: #545454;" class="fw-bold">Dimensiones:</h3>
+            <p>Alto: {{ form.value.alto }} cm</p>
+            <p>Largo: {{ form.value.largo }} cm</p>
+            <p>Ancho: {{ form.value.ancho }} cm</p>
+          </div>
+          <p>Descripción: {{ form.value.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

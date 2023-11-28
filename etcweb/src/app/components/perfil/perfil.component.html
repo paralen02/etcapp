@@ -1,1 +1,208 @@
-<p>perfil works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+          'opcion-seleccionada': opcionSeleccionada === 'Nuevo'
+        }" *ngIf="esVendedor" (click)="seleccionarOpcion('Nuevo')">
+          <i class="fa-solid fa-circle-plus fa-2x"></i> Nuevo
+        </button>
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+          'opcion-seleccionada': opcionSeleccionada === 'Mis publicaciones'
+        }" *ngIf="esVendedor" (click)="seleccionarOpcion('Mis publicaciones')">
+          <i class="fa-solid fa-circle-user fa-2x"></i> Mis publicaciones
+        </button>
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+          'opcion-seleccionada': opcionSeleccionada === 'Registrarse'
+        }" *ngIf="!esVendedor" (click)="seleccionarOpcion('Registrarse')">
+          <i class="fa-solid fa-user-plus fa-2x"></i> Empezar a vender
+        </button>
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+            'opcion-seleccionada': opcionSeleccionada === 'Favoritos'
+          }" (click)="seleccionarOpcion('Favoritos')">
+          <i class="fa fa-heart fa-2x"></i> Favoritos
+        </button>
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+            'opcion-seleccionada': opcionSeleccionada === 'Compras'
+          }" (click)="seleccionarOpcion('Compras')">
+          <i class="fa-solid fa-cart-shopping fa-2x"></i> Compras
+        </button>
+        <button type="button" class="list-group-item list-group-item-action"
+          [ngClass]="{ 'opcion-seleccionada': opcionSeleccionada === 'Ventas' }" *ngIf="esVendedor" (click)="seleccionarOpcion('Ventas')">
+          <i class="fas fa-shopping-bag fa-2x"></i> Ventas
+        </button>
+        <button type="button" class="list-group-item list-group-item-action"
+          [ngClass]="{ 'opcion-seleccionada': opcionSeleccionada === 'Imbox' }" (click)="seleccionarOpcion('Imbox')">
+          <i class="fa-solid fa-comment-dots fa-2x"></i> Imbox
+        </button>
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+            'opcion-seleccionada': opcionSeleccionada === 'Reportes'
+          }" *ngIf="esVendedor" (click)="seleccionarOpcion('Reportes')">
+          <i class="fa-solid fa-chart-line fa-2x"></i> Análisis de mercado
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+      <!-- <h2>{{ opcionSeleccionada }}</h2> -->
+      <div *ngIf="opcionSeleccionada === 'Nuevo'">
+        <div class="row p-4">
+          <app-nuevas-publicaciones></app-nuevas-publicaciones>
+        </div>
+      </div>
+      <div *ngIf="opcionSeleccionada === 'Registrarse'">
+        <div class="row">
+          <app-signup-vendedor></app-signup-vendedor>
+        </div>
+      </div>
+      <div *ngIf="opcionSeleccionada === 'Mis publicaciones'">
+        <div class="row">
+          <div class="col-md-4"
+            *ngFor="let publicacion of publicaciones | paginate: { itemsPerPage: 6, currentPage: p }">
+            <a [routerLink]="['/publicaciones', publicacion.idPublicaciones]">
+              <div class="product-card">
+                <img [src]="publicacion.producto.imagen" alt="Imagen del producto" class="product-image">
+                <div class="product-info">
+                  <div class="product-title-price">
+                    <p class="product-title">{{ publicacion.titulo }}</p>
+                    <p class="product-price">S/ {{ publicacion.producto.precio }}</p>
+                  </div>
+                  <p class="product-district">{{ publicacion.producto.vendedor.distrito }}</p>
+                  <div *ngIf="publicacion.producto.stock > 0; else noStock">
+                    <span class="status-circle available"></span><span class="gray m-1 fw-bold">Disponible</span>
+                  </div>
+                  <ng-template #noStock>
+                    <div>
+                      <span class="status-circle not-available"></span><span class="gray m-1 fw-bold">No
+                        disponible</span>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="pagination-container">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+      <div *ngIf="opcionSeleccionada === 'Favoritos'">
+        <div class="row">
+          <div class="col-md-4"
+            *ngFor="let favorito of favoritos | paginate: { itemsPerPage: 6, currentPage: p }">
+            <a [routerLink]="['/publicaciones', favorito.publicacion.idPublicaciones]">
+              <div class="product-card">
+                <img [src]="favorito.publicacion.producto.imagen" alt="Imagen del producto" class="product-image">
+                <div class="product-info">
+                  <div class="product-title-price">
+                    <p class="product-title">{{ favorito.publicacion.titulo }}</p>
+                    <p class="product-price">S/ {{ favorito.publicacion.producto.precio }}</p>
+                  </div>
+                  <p class="product-district">{{ favorito.publicacion.producto.vendedor.distrito }}</p>
+                  <div *ngIf="favorito.publicacion.producto.stock > 0; else noStock">
+                    <span class="status-circle available"></span><span class="gray m-1 fw-bold">Disponible</span>
+                  </div>
+                  <ng-template #noStock>
+                    <div>
+                      <span class="status-circle not-available"></span><span class="gray m-1 fw-bold">No disponible</span>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="pagination-container">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+      <div *ngIf="opcionSeleccionada === 'Compras'">
+        <div class="row">
+          <div class="col-md-12 mb-3"
+            *ngFor="let compra of compras | paginate: { itemsPerPage: 4, currentPage: p }">
+            <div class="card border-0" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img [src]="compra.publicacion.producto.imagen" alt="Imagen del producto" class="img-fluid rounded" style="height: 15vh;">
+                </div>
+                <div class="col-md-5">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ compra.publicacion.titulo }}</h4>
+                    <p class="card-text gray fw-bold">{{ compra.publicacion.producto.vendedor.distrito }}</p>
+                    <p class="card-text gray">Fecha de compra: </p>
+                    <p class="card-text gray">{{ compra.fecha | date }} </p>
+                  </div>
+                </div>
+                <div class="col-md-3 d-flex align-items-start justify-content-end">
+                  <div class="card-body">
+                    <h4 class="product-price">S/ {{ compra.publicacion.producto.precio }}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pagination-container">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+      <div *ngIf="opcionSeleccionada === 'Ventas'">
+        <div class="row">
+          <div class="col-md-12 mb-3"
+            *ngFor="let venta of ventas | paginate: { itemsPerPage: 4, currentPage: p }">
+            <div class="card border-0">
+              <div class="row g-0 d-flex align-items-stretch justify-content-start">
+                <div class="col-md-4 d-flex">
+                  <img [src]="venta.publicacion.producto.imagen" alt="Imagen del producto" class="img-fluid rounded" style="height: 15vh;">
+                </div>
+                <div class="col-md pl-3 d-flex flex-grow-1">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ venta.publicacion.titulo }}</h4>
+                    <p class="card-text gray fw-bold">{{ venta.publicacion.producto.vendedor.distrito }}</p>
+                    <p class="card-text gray">Fecha de publicación:</p>
+                    <p class="card-text gray">{{ venta.publicacion.fecha | date }}</p>
+                  </div>
+                </div>
+                <div class="col-md-3 d-flex align-items-start justify-content-end">
+                  <div class="card-body">
+                    <h4 class="product-price">S/ {{ venta.publicacion.producto.precio }}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pagination-container">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+      <div *ngIf="opcionSeleccionada === 'Reportes'">
+        <div class="row">
+          <div class="col-12">
+            <!-- Aquí va tu primer reporte (el que ocupa el ancho total del contenedor) -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 bg-light rounded-5">
+            <!-- Aquí va tu segundo reporte (el de la izquierda) -->
+            <h2 style="text-align: center;">Gráfico de tiempos de uso de los productos en el mes actual</h2>
+            <canvas baseChart
+            [datasets]="[{ data: doughnutChartData, label: 'Productos' }]"
+            [labels]="doughnutChartLabels"
+            [options]="doughnutChartOptions"
+            [type]="doughnutChartType">
+          </canvas>
+          </div>
+          <div class="col-6">
+            <!-- Aquí va tu tercer reporte (el de la derecha) -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+

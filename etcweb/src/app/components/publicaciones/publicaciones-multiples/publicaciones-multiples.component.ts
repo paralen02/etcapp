@@ -54,7 +54,6 @@ export class PublicacionesMultiplesComponent implements OnInit {
     let lastMaterial = '';
     this.publicacionesService.getMultiple(ids).subscribe((publicaciones: Publicaciones[]) => {
       this.publicaciones = publicaciones;
-      console.log('Los ids de publicaciones son', publicaciones);
       publicaciones.forEach((publicacion, index) => {
         this.productosService.listId(publicacion.producto.idProductos).subscribe((producto: Productos) => {
           this.productos[index] = producto;

@@ -51,4 +51,10 @@ export class CategoriasService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+  findByType(type: string): Observable<Categorias> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Categorias>(`${this.url}/buscar/${type}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

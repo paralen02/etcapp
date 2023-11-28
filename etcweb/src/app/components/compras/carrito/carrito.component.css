@@ -4,14 +4,7 @@ img{
   object-fit: cover;
 }
 
-button[color="primary"] {
-  background-color: #ff914d;
-  color: white;
-  border-radius: 8px;
-}
-
-button[color="secondary"] {
-  background-color: #a6a6a6;
-  color: white;
-  border-radius: 8px;
+.text-dark-gray{
+  color:#a6a6a6;
+  font-weight: bold;
 }

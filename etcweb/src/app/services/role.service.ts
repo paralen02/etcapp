@@ -57,4 +57,10 @@ export class RoleService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+  getRolesForUser(username: string): Observable<Role[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Role[]>(`${this.url}/user/${username}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

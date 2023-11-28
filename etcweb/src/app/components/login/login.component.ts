@@ -24,19 +24,12 @@ export class LoginComponent implements OnInit{
     request.password = this.password;
     this.loginService.login(request).subscribe((data: any) => {
       sessionStorage.setItem("token", data.jwttoken);
-      if (this.loginService.showRole() == 'ADMIN') {
+      let roles = this.loginService.showRole(); // Asume que esto devuelve un array de roles
+      if (roles.includes('ADMIN') || roles.includes('COMPRADOR') || roles.includes('VENDEDOR')) {
         this.router.navigate(['']);
       }
-      else if (this.loginService.showRole() == 'COMPRADOR') {
-        this.router.navigate(['']);
-      }
-      else if (this.loginService.showRole() == 'VENDEDOR') {
-        this.router.navigate(['']);
-      }
-
     }, error => {
       this.mensaje = "Las credenciales son inválidas. Intente nuevamente."
-      this.snackBar.open(this.mensaje, "Aviso",{duration:5000});
     });
   }
 }

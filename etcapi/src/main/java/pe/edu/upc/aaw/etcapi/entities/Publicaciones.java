@@ -37,35 +37,39 @@ this.producto = producto;
         return idPublicaciones;
     }
 
+    public void setIdPublicaciones(int idPublicaciones) {
+        this.idPublicaciones = idPublicaciones;
+    }
+
     public String getTitulo() {
-    return titulo;
-}
+        return titulo;
+    }
 
-public void setTitulo(String titulo) {
-    this.titulo = titulo;
-}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-public String getDescripcion() {
-    return descripcion;
-}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-public LocalDateTime getFecha() {
-    return fecha;
-}
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
 
-public void setFecha(LocalDateTime fecha) {
-    this.fecha = fecha;
-}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-public Productos getProducto() {
-    return producto;
-}
+    public Productos getProducto() {
+        return producto;
+    }
 
-public void setProducto(Productos producto) {
-    this.producto = producto;
-}
+    public void setProducto(Productos producto) {
+        this.producto = producto;
+    }
 }

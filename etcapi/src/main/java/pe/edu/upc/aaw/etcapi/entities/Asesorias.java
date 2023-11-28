@@ -37,35 +37,39 @@ this.compra = compra;
         return idAsesorias;
     }
 
+    public void setIdAsesorias(int idAsesorias) {
+        this.idAsesorias = idAsesorias;
+    }
+
     public String getLink() {
-    return link;
-}
+        return link;
+    }
 
-public void setLink(String link) {
-    this.link = link;
-}
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-public LocalDateTime getFecha() {
-    return fecha;
-}
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
 
-public void setFecha(LocalDateTime fecha) {
-    this.fecha = fecha;
-}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-public String getMotivo() {
-    return motivo;
-}
+    public String getMotivo() {
+        return motivo;
+    }
 
-public void setMotivo(String motivo) {
-    this.motivo = motivo;
-}
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
 
-public Compras getCompra() {
-    return compra;
-}
+    public Compras getCompra() {
+        return compra;
+    }
 
-public void setCompra(Compras compra) {
-    this.compra = compra;
-}
+    public void setCompra(Compras compra) {
+        this.compra = compra;
+    }
 }

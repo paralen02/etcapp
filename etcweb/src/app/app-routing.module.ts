@@ -5,14 +5,22 @@ import { LandingComponent } from './components/landing/landing.component';
 import { SignupCompradorComponent } from './components/signup/signup-comprador/signup-comprador.component';
 import { PublicacionesComponent } from './components/publicaciones/publicaciones.component';
 import { PublicacionesMultiplesComponent } from './components/publicaciones/publicaciones-multiples/publicaciones-multiples.component';
+import { CarritoComponent } from './components/compras/carrito/carrito.component';
+import { CheckoutComponent } from './components/compras/checkout/checkout.component';
+import { ComprasComponent } from './components/compras/compras.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'login', component: LoginComponent, pathMatch: 'full'},
-  { path: 'signup', redirectTo: '/signup-comprador'},
+  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: 'signup', redirectTo: '/signup-comprador' },
   { path: 'signup-comprador', component: SignupCompradorComponent },
   { path: 'publicaciones/:id', component: PublicacionesComponent },
   { path: 'conjugaciones/:ids', component: PublicacionesMultiplesComponent },
+  { path: 'carrito', component: CarritoComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'compras', component: ComprasComponent },
+  { path: 'perfil', component: PerfilComponent},
   {
     path: 'components',
     loadChildren: () =>

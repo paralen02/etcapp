@@ -16,10 +16,11 @@ public class CaracteristicasController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody CaracteristicasDTO dto) {
+    public Caracteristicas registrar(@RequestBody CaracteristicasDTO dto) {
         ModelMapper m = new ModelMapper();
         Caracteristicas myItem = m.map(dto, Caracteristicas.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table

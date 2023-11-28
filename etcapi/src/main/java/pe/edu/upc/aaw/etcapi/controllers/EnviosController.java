@@ -16,10 +16,11 @@ public class EnviosController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody EnviosDTO dto) {
+    public Envios registrar(@RequestBody EnviosDTO dto) {
         ModelMapper m = new ModelMapper();
         Envios myItem = m.map(dto, Envios.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table

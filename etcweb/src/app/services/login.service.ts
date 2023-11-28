@@ -24,7 +24,7 @@ export class LoginService {
     }
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
-    return decodedToken?.role;
+    return decodedToken?.role; // Devuelve los roles tal como están
   }
   getUsername() {
     let token = sessionStorage.getItem('token');

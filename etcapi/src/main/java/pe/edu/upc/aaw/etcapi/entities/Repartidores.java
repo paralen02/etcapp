@@ -35,35 +35,39 @@ this.celular = celular;
         return idRepartidores;
     }
 
+    public void setIdRepartidores(int idRepartidores) {
+        this.idRepartidores = idRepartidores;
+    }
+
     public String getNombres() {
-    return nombres;
-}
+        return nombres;
+    }
 
-public void setNombres(String nombres) {
-    this.nombres = nombres;
-}
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
 
-public String getApellidos() {
-    return apellidos;
-}
+    public String getApellidos() {
+        return apellidos;
+    }
 
-public void setApellidos(String apellidos) {
-    this.apellidos = apellidos;
-}
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
-public String getDni() {
-    return dni;
-}
+    public String getDni() {
+        return dni;
+    }
 
-public void setDni(String dni) {
-    this.dni = dni;
-}
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
-public String getCelular() {
-    return celular;
-}
+    public String getCelular() {
+        return celular;
+    }
 
-public void setCelular(String celular) {
-    this.celular = celular;
-}
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
 }

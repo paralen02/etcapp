@@ -34,27 +34,31 @@ this.user = user;
         return idVendedores;
     }
 
+    public void setIdVendedores(int idVendedores) {
+        this.idVendedores = idVendedores;
+    }
+
     public String getDireccion() {
-    return direccion;
-}
+        return direccion;
+    }
 
-public void setDireccion(String direccion) {
-    this.direccion = direccion;
-}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
-public String getDistrito() {
-    return distrito;
-}
+    public String getDistrito() {
+        return distrito;
+    }
 
-public void setDistrito(String distrito) {
-    this.distrito = distrito;
-}
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
 
-public Users getUser() {
-    return user;
-}
+    public Users getUser() {
+        return user;
+    }
 
-public void setUser(Users user) {
-    this.user = user;
-}
+    public void setUser(Users user) {
+        this.user = user;
+    }
 }

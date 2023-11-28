@@ -8,6 +8,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { CaracteristicasService } from 'src/app/services/caracteristicas.service';
 import { Vendedores } from 'src/app/models/vendedores';
 import { VendedoresService } from 'src/app/services/vendedores.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-publicaciones',
@@ -27,13 +28,15 @@ export class PublicacionesComponent implements OnInit {
   alto: string = ""
   largo: string = ""
   ancho: string = ""
+  mensaje: string=""
 
   constructor(
     private route: ActivatedRoute,
     private publicacionesService: PublicacionesService,
     private productosService: ProductosService,
     private caracteristicasService: CaracteristicasService,
-    private vendedoresService: VendedoresService
+    private vendedoresService: VendedoresService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +46,7 @@ export class PublicacionesComponent implements OnInit {
       .listId(this.idPublicaciones)
       .subscribe((publicacion: Publicaciones) => {
         this.publicacion = publicacion;
+        this.obtenerOtrasPublicaciones(3);
 
         this.productosService
           .listId(publicacion.producto.idProductos)
@@ -58,7 +62,7 @@ export class PublicacionesComponent implements OnInit {
                   .listId(producto.caracteristica.idCaracteristicas)
                   .subscribe((caracteristica: Caracteristicas) => {
                     this.caracteristica = caracteristica;
-                    const dimensiones = caracteristica.dimensiones.split(' x ');
+                    const dimensiones = caracteristica.dimensiones.split(' X ');
                     this.alto = dimensiones[0];
                     this.largo = dimensiones[1];
                     this.ancho = dimensiones[2];
@@ -67,14 +71,39 @@ export class PublicacionesComponent implements OnInit {
           });
       });
   }
+
+  obtenerOtrasPublicaciones(cantidad: number): void {
+    this.publicacionesService.list().subscribe(
+      (todasPublicaciones: Publicaciones[]) => {
+        const otrasPublicaciones = todasPublicaciones.filter((p) => p.idPublicaciones !== this.idPublicaciones);
+        this.publicaciones = this.obtenerElementosAleatorios(otrasPublicaciones, cantidad);
+      },
+      (error) => {
+        console.error('Error al obtener todas las publicaciones', error);
+      }
+    );
+  }
+
+  obtenerElementosAleatorios(array: any[], n: number): any[] {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, n);
+  }
+
   agregarAlCarrito(): void {
     let carrito = this.obtenerCarrito();
     let productoConTitulo = {
       ...this.producto,
-      tituloPublicacion: this.publicacion.titulo
+      tituloPublicacion: this.publicacion.titulo,
+      idPublicacion: this.publicacion.idPublicaciones
     };
     carrito.push(productoConTitulo);
     sessionStorage.setItem('carrito', JSON.stringify(carrito));
+    this.mensaje="Se agregó el producto al carrito";
+    this.snackBar.open(this.mensaje, 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom', // 'top' | 'bottom'
+      horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
+    });
   }
 
   obtenerCarrito(): Productos[] {

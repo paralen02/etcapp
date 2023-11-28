@@ -91,12 +91,9 @@
 .precio {
   color: #ff914d;
 }
-
-
 .nav-link.active {
   color: #ff914d; /* Cambia el color del texto */
 }
-
 .nav-link.active::after {
   content: '';
   display: block;
@@ -104,4 +101,29 @@
   height: 3px;
   width: 100%;
   background: #ff914d; /* Añade una línea debajo del texto */
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+.circle-btn {
+  background-color: #efefef;
+  border-radius: 50%;
+  border: none;
+  padding: 10px; /* Ajusta este valor para cambiar el tamaño del botón */
+}
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.end-0 {
+  right: 0;
 }

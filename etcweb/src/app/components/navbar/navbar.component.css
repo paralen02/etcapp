@@ -3,6 +3,17 @@
   justify-content: center;
   align-items: center;
 }
+.mat-mdc-button{
+  --mat-icon-color:#737373 !important;
+}
+
+.mat-icon{
+  --mat-icon-color:#737373 !important;
+}
+
+.cart-badge{
+  color:#767676
+}
 
 .mat-toolbar.mat-primary {
   --mat-toolbar-container-background-color: #ffffff;

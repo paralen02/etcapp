@@ -51,4 +51,10 @@ export class VendedoresService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+  findByUsername(username: string): Observable<Vendedores> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Vendedores>(`${this.url}/buscar/${username}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

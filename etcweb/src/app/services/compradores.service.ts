@@ -57,4 +57,11 @@ export class CompradoresService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+
+  findByUsername(username: string): Observable<Compradores> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Compradores>(`${this.url}/buscar/${username}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

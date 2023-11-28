@@ -7,4 +7,5 @@ public interface IRoleService {
     void delete(Long id);
     Role listId(Long id);
     List<Role> list();
+    List<Role> findRolesByUsername(String username);
 }

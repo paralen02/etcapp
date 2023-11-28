@@ -8,4 +8,5 @@ public interface IPublicacionesService {
     Publicaciones listId(int id);
     List<Publicaciones> list();
     List<Publicaciones> listIds(List<Integer> ids);
+    List<Publicaciones> findPublicacionesByVendedorId(Integer idVendedor);
 }

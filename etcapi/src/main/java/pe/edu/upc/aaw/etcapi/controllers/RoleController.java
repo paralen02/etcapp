@@ -52,4 +52,12 @@ public class RoleController {
         Role d = m.map(dto, Role.class);
         myService.insert(d);
     }
+
+    @GetMapping("/user/{username}")
+    public List<RoleDTO> getRolesForUser(@PathVariable("username") String username) {
+        return myService.findRolesByUsername(username).stream().map(role -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(role, RoleDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

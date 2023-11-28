@@ -32,6 +32,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +73,10 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     MatRadioModule,
     MatDialogModule,
     MatSliderModule,
-    NgbRatingModule
+    NgbRatingModule,
+    MatSlideToggleModule,
+    NgxPaginationModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,11 +26,15 @@ private String tipo;
         return idCategorias;
     }
 
-    public String getTipo() {
-    return tipo;
-}
+    public void setIdCategorias(int idCategorias) {
+        this.idCategorias = idCategorias;
+    }
 
-public void setTipo(String tipo) {
-    this.tipo = tipo;
-}
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
+import { CompradoresService } from 'src/app/services/compradores.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
-  role:string="";
-  username:string="";
+export class NavbarComponent implements OnInit{
+  role: string = '';
+  username: string = '';
+  comprador: string = '';
 
-  constructor(private loginService: LoginService, public router: Router, private searchService: SearchService) {
+  constructor(
+    private loginService: LoginService,
+    public router: Router,
+    private searchService: SearchService,
+    private compradoresService: CompradoresService
+  ) {}
+
+  ngOnInit(): void {
+    this.getComprador();
   }
 
   cerrar() {
@@ -26,7 +36,11 @@ export class NavbarComponent {
     return this.loginService.verificar();
   }
   validarRol() {
-    if (this.role == 'ADMIN' || this.role == 'COMPRADOR'|| this.role == 'VENDEDOR') {
+    if (
+      this.role.includes('ADMIN') ||
+      this.role.includes('COMPRADOR') ||
+      this.role.includes('VENDEDOR')
+    ) {
       return true;
     } else {
       return false;
@@ -41,5 +55,16 @@ export class NavbarComponent {
   obtenerNumeroDeItemsEnCarrito(): number {
     let carrito = sessionStorage.getItem('carrito');
     return carrito ? JSON.parse(carrito).length : 0;
+  }
+
+  getComprador(): void {
+    const username = this.loginService.getUsername();
+    if (username) {
+      this.compradoresService.findByUsername(username).subscribe((data) => {
+        if (data) {
+          this.comprador = data.nombres;
+        }
+      });
+    }
   }
 }

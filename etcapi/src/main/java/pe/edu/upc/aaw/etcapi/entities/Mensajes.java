@@ -34,27 +34,31 @@ this.chat = chat;
         return idMensajes;
     }
 
+    public void setIdMensajes(int idMensajes) {
+        this.idMensajes = idMensajes;
+    }
+
     public LocalDateTime getFecha() {
-    return fecha;
-}
+        return fecha;
+    }
 
-public void setFecha(LocalDateTime fecha) {
-    this.fecha = fecha;
-}
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
-public String getMensaje() {
-    return mensaje;
-}
+    public String getMensaje() {
+        return mensaje;
+    }
 
-public void setMensaje(String mensaje) {
-    this.mensaje = mensaje;
-}
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 
-public Chats getChat() {
-    return chat;
-}
+    public Chats getChat() {
+        return chat;
+    }
 
-public void setChat(Chats chat) {
-    this.chat = chat;
-}
+    public void setChat(Chats chat) {
+        this.chat = chat;
+    }
 }

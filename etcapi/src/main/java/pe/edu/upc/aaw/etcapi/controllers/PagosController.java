@@ -16,10 +16,11 @@ public class PagosController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody PagosDTO dto) {
+    public Pagos registrar(@RequestBody PagosDTO dto) {
         ModelMapper m = new ModelMapper();
         Pagos myItem = m.map(dto, Pagos.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table

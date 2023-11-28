@@ -16,10 +16,11 @@ public class CategoriasController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody CategoriasDTO dto) {
+    public Categorias registrar(@RequestBody CategoriasDTO dto) {
         ModelMapper m = new ModelMapper();
         Categorias myItem = m.map(dto, Categorias.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table
@@ -51,5 +52,11 @@ public class CategoriasController {
         ModelMapper m = new ModelMapper();
         Categorias d = m.map(dto, Categorias.class);
         myService.insert(d);
+    }
+    @GetMapping("/buscar/{tipo}")
+    public CategoriasDTO buscarPorTipo(@PathVariable("tipo") String tipo){
+        ModelMapper m = new ModelMapper();
+        CategoriasDTO myItem = m.map(myService.findByTipo(tipo), CategoriasDTO.class);
+        return myItem;
     }
 }
