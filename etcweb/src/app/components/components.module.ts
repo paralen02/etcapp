@@ -88,7 +88,6 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ReseniasComponent } from './resenias/resenias.component';
 import { SeguimientoComponent } from './compras/seguimiento/seguimiento.component';
 import { NuevasPublicacionesComponent } from './publicaciones/nuevas-publicaciones/nuevas-publicaciones.component';
-import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -150,8 +149,7 @@ import { FooterComponent } from './footer/footer.component';
     PerfilComponent,
     ReseniasComponent,
     SeguimientoComponent,
-    NuevasPublicacionesComponent,
-    FooterComponent
+    NuevasPublicacionesComponent
 
   ],
   imports:[

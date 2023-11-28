@@ -53,6 +53,11 @@ export class PublicacionesComponent implements OnInit {
           .subscribe((producto: Productos) => {
             this.producto = producto;
 
+          // Check if the product is already in the cart
+          let carrito = this.obtenerCarrito();
+          let cantidadEnCarrito = carrito.filter(p => p.idProductos === this.producto.idProductos).length;
+          this.producto.stock -= cantidadEnCarrito;
+
             this.vendedoresService
               .listId(producto.vendedor.idVendedores)
               .subscribe((vendedor: Vendedores) => {
@@ -90,20 +95,30 @@ export class PublicacionesComponent implements OnInit {
   }
 
   agregarAlCarrito(): void {
-    let carrito = this.obtenerCarrito();
-    let productoConTitulo = {
-      ...this.producto,
-      tituloPublicacion: this.publicacion.titulo,
-      idPublicacion: this.publicacion.idPublicaciones
-    };
-    carrito.push(productoConTitulo);
-    sessionStorage.setItem('carrito', JSON.stringify(carrito));
-    this.mensaje="Se agregó el producto al carrito";
-    this.snackBar.open(this.mensaje, 'Cerrar', {
-      duration: 5000,
-      verticalPosition: 'bottom', // 'top' | 'bottom'
-      horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
-    });
+    if (this.producto.stock > 0) {
+      let carrito = this.obtenerCarrito();
+      let productoConTitulo = {
+        ...this.producto,
+        tituloPublicacion: this.publicacion.titulo,
+        idPublicacion: this.publicacion.idPublicaciones
+      };
+      carrito.push(productoConTitulo);
+      sessionStorage.setItem('carrito', JSON.stringify(carrito));
+      this.mensaje="Se agregó el producto al carrito";
+      this.snackBar.open(this.mensaje, 'Cerrar', {
+        duration: 5000,
+        verticalPosition: 'bottom', // 'top' | 'bottom'
+        horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
+      });
+      this.producto.stock -= 1; // reduce the stock by 1
+    } else {
+      this.mensaje="El producto está fuera de stock";
+      this.snackBar.open(this.mensaje, 'Cerrar', {
+        duration: 5000,
+        verticalPosition: 'bottom', // 'top' | 'bottom'
+        horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
+      });
+    }
   }
 
   obtenerCarrito(): Productos[] {

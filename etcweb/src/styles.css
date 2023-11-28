@@ -85,3 +85,16 @@ a{
   --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
   --mat-snack-bar-button-color: #ff914d;
 }
+
+.mat-mdc-slider.mat-primary{
+  --mdc-slider-handle-color: #ff914d;
+  --mdc-slider-focus-handle-color: #ff914d;
+  --mdc-slider-hover-handle-color: #ff914d;
+  --mdc-slider-active-track-color: #ff914d;
+  --mdc-slider-inactive-track-color: #ff914d;
+  --mdc-slider-with-tick-marks-active-container-color: #fff;
+  --mdc-slider-with-tick-marks-inactive-container-color: #ff914d;
+  --mat-mdc-slider-ripple-color: #ff914d;
+  --mat-mdc-slider-hover-ripple-color: rgba(63, 81, 181, 0.05);
+  --mat-mdc-slider-focus-ripple-color: rgba(63, 81, 181, 0.2);
+}

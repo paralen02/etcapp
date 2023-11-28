@@ -96,5 +96,8 @@ h1, h2 {
 a {
   text-decoration: none;
 }
-
+button[disabled] {
+  background-color: #a6a6a6 !important;
+  cursor: not-allowed !important;
+}
 

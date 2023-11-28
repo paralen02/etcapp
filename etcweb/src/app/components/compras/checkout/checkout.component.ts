@@ -92,11 +92,11 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.formSection1 = this.formBuilder.group({
-      correo: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
-      dni: ['', Validators.required],
-      celular: ['', Validators.required],
+      dni: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
+      celular: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
     });
 
     this.formSection2 = this.formBuilder.group({
@@ -109,11 +109,11 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.formSection3 = this.formBuilder.group({
-      numeroTarjeta: ['', Validators.required],
+      numeroTarjeta: ['', [Validators.required, Validators.pattern(/^\d{4} \d{4} \d{4} \d{4}$/)]],
       fechaCaducidad: ['', Validators.required],
-      cvv: ['', Validators.required],
+      cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
       nombreTitular: ['', Validators.required],
-      correoElectronico: ['', Validators.required],
+      correoElectronico: ['', [Validators.required, Validators.email]],
       aceptaTerminos: [false, Validators.requiredTrue],
     });
 
@@ -141,6 +141,26 @@ export class CheckoutComponent implements OnInit {
     this.formSection2.controls['provincia'].disable();
 
     this.getComprador();
+  }
+
+  formatCardNumber(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    let trimmed = input.value.replace(/\s+/g, '');
+    if (trimmed.length > 16) {
+      trimmed = trimmed.substr(0, 16);
+    }
+
+    let numbers = [];
+    for (let i = 0; i < trimmed.length; i += 4) {
+      numbers.push(trimmed.substr(i, 4));
+    }
+
+    input.value = numbers.join(' ');
+
+    let control = this.formSection3.get('numeroTarjeta');
+if (control) {
+  control.setValue(input.value, {emitEvent: false});
+}
   }
 
   getComprador(): void {

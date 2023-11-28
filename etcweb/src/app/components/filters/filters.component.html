@@ -1,38 +1,32 @@
 <div class="filter-container card">
-  <div class="card-header">
+  <div class="card-header d-flex justify-content-between align-items-center">
     <h2>Filtros</h2>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
   <div class="card-body">
     <div class="filter-item form-group">
-
-
-      <mat-slider min="0" max="4999" step="10" showTickMarks discrete [displayWith]="formatLabel">
-        <input matSliderThumb>
-      </mat-slider>
-      <br>
       <label class="fw-bold">Rango de precios</label>
+      <div class="slider-container">
+        <input type="range" min="0" max="4999" step="10" value="0" (input)="onPriceRangeChange($event)">
+        <span>S/ {{priceRange}}</span>
+      </div>
     </div>
 
     <div class="filter-item form-group">
-      <mat-select class="form-control">
-        <mat-option value="categoria1">Categoría 1</mat-option>
-        <mat-option value="categoria2">Categoría 2</mat-option>
-        <!-- Agrega más categorías aquí -->
-      </mat-select>
-      <br>
-      <br>
       <label class="fw-bold">Categoría</label>
+      <mat-select class="form-control" [(value)]="category">
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategorias">{{ categoria.tipo
+          }}</mat-option>
+      </mat-select>
     </div>
 
     <div class="filter-item form-group">
+      <label class="fw-bold">Calificación del vendedor</label>
       <div class="star">
-      <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+        <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+      </div>
     </div>
-    <br>
-    <label class="fw-bold">Calificación del vendedor</label>
-    </div>
-  </div>
-  <div class="card-footer">
-    <button mat-button (click)="close()" class="btn btn-primary">Cerrar</button>
   </div>
 </div>

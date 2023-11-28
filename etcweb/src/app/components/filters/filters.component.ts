@@ -1,27 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSliderThumb } from '@angular/material/slider';
+import { Categorias } from 'src/app/models/categorias';
+import { CategoriasService } from 'src/app/services/categorias.service';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css']
+  styleUrls: ['./filters.component.css'],
 })
 export class FiltersComponent implements OnInit {
   priceRange: number = 0;
-  category: string = '';
+  category: number = 0;
   starRating = 0;
+  categorias: Categorias[] = [];
 
-  constructor(public dialogRef: MatDialogRef<FiltersComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<FiltersComponent>,
+    public categoriasService: CategoriasService
+  ) {}
 
   ngOnInit(): void {
+    this.categoriasService.list().subscribe((categorias) => {
+      this.categorias = categorias.filter(categoria => categoria.idCategorias !== 1);
+    });
   }
 
   close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({
+      priceRange: this.priceRange,
+      category: this.category,
+      starRating: this.starRating,
+    });
   }
 
   onPriceRangeChange(event: any): void {
-    this.priceRange = event.value;
+    this.priceRange = event.target.value;
   }
 
   onCategoryChange(event: any): void {

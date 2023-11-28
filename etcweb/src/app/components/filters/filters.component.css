@@ -1,14 +1,75 @@
 .filter-container {
   padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background-color: #ff914d;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: 15px;
+  flex: 1;
+  overflow: auto;
 }
 
 .filter-item {
-  margin-bottom: 20px;
+  margin-bottom: 3em;
+}
+
+.filter-item label {
+  display: block;
+  margin-bottom: 5px;
 }
 
 .star {
-  font-size: 25px;
+  font-size: 40px;
   color: #ff914d;
   text-align: center;
 }
 
+.card-footer {
+  background-color: #ff914d;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 0 0 10px 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-footer button {
+  color: white;
+}
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=range] {
+  width: 100%;
+}
+
+input[type="range" i] {
+  color: #ff914d !important;
+}
+
+.slider-container span {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}

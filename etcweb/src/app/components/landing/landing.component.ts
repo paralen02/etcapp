@@ -120,9 +120,30 @@ export class LandingComponent implements OnInit {
   }
 
   openFilters(): void {
-    this.dialog.open(FiltersComponent, {
-      width: 'auto',
-      height: 'auto',
+    const dialogRef = this.dialog.open(FiltersComponent, {
+
+    });
+
+    dialogRef.afterClosed().subscribe(filters => {
+      console.log('Filters:', filters); // Log the filters
+
+      if (filters) {
+        this.filteredItems = this.items.filter(item => {
+          let matchesPrice = item.precio <= filters.priceRange;
+          let matchesCategory = item.categoria === filters.category;
+
+          console.log('Item:', item); // Log each item
+          console.log('Matches Price:', matchesPrice); // Log whether it matches the price
+          console.log('Matches Category:', matchesCategory); // Log whether it matches the category
+
+          return matchesPrice && matchesCategory;
+        });
+      } else {
+        // Si no hay filtros, mostrar todos los elementos
+        this.filteredItems = this.items;
+      }
+
+      console.log('Filtered Items:', this.filteredItems); // Log the filtered items
     });
   }
 
