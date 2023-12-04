@@ -16,10 +16,11 @@ public class ChatsController {
 
     // Add an item to table
     @PostMapping
-    public void registrar(@RequestBody ChatsDTO dto) {
+    public Chats registrar(@RequestBody ChatsDTO dto) {
         ModelMapper m = new ModelMapper();
         Chats myItem = m.map(dto, Chats.class);
         myService.insert(myItem);
+        return myItem;
     }
 
     // Delete an item by ID on table
@@ -51,5 +52,22 @@ public class ChatsController {
         ModelMapper m = new ModelMapper();
         Chats d = m.map(dto, Chats.class);
         myService.insert(d);
+    }
+    @GetMapping("/buscar")
+    public ChatsDTO findByCompradorAndVendedor(@RequestParam("idComprador") int idComprador, @RequestParam("idVendedor") int idVendedor) {
+        ModelMapper m = new ModelMapper();
+        Chats chat = myService.findByCompradorAndVendedor(idComprador, idVendedor);
+        if (chat == null) {
+            return null;
+        }
+        ChatsDTO myItem = m.map(chat, ChatsDTO.class);
+        return myItem;
+    }
+    @GetMapping("/comprador/{idComprador}")
+    public List<ChatsDTO> findByComprador(@PathVariable("idComprador") int idComprador) {
+        return myService.findByComprador(idComprador).stream().map(chat -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(chat, ChatsDTO.class);
+        }).collect(Collectors.toList());
     }
 }

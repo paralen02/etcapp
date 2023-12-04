@@ -8,6 +8,8 @@ public class ChatsDTO {
     private int idChats;
     private boolean estado;
 private Compras compra;
+private Compradores comprador;
+private Vendedores vendedor;
 
     public int getIdChats() {
         return idChats;
@@ -31,5 +33,21 @@ public Compras getCompra() {
 
 public void setCompra(Compras compra) {
     this.compra = compra;
+}
+
+public Compradores getComprador() {
+    return comprador;
+}
+
+public void setComprador(Compradores comprador) {
+    this.comprador = comprador;
+}
+
+public Vendedores getVendedor() {
+    return vendedor;
+}
+
+public void setVendedor(Vendedores vendedor) {
+    this.vendedor = vendedor;
 }
 }

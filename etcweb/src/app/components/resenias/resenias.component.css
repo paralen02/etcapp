@@ -1,0 +1,17 @@
+h1{
+  color: #ff914d;
+  font-weight: bolder;
+}
+h2{
+  color: #ff914d;
+}
+.star {
+  font-size: 40px;
+  color: #ff914d;
+  text-align: center;
+}
+.textarea-comentario {
+  min-height: 100px;
+  resize: none;
+  overflow: auto;
+}

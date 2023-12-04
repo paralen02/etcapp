@@ -61,6 +61,7 @@ export class SignupCompradorComponent implements OnInit {
           this.router.navigate([''], {
             relativeTo: this.route,
           });
+          location.reload();
         },
         (error) => {
           this.mensaje = 'Hubo un error al registrar al usuario y comprador';

@@ -71,27 +71,24 @@ export class SignupVendedorComponent implements OnInit {
       direccion: ['', Validators.required],
       distrito: ['', Validators.required],
     });
-      // Obtén el nombre de usuario del usuario actualmente logueado
-  let username = this.loginService.getUsername();
 
-  // Usa el nombre de usuario para obtener la información del Comprador
-  this.compradoresService.findByUsername(username).subscribe(comprador => {
-    // Establece los valores de los campos del formulario
-    this.form.controls['username'].setValue(comprador.user.username);
-    this.form.controls['password'].setValue(comprador.user.password);
-    this.form.controls['nombres'].setValue(comprador.nombres);
-    this.form.controls['apellidos'].setValue(comprador.apellidos);
-    this.form.controls['celular'].setValue(comprador.celular);
-    this.form.controls['dni'].setValue(comprador.dni);
+    let username = this.loginService.getUsername();
 
-    // Deshabilita los campos del formulario
-    this.form.controls['username'].disable();
-    this.form.controls['password'].disable();
-    this.form.controls['nombres'].disable();
-    this.form.controls['apellidos'].disable();
-    this.form.controls['celular'].disable();
-    this.form.controls['dni'].disable();
-  });
+    this.compradoresService.findByUsername(username).subscribe(comprador => {
+      this.form.controls['username'].setValue(comprador.user.username);
+      this.form.controls['password'].setValue(comprador.user.password);
+      this.form.controls['nombres'].setValue(comprador.nombres);
+      this.form.controls['apellidos'].setValue(comprador.apellidos);
+      this.form.controls['celular'].setValue(comprador.celular);
+      this.form.controls['dni'].setValue(comprador.dni);
+
+      this.form.controls['username'].disable();
+      this.form.controls['password'].disable();
+      this.form.controls['nombres'].disable();
+      this.form.controls['apellidos'].disable();
+      this.form.controls['celular'].disable();
+      this.form.controls['dni'].disable();
+    });
   }
 
   signup() {
@@ -106,6 +103,10 @@ export class SignupVendedorComponent implements OnInit {
           // Crear un objeto Vendedores con los datos del formulario y la información del Comprador
           const vendedor: Vendedores = {
             idVendedores: 0,
+            nombres: comprador.nombres,
+            apellidos: comprador.apellidos,
+            dni: comprador.dni,
+            celular: comprador.celular,
             direccion: this.form.value.direccion,
             distrito: this.form.value.distrito,
             user: comprador.user,
@@ -130,6 +131,7 @@ export class SignupVendedorComponent implements OnInit {
                     verticalPosition: 'top', // 'top' | 'bottom'
                     horizontalPosition: 'left', // 'start' | 'center' | 'end' | 'left' | 'right'
                   });
+                  location.reload();
                 },
                 (error) => {
                   // Manejar el error de la operación aquí

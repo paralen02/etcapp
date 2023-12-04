@@ -1,7 +1,14 @@
+<mat-divider></mat-divider>
+<br>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-lg-4 col-md-12 col-sm-12">
       <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
+          'opcion-seleccionada': opcionSeleccionada === 'Invierte'
+        }" *ngIf="esVendedor" (click)="seleccionarOpcion('Invierte')">
+          <i class="fa-solid fa-sack-dollar fa-2x"></i> Invierte
+        </button>
         <button type="button" class="list-group-item list-group-item-action" [ngClass]="{
           'opcion-seleccionada': opcionSeleccionada === 'Nuevo'
         }" *ngIf="esVendedor" (click)="seleccionarOpcion('Nuevo')">
@@ -44,6 +51,34 @@
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12">
       <!-- <h2>{{ opcionSeleccionada }}</h2> -->
+      <div *ngIf="opcionSeleccionada === 'Invierte'" class="container text-center" style="background-color: #fafafa; padding: 20px;">
+        <div class="container">
+          <div class="mx-auto" style="max-width: 800px;">
+            <h1>¡INVIERTE Y POTENCIA LA VENTA DE TUS MUEBLES AHORA MISMO!</h1><br>
+            <h2>Asegura tu espacio en nuestra plataforma</h2>
+            <h3><i class="fa fa-credit-card"></i> Invierte el monto para cubrir los servicios de fotografía y limpieza de tus muebles.</h3>
+            <h3><i class="fa fa-hand-holding-usd"></i> Te garantizamos la devolución total una vez que tu mueble se haya vendido en nuestra plataforma.</h3>
+            <h3><i class="fa fa-chart-line"></i> Impulsa la venta de tus muebles con nosotros, sin riesgos ni complicaciones</h3>
+            <div class="row">
+              <div class="col">
+                <button mat-raised-button color="primary" style="width: 100%;" (click)="goToServices()">Inicia aquí</button>
+              </div>
+              <div class="col">
+                <button mat-raised-button color="secondary" style="width: 100%;" (click)="showImage = !showImage">Conoce más</button>
+
+                <div class="image-popup" *ngIf="showImage">
+                  <img class="image-content" src="../../../assets/popup.png">
+                  <button mat-raised-button class="close-button" (click)="showImage = false">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+        <h2>Mira como es nuestro proceso:</h2><br>
+        <div class="video-container mx-auto">
+          <iframe src="https://www.youtube.com/embed/NcRe5uhZ-Sg" allowfullscreen></iframe>
+        </div>
+      </div>
       <div *ngIf="opcionSeleccionada === 'Nuevo'">
         <div class="row p-4">
           <app-nuevas-publicaciones></app-nuevas-publicaciones>
@@ -119,12 +154,15 @@
       </div>
       <div *ngIf="opcionSeleccionada === 'Compras'">
         <div class="row">
-          <div class="col-md-12 mb-3"
+          <div class="col-md-12 mb-3" style="cursor: pointer;"
             *ngFor="let compra of compras | paginate: { itemsPerPage: 4, currentPage: p }">
-            <div class="card border-0" >
+            <div class="card border-0" [routerLink]="['/seguimiento', compra.idCompras]">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img [src]="compra.publicacion.producto.imagen" alt="Imagen del producto" class="img-fluid rounded" style="height: 15vh;">
+                  <img [src]="compra.publicacion.producto.imagen"
+                        alt="Imagen del producto"
+                        class="img-fluid rounded"
+                        style="height: 15vh; cursor: pointer;">
                 </div>
                 <div class="col-md-5">
                   <div class="card-body">
@@ -179,12 +217,41 @@
           </pagination-controls>
         </div>
       </div>
+      <div *ngIf="opcionSeleccionada === 'Imbox'">
+        <div class="row p-4">
+          <app-chats></app-chats>
+        </div>
+      </div>
       <div *ngIf="opcionSeleccionada === 'Reportes'">
         <div class="row">
-          <div class="col-12">
-            <!-- Aquí va tu primer reporte (el que ocupa el ancho total del contenedor) -->
+          <div class="col-12 bg-light rounded-5">
+            <h2 style="text-align: center;">Gráfico de precios por categoría y material en los 3 últimos meses</h2>
+
+            <mat-form-field>
+              <mat-label>Categoría</mat-label>
+              <mat-select [(value)]="selectedCategory" (selectionChange)="obtenerPreciosPorCategoriaYMaterial()">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.tipo">{{categoria.tipo}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Material</mat-label>
+              <mat-select [(value)]="selectedMaterial" (selectionChange)="obtenerPreciosPorCategoriaYMaterial()">
+                <mat-option *ngFor="let material of uniqueMaterials" [value]="material">{{material}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+            [type]="lineChartType"
+             >
+            </canvas>
           </div>
         </div>
+        <br>
         <div class="row">
           <div class="col-6 bg-light rounded-5">
             <!-- Aquí va tu segundo reporte (el de la izquierda) -->
@@ -197,7 +264,19 @@
           </canvas>
           </div>
           <div class="col-6">
-            <!-- Aquí va tu tercer reporte (el de la derecha) -->
+            <div class="bg-light rounded-5">
+              <!-- Aquí va tu segundo reporte (el de la izquierda) -->
+              <h2 style="text-align: center;">Top distritos por ventas</h2>
+              <canvas baseChart
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [type]="barChartType"
+               >
+              </canvas>
+            </div>
           </div>
         </div>
       </div>

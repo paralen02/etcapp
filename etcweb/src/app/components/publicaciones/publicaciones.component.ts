@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { Publicaciones } from './../../models/publicaciones';
 import { Productos } from 'src/app/models/productos';
 import { Caracteristicas } from 'src/app/models/caracteristicas';
@@ -9,6 +9,13 @@ import { CaracteristicasService } from 'src/app/services/caracteristicas.service
 import { Vendedores } from 'src/app/models/vendedores';
 import { VendedoresService } from 'src/app/services/vendedores.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Resenias } from 'src/app/models/resenias';
+import { ReseniasService } from 'src/app/services/resenias.service';
+import { ComprasService } from 'src/app/services/compras.service';
+import { Compras } from 'src/app/models/compras';
+import { CompradoresService } from 'src/app/services/compradores.service';
+import { LoginService } from 'src/app/services/login.service';
+import { Compradores } from 'src/app/models/compradores';
 
 @Component({
   selector: 'app-publicaciones',
@@ -17,10 +24,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PublicacionesComponent implements OnInit {
   idPublicaciones: number = 0;
+  userId: number=0;
   ids: number[] = [];
   publicaciones: Publicaciones[] = [];
   productos: Productos[] = [];
   caracteristicas: Caracteristicas[] = [];
+  resenias: Resenias[]=[];
+  compras: Compras[]=[];
   publicacion: Publicaciones = new Publicaciones();
   producto: Productos = new Productos();
   caracteristica: Caracteristicas = new Caracteristicas();
@@ -36,32 +46,63 @@ export class PublicacionesComponent implements OnInit {
     private productosService: ProductosService,
     private caracteristicasService: CaracteristicasService,
     private vendedoresService: VendedoresService,
-    private snackBar: MatSnackBar
+    private reseniasService: ReseniasService,
+    private comprasService: ComprasService,
+    private snackBar: MatSnackBar,
+    private loginService: LoginService,
+    private compradoresService: CompradoresService
   ) {}
 
   ngOnInit(): void {
-    this.idPublicaciones = this.route.snapshot.params['id'];
+    const username = this.loginService.getUsername();
+    const roles = this.loginService.showRole();
 
+    if (roles.includes('VENDEDOR')) {
+      this.vendedoresService.findByUsername(username).subscribe((vendedor: Vendedores) => {
+        this.userId = vendedor.idVendedores;
+      });
+    } else if (roles.includes('COMPRADOR')) {
+      this.compradoresService.findByUsername(username).subscribe((comprador: Compradores) => {
+        this.userId = comprador.idCompradores;
+      });
+    }
+
+    this.route.params.subscribe(routeParams => {
+      this.idPublicaciones = routeParams['id'];
+      this.loadPublicacion();
+      this.comprasService.list().subscribe((compras: Compras[]) => {
+        this.compras = compras;
+      });
+    });
+  }
+
+  loadPublicacion(): void {
     this.publicacionesService
       .listId(this.idPublicaciones)
       .subscribe((publicacion: Publicaciones) => {
         this.publicacion = publicacion;
-        this.obtenerOtrasPublicaciones(3);
+        this.obtenerOtrasPublicaciones(4);
 
         this.productosService
           .listId(publicacion.producto.idProductos)
           .subscribe((producto: Productos) => {
             this.producto = producto;
 
-          // Check if the product is already in the cart
-          let carrito = this.obtenerCarrito();
-          let cantidadEnCarrito = carrito.filter(p => p.idProductos === this.producto.idProductos).length;
-          this.producto.stock -= cantidadEnCarrito;
+            // Check if the product is already in the cart
+            let carrito = this.obtenerCarrito();
+            let cantidadEnCarrito = carrito.filter(p => p.idProductos === this.producto.idProductos).length;
+            this.producto.stock -= cantidadEnCarrito;
 
             this.vendedoresService
               .listId(producto.vendedor.idVendedores)
               .subscribe((vendedor: Vendedores) => {
                 this.vendedor = vendedor;
+
+                this.reseniasService
+                .listByVendedor(vendedor.idVendedores)
+                .subscribe((resenias: Resenias[]) => {
+                  this.resenias = resenias;
+                });
 
                 this.caracteristicasService
                   .listId(producto.caracteristica.idCaracteristicas)
@@ -80,7 +121,15 @@ export class PublicacionesComponent implements OnInit {
   obtenerOtrasPublicaciones(cantidad: number): void {
     this.publicacionesService.list().subscribe(
       (todasPublicaciones: Publicaciones[]) => {
-        const otrasPublicaciones = todasPublicaciones.filter((p) => p.idPublicaciones !== this.idPublicaciones);
+        // Filtrar las publicaciones cuyos productos tienen stock mayor a 0 y no son la publicación actual
+        const publicacionesDisponibles = todasPublicaciones.filter(
+          (p) => p.idPublicaciones !== this.idPublicaciones && p.producto.stock > 0
+        );
+
+        // Filtrar para asegurarse de que no se repita la publicación principal
+        const otrasPublicaciones = publicacionesDisponibles.filter((p) => p.idPublicaciones !== this.publicacion.idPublicaciones);
+
+        // Obtener 4 publicaciones aleatorias
         this.publicaciones = this.obtenerElementosAleatorios(otrasPublicaciones, cantidad);
       },
       (error) => {
@@ -88,6 +137,7 @@ export class PublicacionesComponent implements OnInit {
       }
     );
   }
+
 
   obtenerElementosAleatorios(array: any[], n: number): any[] {
     const shuffled = array.sort(() => 0.5 - Math.random());
@@ -124,5 +174,27 @@ export class PublicacionesComponent implements OnInit {
   obtenerCarrito(): Productos[] {
     let carrito = sessionStorage.getItem('carrito');
     return carrito ? JSON.parse(carrito) : [];
+  }
+  totalCalificaciones(): number {
+    return this.resenias.length;
+  }
+
+  promedioCalificaciones(): string {
+    if (!Array.isArray(this.resenias) || this.resenias.length === 0) {
+      return '0.0';
+    }
+
+    let sum = this.resenias.reduce((a, b) => a + b.calificacion, 0);
+    return (sum / this.resenias.length).toFixed(1);
+  }
+
+  getCantidadVendida(): number {
+    return this.compras.filter(compra => compra.publicacion.producto.vendedor.idVendedores === this.vendedor.idVendedores).length;
+  }
+
+  getPorcentajeCalificaciones(calificacion: number): number {
+    let totalResenias = this.resenias.length;
+    let reseniasConCalificacion = this.resenias.filter(resenia => resenia.calificacion === calificacion).length;
+    return (reseniasConCalificacion / totalResenias) * 100;
   }
 }

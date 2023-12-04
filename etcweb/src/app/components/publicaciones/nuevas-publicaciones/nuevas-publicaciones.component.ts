@@ -24,39 +24,7 @@ export class NuevasPublicacionesComponent implements OnInit {
   form!: FormGroup;
   categorias: Categorias[] = [];
   publicacion: Publicaciones = new Publicaciones();
-  distritos = [
-    'Cercado de Lima',
-    'Ate',
-    'Barranco',
-    'Breña',
-    'Comas',
-    'Chorrillos',
-    'El Agustino',
-    'Jesús María',
-    'La Molina',
-    'La Victoria',
-    'Lince',
-    'Magdalena del Mar',
-    'Miraflores',
-    'Pueblo Libre',
-    'Puente Piedra',
-    'Rímac',
-    'San Isidro',
-    'Independencia',
-    'San Juan de Miraflores',
-    'San Luis',
-    'San Martín de Porres',
-    'San Miguel',
-    'Santiago de Surco',
-    'Surquillo',
-    'Villa María del Triunfo',
-    'San Juan de Lurigancho',
-    'Santa Rosa',
-    'Los Olivos',
-    'San Borja',
-    'Villa El Salvador',
-    'Santa Anita',
-  ];
+  distrito: string ='';
   nombre: string = '';
   previewUrl: string = '';
   mensaje: string = "";
@@ -88,6 +56,7 @@ export class NuevasPublicacionesComponent implements OnInit {
       ancho: ['', Validators.required],
       alto: ['', Validators.required],
     });
+    this.form.controls['distrito'].disable();
 
     this.categoriasService.list().subscribe((categorias) => {
       this.categorias = categorias;
@@ -103,7 +72,7 @@ export class NuevasPublicacionesComponent implements OnInit {
   publicarProducto(): void {
     const username = this.loginService.getUsername();
     this.vendedoresService.findByUsername(username).subscribe((vendedor: Vendedores) => {
-      vendedor.distrito = this.form.value.distrito;
+      vendedor.distrito = this.distrito;
 
       const caracteristica = new Caracteristicas();
       caracteristica.color = this.form.value.color;
@@ -145,6 +114,7 @@ export class NuevasPublicacionesComponent implements OnInit {
                     verticalPosition: 'bottom', // 'top' | 'bottom'
                     horizontalPosition: 'right', // 'start' | 'center' | 'end' | 'left' | 'right'
                   });
+                  location.reload();
                 },
                 (error) => {
                   // console.error('Error al insertar la publicación:', error);
@@ -166,10 +136,9 @@ export class NuevasPublicacionesComponent implements OnInit {
   getVendedor(): void {
     const username = this.loginService.getUsername();
     if (username) {
-      this.compradoresService.findByUsername(username).subscribe((data) => {
-        if (data) {
-          this.nombre = data.nombres;
-        }
+      this.vendedoresService.findByUsername(username).subscribe((vendedor: Vendedores) => {
+        this.nombre = vendedor.nombres;
+        this.distrito = vendedor.distrito;
       });
     }
   }

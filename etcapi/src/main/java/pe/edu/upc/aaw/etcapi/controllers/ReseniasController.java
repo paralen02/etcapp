@@ -52,4 +52,21 @@ public class ReseniasController {
         Resenias d = m.map(dto, Resenias.class);
         myService.insert(d);
     }
+    @GetMapping("/compra/{idCompra}")
+    public ReseniasDTO getReseniaByCompra(@PathVariable("idCompra") Integer idCompra) {
+        ModelMapper m = new ModelMapper();
+        Resenias resenia = myService.findByCompra_IdCompras(idCompra);
+        if (resenia == null) {
+            return null;
+        }
+        ReseniasDTO myItem = m.map(resenia, ReseniasDTO.class);
+        return myItem;
+    }
+    @GetMapping("/vendedor/{idVendedor}")
+    public List<ReseniasDTO> getReseniasByVendedor(@PathVariable("idVendedor") Integer idVendedor) {
+        return myService.findByVendedor_IdVendedores(idVendedor).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, ReseniasDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

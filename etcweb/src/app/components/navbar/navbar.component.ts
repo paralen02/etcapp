@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
 import { CompradoresService } from 'src/app/services/compradores.service';
 
@@ -22,10 +22,17 @@ export class NavbarComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/' && sessionStorage.getItem('shouldRefresh') === 'true') {
+        sessionStorage.removeItem('shouldRefresh');
+        location.reload();
+      }
+    });
     this.getComprador();
   }
 
   cerrar() {
+    this.router.navigate(['']);
     sessionStorage.clear();
   }
 

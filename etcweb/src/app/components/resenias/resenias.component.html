@@ -1,1 +1,18 @@
-<p>resenias works!</p>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="text-center">
+    <h1 class="mb-4" *ngIf="!form.disabled">Califica tu compra:</h1>
+    <h1 class="mb-4" *ngIf="form.disabled">{{ mensaje }}</h1>
+    <div class="star mb-3">
+      <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="form.disabled"></ngb-rating><br>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submitRating()">
+      <mat-form-field class="w-100">
+        <textarea matInput placeholder="Deja un comentario" class="textarea-comentario" formControlName="comentario" [readonly]="form.disabled"></textarea>
+      </mat-form-field>
+      <button class="btn mt-3" color="secondary" type="submit" *ngIf="!form.disabled">Enviar calificación</button>
+    </form>
+    <div *ngIf="form.disabled">
+      <h2>Fecha de la reseña: {{ fechaResenia | date }}</h2>
+    </div>
+  </div>
+</div>

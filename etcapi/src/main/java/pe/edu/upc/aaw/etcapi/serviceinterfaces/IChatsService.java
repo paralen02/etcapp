@@ -7,4 +7,7 @@ public interface IChatsService {
     void delete(int id);
     Chats listId(int id);
     List<Chats> list();
+    Chats findByCompradorAndVendedor(int idComprador, int idVendedor);
+    List<Chats> findByComprador(int idComprador);
+
 }

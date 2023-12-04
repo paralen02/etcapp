@@ -52,4 +52,11 @@ public class MensajesController {
         Mensajes d = m.map(dto, Mensajes.class);
         myService.insert(d);
     }
+    @GetMapping("/chat/{idChat}")
+    public List<MensajesDTO> findByChat(@PathVariable("idChat") int idChat) {
+        return myService.findByChat(idChat).stream().map(mensaje -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(mensaje, MensajesDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

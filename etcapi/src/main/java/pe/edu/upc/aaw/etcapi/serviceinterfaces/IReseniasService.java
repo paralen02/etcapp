@@ -7,4 +7,6 @@ public interface IReseniasService {
     void delete(int id);
     Resenias listId(int id);
     List<Resenias> list();
+    Resenias findByCompra_IdCompras(int idCompra);
+    List<Resenias> findByVendedor_IdVendedores(int idVendedor);
 }

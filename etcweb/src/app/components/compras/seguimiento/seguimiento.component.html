@@ -1,1 +1,78 @@
-<p>seguimiento works!</p>
+<mat-divider></mat-divider>
+<br>
+<div class="container text-gray">
+  <!-- Primer Container -->
+  <div class="row">
+    <div class="col-lg-4 text-right">
+      <h1>{{ compra.publicacion.titulo }}</h1>
+    </div>
+    <div class="col-lg-4 text-center">
+      <h3>Fecha de Compra: {{ compra.fecha | date }}</h3>
+    </div>
+    <div class="col-lg-4 text-right">
+      <h3>Precio: S/ {{ compra.publicacion.producto.precio }}</h3>
+    </div>
+  </div>
+<mat-divider></mat-divider>
+  <!-- Segundo Container -->
+  <div class="row mt-3">
+    <div class="col-lg-4">
+      <img [src]="compra.publicacion.producto.imagen" class="img" alt="Imagen del Producto" />
+    </div>
+    <div class="col-lg-4" >
+      <p class="fw-bold">Código de Compra: {{ compra.idCompras }}</p>
+      <p class="fw-bold">Cantidad: 1</p>
+    </div>
+    <div class="col-lg-4 d-flex flex-column">
+      <button mat-raised-button color="secondary" class="mb-2">Reportar Inconveniente</button>
+      <button mat-raised-button color="secondary" class="mb-2">Ver Boleta</button>
+      <button mat-raised-button color="secondary"(click)="goToReviews()">Escribir Opinión</button>
+    </div>
+  </div>
+  <br>
+<mat-divider></mat-divider>
+<br>
+<h1 class="text-center">Seguimiento de compra</h1>
+  <div class="container mt-5">
+    <div class="progress-container">
+      <div class="progress">
+        <div id="progressBar" class="progress-bar" role="progressbar" [style.width]="getProgressBarWidth()"></div>
+      </div>
+    <div id="progressCircle1" class="circle" [style.left]="getCirclePosition(1)" [style.background-color]="currentStep >= 1 ? '#ff914d' : '#e9ecef'"></div>
+    <div id="progressCircle2" class="circle" [style.left]="getCirclePosition(2)" [style.background-color]="currentStep >= 2 ? '#ff914d' : '#e9ecef'"></div>
+    <div id="progressCircle3" class="circle" [style.left]="getCirclePosition(3)" [style.background-color]="currentStep >= 3 ? '#ff914d' : '#e9ecef'"></div>
+    </div>
+    <div class="row">
+      <div class="col-4" style="text-align: center;">
+        <br><h3>Creación Orden de Compra</h3>
+        <p>{{compra.fecha | date: 'dd/MM/yyyy hh:mm'}}</p>
+      </div>
+      <div class="col-4" style="text-align: center;">
+        <br><h3>Envío en Tránsito</h3>
+        <p>{{ compra.envio.fecha_envio | date: 'dd/MM/yyyy hh:mm' }}</p>
+      </div>
+      <div class="col-4" style="text-align: center;">
+        <br><h3>Entregado en domicilio</h3>
+        <p>{{ compra.envio.fecha_envio | date: 'dd/MM/yyyy hh:mm' }}</p>
+      </div>
+    </div>
+  </div>
+<br>
+<mat-divider></mat-divider>
+  <!-- Cuarto Container -->
+  <div class="row mt-3">
+    <div class="col-lg-1">
+      <i class="fa fa-calendar fa-2x"></i>
+    </div>
+    <div class="col-lg-5">
+      <h3>Despacho estimado: {{ compra.envio.fecha_envio | date: 'mediumDate' }}</h3>
+    </div>
+    <div class="col-lg-1">
+      <i class="fa fa-truck fa-2x"></i>
+    </div>
+    <div class="col-lg-5">
+      <h3>Dirección de entrega: {{ compra.envio.direccion }}</h3>
+    </div>
+  </div>
+
+</div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatSliderThumb } from '@angular/material/slider';
 import { Categorias } from 'src/app/models/categorias';
 import { CategoriasService } from 'src/app/services/categorias.service';
 
@@ -32,6 +31,20 @@ export class FiltersComponent implements OnInit {
       category: this.category,
       starRating: this.starRating,
     });
+  }
+
+  applyFilters(): void {
+    this.dialogRef.close({
+      priceRange: this.priceRange,
+      category: this.category,
+      starRating: this.starRating,
+    });
+  }
+
+  resetFilters(): void {
+    this.priceRange = 0;
+    this.category = 0;
+    this.starRating = 0;
   }
 
   onPriceRangeChange(event: any): void {

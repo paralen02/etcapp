@@ -20,6 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LandingComponent implements OnInit {
   @ViewChild('iconBar') iconBar!: ElementRef;
+  usuarioLogueado: boolean = false;
   publicaciones: any[] = [];
   productos: any[] = [];
   vendedores: any[] = [];
@@ -42,6 +43,7 @@ export class LandingComponent implements OnInit {
   categoriaActiva: any = null;
   p:number=1;
   mensaje: string = ""
+  showImage = false;
 
   constructor(
     private publicacionesService: PublicacionesService,
@@ -57,9 +59,19 @@ export class LandingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.usuarioLogueado = this.loginService.verificar();
+  // Comprueba si el usuario ya ha cerrado la imagen
+  const imageClosed = sessionStorage.getItem('imageClosed');
+  // Si el usuario no ha cerrado la imagen y verificar() retorna false, muestra la imagen
+  this.showImage = !imageClosed && !this.loginService.verificar();
     this.init();
   }
-
+  closeImage() {
+    // Guarda en el sessionStorage que el usuario ha cerrado la imagen
+    sessionStorage.setItem('imageClosed', 'true');
+    // Oculta la imagen
+    this.showImage = false;
+  }
   init() {
     this.categoriasService.list().subscribe((categorias) => {
       this.categorias = categorias;
@@ -120,35 +132,26 @@ export class LandingComponent implements OnInit {
   }
 
   openFilters(): void {
-    const dialogRef = this.dialog.open(FiltersComponent, {
-
-    });
+    const dialogRef = this.dialog.open(FiltersComponent, {});
 
     dialogRef.afterClosed().subscribe(filters => {
-      console.log('Filters:', filters); // Log the filters
-
       if (filters) {
         this.filteredItems = this.items.filter(item => {
           let matchesPrice = item.precio <= filters.priceRange;
           let matchesCategory = item.categoria === filters.category;
 
-          console.log('Item:', item); // Log each item
-          console.log('Matches Price:', matchesPrice); // Log whether it matches the price
-          console.log('Matches Category:', matchesCategory); // Log whether it matches the category
-
           return matchesPrice && matchesCategory;
         });
-      } else {
-        // Si no hay filtros, mostrar todos los elementos
-        this.filteredItems = this.items;
       }
-
-      console.log('Filtered Items:', this.filteredItems); // Log the filtered items
     });
   }
 
   scrollRight() {
     this.iconBar.nativeElement.scrollLeft += 100;
+  }
+
+  resetFilters(): void {
+    this.filteredItems = this.items;
   }
 
   filtrarPorCategoria(categoria: any) {

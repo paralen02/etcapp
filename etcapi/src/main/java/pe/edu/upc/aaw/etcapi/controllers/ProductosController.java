@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.aaw.etcapi.dtos.MesesUsoProductosDTO;
 import pe.edu.upc.aaw.etcapi.dtos.ProductosDTO;
+import pe.edu.upc.aaw.etcapi.dtos.ProductosPriceDTO;
+import pe.edu.upc.aaw.etcapi.dtos.TopDistritosDTO;
 import pe.edu.upc.aaw.etcapi.entities.Productos;
 import pe.edu.upc.aaw.etcapi.serviceinterfaces.IProductosService;
 import java.util.List;
@@ -58,5 +60,16 @@ public class ProductosController {
     @GetMapping("/meses_uso")
     public List<MesesUsoProductosDTO> getMesesUso() {
         return myService.getMesesUso();
+    }
+
+    @GetMapping("/top-distritos")
+    public List<TopDistritosDTO> getTopDistritos() {
+        return myService.getTopDistritos();
+    }
+    @GetMapping("/prices")
+    public List<ProductosPriceDTO> getPricesByCategoryAndMaterial(
+            @RequestParam("category") String category,
+            @RequestParam("material") String material) {
+        return myService.getPricesByCategoryAndMaterial(category, material);
     }
 }

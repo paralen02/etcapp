@@ -34,9 +34,21 @@ h1, h2 {
 .product-card {
   position: relative;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+.progress-bar{
+  background-color: #ff914d;
+}
+.progress {
+  width: 100%; /* Ajusta este valor según tus necesidades */
+}
+
+.card-body{
+  margin-left: auto;
 }
 
 .product-image {
+  max-width: 300px;
   width: 100%;
   height: auto;
   border-radius: 8px;

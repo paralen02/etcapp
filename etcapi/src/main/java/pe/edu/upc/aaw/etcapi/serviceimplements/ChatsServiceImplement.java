@@ -34,4 +34,12 @@ public class ChatsServiceImplement implements IChatsService {
     public List<Chats> list() {
         return myRepository.findAll();
     }
+    @Override
+    public Chats findByCompradorAndVendedor(int idComprador, int idVendedor) {
+        return myRepository.findByCompradorAndVendedor(idComprador, idVendedor);
+    }
+    @Override
+    public List<Chats> findByComprador(int idComprador) {
+        return myRepository.findByComprador(idComprador);
+    }
 }

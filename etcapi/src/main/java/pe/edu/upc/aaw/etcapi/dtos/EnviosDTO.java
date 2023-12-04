@@ -7,8 +7,10 @@ public class EnviosDTO {
     
     private int idEnvios;
     private boolean entregado;
-private LocalDate fecha_envio;
-private LocalDate fecha_compra;
+private LocalDateTime fecha_envio;
+private LocalDateTime fecha_compra;
+private LocalDateTime fecha_despacho;
+private LocalDateTime fecha_entrega;
 private String departamento;
 private String provincia;
 private String distrito;
@@ -24,75 +26,91 @@ private Repartidores repartidor;
         this.idEnvios = idEnvios;
     }
 
-    public boolean getEntregado() {
-    return entregado;
-}
+    public boolean isEntregado() {
+        return entregado;
+    }
 
-public void setEntregado(boolean entregado) {
-    this.entregado = entregado;
-}
+    public void setEntregado(boolean entregado) {
+        this.entregado = entregado;
+    }
 
-public LocalDate getFecha_envio() {
-    return fecha_envio;
-}
+    public LocalDateTime getFecha_envio() {
+        return fecha_envio;
+    }
 
-public void setFecha_envio(LocalDate fecha_envio) {
-    this.fecha_envio = fecha_envio;
-}
+    public void setFecha_envio(LocalDateTime fecha_envio) {
+        this.fecha_envio = fecha_envio;
+    }
 
-public LocalDate getFecha_compra() {
-    return fecha_compra;
-}
+    public LocalDateTime getFecha_compra() {
+        return fecha_compra;
+    }
 
-public void setFecha_compra(LocalDate fecha_compra) {
-    this.fecha_compra = fecha_compra;
-}
+    public void setFecha_compra(LocalDateTime fecha_compra) {
+        this.fecha_compra = fecha_compra;
+    }
 
-public String getDepartamento() {
-    return departamento;
-}
+    public LocalDateTime getFecha_despacho() {
+        return fecha_despacho;
+    }
 
-public void setDepartamento(String departamento) {
-    this.departamento = departamento;
-}
+    public void setFecha_despacho(LocalDateTime fecha_despacho) {
+        this.fecha_despacho = fecha_despacho;
+    }
 
-public String getProvincia() {
-    return provincia;
-}
+    public LocalDateTime getFecha_entrega() {
+        return fecha_entrega;
+    }
 
-public void setProvincia(String provincia) {
-    this.provincia = provincia;
-}
+    public void setFecha_entrega(LocalDateTime fecha_entrega) {
+        this.fecha_entrega = fecha_entrega;
+    }
 
-public String getDistrito() {
-    return distrito;
-}
+    public String getDepartamento() {
+        return departamento;
+    }
 
-public void setDistrito(String distrito) {
-    this.distrito = distrito;
-}
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
 
-public String getDireccion() {
-    return direccion;
-}
+    public String getProvincia() {
+        return provincia;
+    }
 
-public void setDireccion(String direccion) {
-    this.direccion = direccion;
-}
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
 
-public String getReferencia() {
-    return referencia;
-}
+    public String getDistrito() {
+        return distrito;
+    }
 
-public void setReferencia(String referencia) {
-    this.referencia = referencia;
-}
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
 
-public Repartidores getRepartidor() {
-    return repartidor;
-}
+    public String getDireccion() {
+        return direccion;
+    }
 
-public void setRepartidor(Repartidores repartidor) {
-    this.repartidor = repartidor;
-}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
+    public Repartidores getRepartidor() {
+        return repartidor;
+    }
+
+    public void setRepartidor(Repartidores repartidor) {
+        this.repartidor = repartidor;
+    }
 }

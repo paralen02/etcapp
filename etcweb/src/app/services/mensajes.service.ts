@@ -57,4 +57,10 @@ export class MensajesService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+  findByChat(idChat: number): Observable<Mensajes[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Mensajes[]>(`${this.url}/chat/${idChat}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

@@ -1,1 +1,48 @@
-<p>chats works!</p>
+<div class="container">
+  <div class="row rounded-3" style="background-color: #f7f7f7;">
+    <div class="col-12">
+      <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" alt="Imagen del comprador" class="img-fluid rounded-5" style="max-height: 6vh;">
+      <span class="h5">{{comprador.nombres}}</span>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4">
+      <h2>Chats</h2>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Buscar">
+      </mat-form-field>
+      <div *ngFor="let chat of chats" class="chat-item">
+        <button class="chat-button d-flex align-items-center rounded-5" (click)="seleccionarVendedor(chat.vendedor)">
+          <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" alt="Imagen del comprador" class="img-fluid rounded-5" style="max-height: 4vh;">
+          <h3>{{chat.vendedor.nombres}}</h3>
+        </button>
+        <br>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12">
+          <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" alt="Imagen del vendedor" class="img-fluid rounded-5" style="max-width: 5%;">
+          <span class="h5">{{vendedorSeleccionado.nombres}}</span>
+        </div>
+      </div>
+      <br>
+      <div class="chat-container">
+        <div *ngFor="let mensaje of mensajes"
+             [ngClass]="{'mensaje-vendedor': mensaje.chat.vendedor.idVendedores === vendedorSeleccionado.idVendedores,
+                         'mensaje-comprador': mensaje.chat.vendedor.idVendedores !== vendedorSeleccionado.idVendedores}">
+          <p class="mensaje">{{mensaje.mensaje}}</p>
+        </div>
+      </div>
+      <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
+        <div class="input-group">
+          <input type="text" formControlName="mensaje" class="form-control" placeholder="Escribe un mensaje">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

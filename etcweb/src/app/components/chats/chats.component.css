@@ -1,0 +1,34 @@
+.mensaje-vendedor {
+  background-color: #d9d9d9;
+  color: #545454;
+  text-align: left;
+}
+
+.mensaje-comprador {
+  background-color: #ff914d;
+  color: #ffffff;
+  text-align: right;
+}
+
+.chat-container {
+  height: 300px;
+  overflow-y: scroll;
+}
+.mensaje {
+  padding: 10px;
+  width: fit-content;
+  max-width: 50%;
+  word-wrap: break-word;
+}
+
+.chat-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: none;
+}
+
+.chat-button img {
+  margin-right: 10px;
+}

@@ -34,4 +34,8 @@ public class MensajesServiceImplement implements IMensajesService {
     public List<Mensajes> list() {
         return myRepository.findAll();
     }
+    @Override
+    public List<Mensajes> findByChat(int idChat) {
+        return myRepository.findByChat(idChat);
+    }
 }

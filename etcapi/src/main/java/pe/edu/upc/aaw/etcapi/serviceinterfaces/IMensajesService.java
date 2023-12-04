@@ -7,4 +7,6 @@ public interface IMensajesService {
     void delete(int id);
     Mensajes listId(int id);
     List<Mensajes> list();
+    List<Mensajes> findByChat(int idChat);
+
 }

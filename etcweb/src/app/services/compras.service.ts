@@ -16,10 +16,7 @@ export class ComprasService {
   constructor(private http: HttpClient) {}
 
   list(): Observable<Compras[]> {
-    let token = sessionStorage.getItem('token');
-    return this.http.get<Compras[]>(this.url, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
-    });
+    return this.http.get<Compras[]>(this.url)
   }
 
   insert(compras: Compras): Observable<any> {

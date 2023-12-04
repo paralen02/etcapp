@@ -9,6 +9,12 @@ import { CarritoComponent } from './components/compras/carrito/carrito.component
 import { CheckoutComponent } from './components/compras/checkout/checkout.component';
 import { ComprasComponent } from './components/compras/compras.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { AgendarAsesoriasComponent } from './components/asesorias/agendar-asesorias/agendar-asesorias.component';
+import { SeguimientoComponent } from './components/compras/seguimiento/seguimiento.component';
+import { ReseniasComponent } from './components/resenias/resenias.component';
+import { ServiciosComponent } from './components/servicios/servicios.component';
+import { ChatsComponent } from './components/chats/chats.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,6 +27,12 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'compras', component: ComprasComponent },
   { path: 'perfil', component: PerfilComponent},
+  { path: 'asesorias/:id', component: AgendarAsesoriasComponent},
+  { path: 'seguimiento/:id', component: SeguimientoComponent },
+  { path: 'resenias/:id', component: ReseniasComponent },
+  { path: 'servicios/:id', component: ServiciosComponent },
+  { path: 'chats/:id', component: ChatsComponent },
+  { path: 'ayuda', component: AyudaComponent },
   {
     path: 'components',
     loadChildren: () =>

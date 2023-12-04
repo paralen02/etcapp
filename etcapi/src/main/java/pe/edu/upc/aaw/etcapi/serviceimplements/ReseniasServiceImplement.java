@@ -34,4 +34,12 @@ public class ReseniasServiceImplement implements IReseniasService {
     public List<Resenias> list() {
         return myRepository.findAll();
     }
+    @Override
+    public Resenias findByCompra_IdCompras(int idCompra) {
+        return myRepository.findByCompra_IdCompras(idCompra);
+    }
+    @Override
+    public List<Resenias> findByVendedor_IdVendedores(int idVendedor) {
+        return myRepository.findByVendedor_IdVendedores(idVendedor);
+    }
 }

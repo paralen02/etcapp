@@ -1,0 +1,67 @@
+.container.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wide-form {
+  width: 30%;
+}
+
+.wide-input {
+  width: 100%;
+}
+
+h1{
+  color: #ff914d !important;
+  font-weight:600;
+  text-align: left !important;
+}
+
+.progress-container {
+  position: relative;
+  height: 30px;
+}
+
+.progress {
+  height: 30px;
+  border-radius: 20px;
+}
+
+.progress-bar {
+  transition: width 0.5s;
+  background-color: #ff914d !important;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.5s;
+  cursor:pointer;
+}
+
+.check{
+  color: #ff914d;
+}
+
+.text-gray {
+  color: gray;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+

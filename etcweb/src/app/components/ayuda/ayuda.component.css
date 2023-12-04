@@ -1,0 +1,16 @@
+.full-screen-background {
+  background-image: url('../../../assets/ayuda.png');
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 80%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

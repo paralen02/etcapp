@@ -21,7 +21,8 @@ import { EnviosService } from 'src/app/services/envios.service';
 import { LoginService } from 'src/app/services/login.service';
 import { OperacionesService } from 'src/app/services/operaciones.service';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
-import { concatMap, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-checkout',
@@ -87,7 +88,8 @@ export class CheckoutComponent implements OnInit {
     private comprasService: ComprasService,
     private pagosService: PagosService,
     private publicacionesService: PublicacionesService,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -220,11 +222,12 @@ if (control) {
     const envio = new Envios();
     envio.fecha_compra = new Date();
     envio.fecha_envio = this.formSection2.value.fechaEntrega;
-    envio.departamento = this.formSection2.value.departamento;
-    envio.provincia = this.formSection2.value.provincia;
+    envio.departamento = 'Lima';
+    envio.provincia = 'Lima';
     envio.distrito = this.formSection2.value.distrito;
     envio.direccion = this.formSection2.value.direccion;
     envio.referencia = this.formSection2.value.referencia;
+    envio.entregado = true;
 
     // Crear el objeto Operaciones
     const operacion = new Operaciones();
@@ -360,4 +363,23 @@ if (control) {
     progressCircle2.style.backgroundColor = this.currentStep >= 2 ? '#ff914d' : '';
     progressCircle3.style.backgroundColor = this.currentStep >= 3 ? '#ff914d' : '';
   }
+
+  goToTracking(): void {
+    if (this.compraGuardada && this.compraGuardada.idCompras) {
+      this.router.navigate(['/seguimiento', this.compraGuardada.idCompras]);
+    }
+  }
+
+  goToReviews():void{
+    if (this.compraGuardada && this.compraGuardada.idCompras) {
+      this.router.navigate(['/resenias', this.compraGuardada.idCompras]);
+    }
+  }
+
+  goToAdvice():void{
+    if (this.compraGuardada && this.compraGuardada.idCompras) {
+      this.router.navigate(['/asesorias', this.compraGuardada.idCompras]);
+    }
+  }
 }
+

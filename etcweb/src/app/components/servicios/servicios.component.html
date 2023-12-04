@@ -1,0 +1,101 @@
+<div class="container centered-content" *ngIf="currentStep === 1">
+  <h1 class="text-center">Una imagen vale más que mil palabras</h1>
+
+  <h2 class="text-center">1. Programa fecha y hora</h2>
+  <form [formGroup]="form" class="wide-form mx-auto">
+    <mat-form-field class="wide-input">
+      <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="wide-input">
+      <input matInput type="time" placeholder="Hora" formControlName="hora">
+    </mat-form-field>
+
+    <h2 class="text-center">2. Agrega tu dirección</h2>
+    <mat-form-field class="wide-input">
+      <input matInput placeholder="Dirección" formControlName="direccion">
+    </mat-form-field>
+    <div class="d-flex justify-content-center">
+      <google-map [center]="center" [zoom]="zoom" [height]="300" [width]="650" (mapClick)="onMapClick($event)">
+        <map-marker #marker="mapMarker" [position]="markerPosition" [options]="markerOptions"></map-marker>
+      </google-map>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+      <button mat-raised-button color="primary" (click)="aceptar()">Siguiente</button>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center" *ngIf="currentStep === 2">
+    <div class="col-12 col-md-8 col-lg-6">
+      <h1 class="text-center">Invierte aquí</h1>
+      <h3>Solicitamos la información de la tarjeta para el pago del producto</h3>
+      <div class="row" *ngIf="currentStep === 2">
+        <form [formGroup]="form2" class="form-container">
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Número de tarjeta</mat-label>
+              <input matInput placeholder="Número de tarjeta" formControlName="numeroTarjeta"
+                (keyup)="formatCardNumber($event)" />
+              <mat-error *ngIf="form2.get('numeroTarjeta')?.errors?.['required']">
+                El número de tarjeta es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Fecha de caducidad</mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="Fecha de caducidad" formControlName="fechaCaducidad"
+                [min]="minFecha" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="form2.get('fechaCaducidad')?.errors?.['required']">
+                La fecha de caducidad es obligatoria.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>CVV</mat-label>
+              <input matInput placeholder="CVV" formControlName="cvv" maxlength="3" />
+              <mat-error *ngIf="form2.get('cvv')?.errors?.['required']">
+                El CVV es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Nombre del titular</mat-label>
+              <input matInput placeholder="Nombre del titular" formControlName="nombreTitular" />
+              <mat-error *ngIf="form2.get('nombreTitular')?.errors?.['required']">
+                El nombre del titular es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field class="w-100">
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput placeholder="Correo electrónico" formControlName="correoElectronico" />
+              <mat-error *ngIf="form2.get('correoElectronico')?.errors?.['required']">
+                El correo electrónico es obligatorio.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-checkbox formControlName="aceptaTerminos">Acepto los términos y condiciones de la compra</mat-checkbox>
+            <mat-error *ngIf="form2.get('aceptaTerminos')?.errors?.['required']">
+              Debe aceptar los términos y condiciones para realizar una compra.
+            </mat-error>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button mat-raised-button color="primary" (click)="aceptar()">Invertir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

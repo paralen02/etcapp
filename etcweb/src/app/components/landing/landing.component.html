@@ -10,6 +10,10 @@
 <body>
   <mat-divider></mat-divider>
   <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-center">
+    <div class="image-popup" *ngIf="showImage">
+      <img class="image-content" src="../../../assets/flyer.png">
+      <button mat-raised-button class="close-button" (click)="closeImage()">Cerrar</button>
+    </div>
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +54,7 @@
         <a [routerLink]="item.categoria === 1 ? item.link : ['/publicaciones', item.id]" class="card-link">
           <img class="card-img-top" [src]="item.imagen"/>
         </a>
-        <button *ngIf="item.categoria !== 1" class="btn btn-light position-absolute top-0 end-0 m-2" (click)="agregarAFavoritos(item)" [ngStyle]="{'color': item.esFavorito ? 'red' : 'black'}">
+        <button *ngIf="item.categoria !== 1 && usuarioLogueado" class="btn btn-light position-absolute top-0 end-0 m-2" (click)="agregarAFavoritos(item)" [ngStyle]="{'color': item.esFavorito ? 'red' : 'black'}">
           <i class="fa fa-heart"></i>
         </button>
       </div>

@@ -32,6 +32,10 @@
   white-space: nowrap;
   height: 100px;
 }
+.logo{
+  height: 15vh;
+  width: auto;
+}
 
 .search-container {
   display: flex;

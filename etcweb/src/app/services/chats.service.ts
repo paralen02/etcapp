@@ -57,4 +57,21 @@ export class ChatsService {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
     });
   }
+
+  findByCompradorAndVendedor(idComprador: number, idVendedor: number): Observable<Chats> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Chats>(`${this.url}/buscar`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+      params: {
+        idComprador: idComprador.toString(),
+        idVendedor: idVendedor.toString(),
+      },
+    });
+  }
+  findByComprador(idComprador: number): Observable<Chats[]> {
+    let token = sessionStorage.getItem('token');
+    return this.http.get<Chats[]>(`${this.url}/comprador/${idComprador}`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'application/json'),
+    });
+  }
 }

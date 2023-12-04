@@ -1,4 +1,5 @@
-<div class="d-flex justify-content-center" style="height: 100vh">
+<mat-divider></mat-divider>
+<div class="d-flex justify-content-center" >
   <div class="container m-5" *ngIf="combinedPublicacion">
     <div class="row justify-content-center">
       <div class="col-lg-10">
@@ -13,7 +14,7 @@
               <!-- Slides -->
               <div class="carousel-inner">
                 <div class="carousel-item" *ngFor="let producto of productos; let i = index" [class.active]="i == 0">
-                  <img [src]="producto.imagen" class="d-block w-100" alt="{{ combinedPublicacion.titulo }}" />
+                  <img *ngIf="producto" [src]="producto.imagen" class="d-block w-100" alt="{{ combinedPublicacion.titulo }}" />
                 </div>
               </div>
               <!-- Controles -->
@@ -66,6 +67,68 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Nuevo contenedor horizontal para las reseñas del vendedor -->
+<div class="d-flex justify-content-center align-items-center" *ngFor="let vendedor of getUniqueVendedores()">
+  <div class="card border-0" style="background-color: #f6f6f6; width: 57%;">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" alt="Imagen del vendedor" class="img-fluid rounded-5 p-4" style="height: 20vh; width: auto;">
+      </div>
+      <div class="col-md-5 d-flex align-items-center">
+        <div class="card-body">
+          <h4 class="card-title fw-bold" style="color: #545454;" *ngIf="vendedor">{{ vendedor.nombres }}</h4>
+          <p class="card-text gray" *ngIf="vendedor">Productos vendidos: {{ getCantidadVendida(vendedor) }}</p>
+          <p class="card-text gray" *ngIf="vendedor">Calificaciones totales: {{ totalCalificaciones(vendedor) }}</p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex flex-column align-items-start justify-content-end">
+        <div class="card-body w-100">
+          <h1 class="product-price" *ngIf="vendedor">{{ promedioCalificaciones(vendedor) }}</h1>
+          <div class="d-flex align-items-center" *ngFor="let calificacion of [5, 4, 3, 2, 1]">
+            <div class="progress mr-2" style="height: 10px; flex-grow: 1;">
+              <div class="progress-bar" role="progressbar"
+                [style.width]="getPorcentajeCalificaciones(calificacion, vendedor) + '%'"
+                [ngStyle]="{'background-color': getPorcentajeCalificaciones(calificacion, vendedor) > 0 ? '#ff914d' : 'transparent'}"
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+              </div>            </div>
+            <span class="gray">{{ calificacion }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<h1 class="align-items-center" style="text-align: center;">Otros productos interesantes</h1><br>
+<div class="d-flex justify-content-center mt-0">
+  <div class="container" style="max-width: 1200px; margin: auto;">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let publicacion of otrasPublicaciones">
+        <a [routerLink]="['/publicaciones', publicacion.idPublicaciones]">
+          <div class="product-card">
+            <img [src]="publicacion.producto.imagen" alt="Imagen del producto" class="product-image">
+            <div class="product-info">
+              <div class="product-title-price">
+                <p class="product-title">{{ publicacion.titulo }}</p>
+                <p class="product-price">S/ {{ publicacion.producto.precio }}</p>
+              </div>
+              <p class="product-district">{{ publicacion.producto.vendedor.distrito }}</p>
+              <div *ngIf="publicacion.producto.stock > 0; else noStock">
+                <span class="status-circle available"></span><span class="gray m-1 fw-bold">Disponible</span>
+              </div>
+              <ng-template #noStock>
+                <div>
+                  <span class="status-circle not-available"></span><span class="gray m-1 fw-bold">No
+                    disponible</span>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
