@@ -55,7 +55,7 @@ export class PublicacionesComponent implements OnInit {
 
   ngOnInit(): void {
     const username = this.loginService.getUsername();
-    const roles = this.loginService.showRole();
+    const roles = this.loginService.showRoles();
 
     if (roles.includes('VENDEDOR')) {
       this.vendedoresService.findByUsername(username).subscribe((vendedor: Vendedores) => {
