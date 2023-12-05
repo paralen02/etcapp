@@ -45,6 +45,13 @@ export class FiltersComponent implements OnInit {
     this.priceRange = 0;
     this.category = 0;
     this.starRating = 0;
+
+    // Cierra el diálogo y pasa los valores de los filtros restablecidos
+    this.dialogRef.close({
+      priceRange: this.priceRange,
+      category: this.category,
+      starRating: this.starRating,
+    });
   }
 
   onPriceRangeChange(event: any): void {

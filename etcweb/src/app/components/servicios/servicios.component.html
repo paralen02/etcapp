@@ -1,10 +1,12 @@
+<mat-divider></mat-divider>
+<br>
 <div class="container centered-content" *ngIf="currentStep === 1">
   <h1 class="text-center">Una imagen vale más que mil palabras</h1>
 
   <h2 class="text-center">1. Programa fecha y hora</h2>
   <form [formGroup]="form" class="wide-form mx-auto">
     <mat-form-field class="wide-input">
-      <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha">
+      <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha" [min]="minFecha">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

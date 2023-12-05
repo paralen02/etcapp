@@ -35,11 +35,4 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.username; // Replace 'username' with the actual key used in your token payload.
   }
-  showRoles(): string[] {
-    let roles = [];
-    if (sessionStorage.getItem('roles') !== null) {
-      roles = JSON.parse(sessionStorage.getItem('roles') || '[]');
-    }
-    return roles;
-  }
 }

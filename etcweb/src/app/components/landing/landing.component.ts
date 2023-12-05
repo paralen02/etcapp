@@ -136,12 +136,17 @@ export class LandingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(filters => {
       if (filters) {
-        this.filteredItems = this.items.filter(item => {
-          let matchesPrice = item.precio <= filters.priceRange;
-          let matchesCategory = item.categoria === filters.category;
+        // Si los filtros se han restablecido, muestra todas las publicaciones
+        if (filters.priceRange === 0 && filters.category === 0 && filters.starRating === 0) {
+          this.filteredItems = this.items;
+        } else {
+          this.filteredItems = this.items.filter(item => {
+            let matchesPrice = item.precio <= filters.priceRange;
+            let matchesCategory = item.categoria === filters.category;
 
-          return matchesPrice && matchesCategory;
-        });
+            return matchesPrice && matchesCategory;
+          });
+        }
       }
     });
   }

@@ -91,7 +91,7 @@
       </div>
       <div *ngIf="opcionSeleccionada === 'Mis publicaciones'">
         <div class="row">
-          <div class="col-md-4"
+          <div class="col-lg-8 col-md-12 col-sm-12"
             *ngFor="let publicacion of publicaciones | paginate: { itemsPerPage: 6, currentPage: p }">
             <a [routerLink]="['/publicaciones', publicacion.idPublicaciones]">
               <div class="product-card">
@@ -123,7 +123,7 @@
       </div>
       <div *ngIf="opcionSeleccionada === 'Favoritos'">
         <div class="row">
-          <div class="col-md-4"
+          <div class="col-lg-8 col-md-12 col-sm-12"
             *ngFor="let favorito of favoritos | paginate: { itemsPerPage: 6, currentPage: p }">
             <a [routerLink]="['/publicaciones', favorito.publicacion.idPublicaciones]">
               <div class="product-card">
@@ -154,7 +154,7 @@
       </div>
       <div *ngIf="opcionSeleccionada === 'Compras'">
         <div class="row">
-          <div class="col-md-12 mb-3" style="cursor: pointer;"
+          <div class="col-lg-8 col-md-12 col-sm-12 mb-3" style="cursor: pointer;"
             *ngFor="let compra of compras | paginate: { itemsPerPage: 4, currentPage: p }">
             <div class="card border-0" [routerLink]="['/seguimiento', compra.idCompras]">
               <div class="row g-0">

@@ -54,17 +54,19 @@ export class PublicacionesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const username = this.loginService.getUsername();
-    const roles = this.loginService.showRoles();
+    if (this.loginService.verificar()) {
+      const username = this.loginService.getUsername();
+      const roles = this.loginService.showRole();
 
-    if (roles.includes('VENDEDOR')) {
-      this.vendedoresService.findByUsername(username).subscribe((vendedor: Vendedores) => {
-        this.userId = vendedor.idVendedores;
-      });
-    } else if (roles.includes('COMPRADOR')) {
-      this.compradoresService.findByUsername(username).subscribe((comprador: Compradores) => {
-        this.userId = comprador.idCompradores;
-      });
+      if (roles.includes('VENDEDOR')) {
+        this.vendedoresService.findByUsername(username).subscribe((vendedor: Vendedores) => {
+          this.userId = vendedor.idVendedores;
+        });
+      } else if (roles.includes('COMPRADOR')) {
+        this.compradoresService.findByUsername(username).subscribe((comprador: Compradores) => {
+          this.userId = comprador.idCompradores;
+        });
+      }
     }
 
     this.route.params.subscribe(routeParams => {
