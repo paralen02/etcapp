@@ -123,7 +123,7 @@
 				<version>2.5.0</version>
 				<configuration>
 					<version>1</version>
-					<projectId>aymaraacademia</projectId>
+					<projectId>nook-sales-platform</projectId>
 				</configuration>
 			</plugin>
 			<plugin>

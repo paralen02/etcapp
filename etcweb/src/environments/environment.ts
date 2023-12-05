@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  base: "http://localhost:8080" // Ruta a la API
+  base: "https://nook-sales-platform.uc.r.appspot.com" // Ruta a la API
   }
