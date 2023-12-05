@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nook-sales-platform",
+  "private_key_id": "773126edf239a0ead45e0f66dca5709a1610ef19",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCPqqqwK0mxyAdc\nQ4xCGd4fADujTC2D2sDVdCeWUcOK70Q4lwQ4hen1fOZQrpyjzsPrTLSKW/z3wVqS\ncw8DA2hsH/cjbuGyx8oyFdl90jQbYvc7eRiXUzYmCGe94TY66F+qDb7sLNORHEDK\nHvBv7zh4oPLxQG1taWVspdUwAQzE3DqclXyzx87ak4Jv08B0n+AmbC49HC2jxe7E\naOaNgQ1981tOOsPHRVUk5Ez9K5S1RLwpzB2UXcbx/CzFjYf5clfZdl/siBzQ+1D9\nQcQy04AEVrr2RabOPe9YiXqtM2mFo/X4BgfXXrHV8mFOp//qpIqFo4HxkOWe2Gjr\nvdmou+RTAgMBAAECggEAKHdGX5u5xLEWXacLDR1TIsFCixLsaQzHLvhqJB2AqhQN\nz7C9uBwEE6jsCIK+TSdyqMawvZ3+aVyVYdW1v0AI/Bee2WSkfuJmcegUnCuGkMY1\n5BMOWaVPBbRtYB7c0wfb1j7L7aMMrn1aRHQlfinP6q5O76QZjm1W65zkKQLKsXH4\nhv47iRDe6ZnFPetq3PBP+JHLOReZxFNLpQwHmlYNcOYZBPvPnmgGhWeCT6VlH1On\nzWUAl0uFFDBSXIzz6vl25CJpcVxcui89DRs57lCyDiFpEZj2G0cqA7d16IPiDRNx\nLk52N53fSqSjj15BaHRr1+N3hA4f7F813jiJAUR+BQKBgQDJjZ0c+N5eyK3Y++F8\nfqk40H1Vv33yidVdYVpcOr8Alyp4x2pxOPOnAA3GZdUfGDLOl4CbVArqyW0C4iDT\nEYkeThM0hsFZZ/lggFYtUoRhO1l4tOYeD8ROXmLB7unvf9FW8WjvaNnATjhwb3gE\nZC90f8RRmJTB9j9y2L62SFYrJwKBgQC2eesL1I/5bYkfIsRCv9OYmjPUNsSV14t7\nqFxWvgwTMsZjxSkcuTfksgeaMRPlMan2mVX1bCqb+v8kRgXuDQKVq2ekFO84+ijX\n5tzOKwsD7MF/e7yw4dlgsyApBwrf6356sdQVH4EG6GVEC9ax+rBo+KTqgAdkxRLx\nTC0ywlWo9QKBgQCoP+MLsGRQ00zseTc96a3xk3lM/1FwCcdm8EGyBAg1wfreX/ln\nEpeyrMTS/WbvUg/3jVj6USnb3NF3OrUT/OtttNcrXeJBdB4khH1r0BpZ4GVL8ha2\nuYqxsPDX20zFdPmXjmZ+lBRSB/ntQd/6KnfC1HVZd/mWAK3ufSiWmcP0uQKBgBi7\nr7s7xYQGb8aTnMx7Wb/ebtX90mmI/LP3HwT234YepLtTNv5YsJXD97nTmyG+uI3f\nPMJ2NdRMkhalkxowE0CcKgEYgVBUwAJ7nUQom2adyaBw8iN7iU5NGTfWZ4fwUIVq\n4xc13PRFvawaerBHDXA8+4V5cwcamzWvoJS3uIqdAoGAO09JOncwVWcrA1JdcXan\ntM7gapBV0vMPyTr9rzXupfbHg61PthR56CtJYNLjnKCEqNWDN0L4AvOY7zLKuBMe\nijw+gZQixWKesGxuAGGQB9+vBP0oQ9H+3e7Ejl+bNDJ8quug0h1NZNbHIsV4C6qq\nM/3AU7S7ZAN+DlJTJSk9mEI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "nook-admin@nook-sales-platform.iam.gserviceaccount.com",
+  "client_id": "107251464927402554199",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nook-admin%40nook-sales-platform.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
