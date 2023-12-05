@@ -1,11 +1,8 @@
 .full-screen-background {
   background-image: url('../../../assets/ayuda.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 80%;
+  background-repeat: no-repeat;
   top: 0;
   left: 0;
   width: 100%;

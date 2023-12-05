@@ -8,7 +8,7 @@
       </a>
     </li>
 
-    <div class="search-container d-flex align-items-center">
+    <div class="search-container d-flex align-items-center" *ngIf="isHomePage()">
       <mat-form-field appearance="fill" class="rounded-input">
         <input matInput placeholder="Busca tu mueble ideal 3B" (keyup)="onSearch($event)">
         <button mat-icon-button matSuffix>

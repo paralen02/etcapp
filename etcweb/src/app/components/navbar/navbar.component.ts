@@ -31,6 +31,10 @@ export class NavbarComponent implements OnInit{
     this.getComprador();
   }
 
+  isHomePage(): boolean {
+    return this.router.isActive('/', true);
+  }
+
   cerrar() {
     this.router.navigate(['']);
     sessionStorage.clear();
