@@ -1,3 +1,9 @@
 runtime: java17
 instance_class: F4
 entrypoint: java -noverify -jar etcapi-0.0.1-SNAPSHOT.war
+automatic_scaling:
+  target_cpu_utilization: 0.75
+  min_instances: 1
+  max_instances: 100
+  min_idle_instances: automatic
+  max_idle_instances: automatic

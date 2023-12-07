@@ -308,6 +308,10 @@ if (control) {
             // console.log('No se ha encontrado el usuario');
           }
           this.isBuying = false;
+          if (!this.isBuying) {
+            sessionStorage.removeItem('carrito');
+            sessionStorage.removeItem('carritoPendiente');
+          }
         },
         (error) => {
           // console.log(error);
