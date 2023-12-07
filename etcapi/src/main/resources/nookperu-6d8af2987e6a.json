@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nookperu",
+  "private_key_id": "6d8af2987e6afe1ff48fbc711efd007ff145f905",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDK8R/pYtnS9nZF\nFM8p7qvxlrp7uFAiDu+5BZf1qE/jLBXVBwdkUciPsm7FRGjqrPojCtygO4SCCrr+\nMqgvmF1y+rA39HrQv8rYCXy8pj4i4784siAIFuo7ZgvaYExy/1HcoSs3Pb55BqNv\nCnT1wYViPy98IR1MiBFjIoeWMyEOBJdF3cYrWKpARsgU5Ozzh2PDUP+1HQEuwT2Y\nw5w3AsGR6esUmgKatZVFrWJduLwlfxCLkgSycwb4vizdTHvfFNsCb5+/ZZI/tkvO\nPpro5o4m+dtjd9jeMNZTadBTSgD01mZRKrdCAgZOHjNfMknGb4G+jSe/K42ZuOtN\n0HvJD6/TAgMBAAECggEAH+8GVvqzjPM0VBV8rbv9OXQ+3uX3UgyooyQir8iu3W/b\n9Zv4CUynMxlgPdFQcxEKAUadxebnqHDY0NQWy/p9RfD1lrB1PPDZEdqYUrUUFPhi\naCD7UlqMvBEIL3I0xWmwr3d67ePc2310bS4njl5Hx1hq9+zcB+VnWwKddECSZHqD\nuV1/XJDt8jVCNV1hr4TcdsMqpaXc1SInuL38v8UFxGiiJpu29hWRMumHjhYx1ipe\niuEjU1sBvdOya9GIPv8cSDJK+T4V9zHn5SoX1NH89eP8JEvdOgLjpKjCVv3iTfux\n/hO1Qo7bWLFy7/iMHig3QKvt+8BgYOegjghDMAYaCQKBgQDk+tgrFuE23uc2iNw1\nFzbKYX1Ou0Hii86nN9UvdsafVjT2S8NQHajf7F0KIe8aXDXj+HBTPfCrAwtdhavF\nsRpn8FfFNpCMt/oV2YV5TeYHAaqd7M4FC68AVFy5Hv5bABoQyZHUVK3uRPYN01zk\nCSEY6OHtXOvxeoyEGrS8XK0NqQKBgQDi47XXAQv8ezKmsbcLkgbyMBNuB5VgXwde\ncJPtocsri0Vh1NgyhkVpj5x4EVgpioZpDYXnT7x7lwhipiK275+V+nVpeLtsMkGQ\nec5ksfTg3RKE6cLGdSC+lfj4emGV5eQKhDdUygzjTs5qjBULaVFNxEAIe4kS759a\nT9jUG3anGwKBgHIdRR/sTh7/ZXE7MatPv2GKxl03W3VgwYN6gscdxYzg9JIOXe8O\naPv3msKS+MtFSyIqzSffBZLkeISKOnnSclt8XvGM6OsIQR0kg61ZkhrJzNLZki7X\njMZ4RKGJfa+yVEsreX69GNVXDt0DChcnKZR1cyrNFVUKAv9PI+V/tkrJAoGBALkC\ndYSclemLjAHhaCFHMeLK0Q0noeazlo6rvfRHuiQHrMvZg3Gvi2pIcI53lixJiNCg\n9k9n9YnR3kSStDv3qWnikVsv16SiVlQ4/tOdSNETc8Zt1yV83PaL1DjJkklo7Eqn\nBXdeSqQP3sGC+KYVevau0IgaM+v8+TPraCONQXOBAoGAJQ7rpB5CFEmMp717vUnR\nZCFsnFF/AEk63lcSmNtbEkrCdL0LxtTQAkvx05bQ+lP1lD5zduKnoZe/kupANDTZ\nHDeZB41hewXrnT5Dzn6cNDI14/AgFGhW83C+lgAxeyD3ZZZe8MnqsgZa++VU+mMo\n6c/G7gP1es35UmrOjVB3Myc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "nookperu-admin@nookperu.iam.gserviceaccount.com",
+  "client_id": "101486184337930683747",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nookperu-admin%40nookperu.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
